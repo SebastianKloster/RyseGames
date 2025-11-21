@@ -1,0 +1,5 @@
+main {
+    min-height: calc(100vh - 11rem);
+    padding-bottom: 3rem;
+    color: var(--color-delta);
+}

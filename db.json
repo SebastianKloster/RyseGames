@@ -1,0 +1,60 @@
+{
+    "juegos": [
+        {
+            "id": 1,
+            "nombre": "Skyfall Legends",
+            "fechaLanzamiento": "2023-11-10",
+            "precio": 59.99,
+            "categoria": "ACCION",
+            "desarrolladora": "Nekosoft"
+        },
+        {
+            "id": 2,
+            "nombre": "Pixel Runner Neo",
+            "fechaLanzamiento": "2021-06-22",
+            "precio": 19.99,
+            "categoria": "ARCADE",
+            "desarrolladora": "RetroByte Studios"
+        },
+        {
+            "id": 3,
+            "nombre": "Mystic Shores",
+            "fechaLanzamiento": "2022-03-14",
+            "precio": 49.99,
+            "categoria": "AVENTURA",
+            "desarrolladora": "Blue Horizon Games"
+        },
+        {
+            "id": 4,
+            "nombre": "Empire Tactics",
+            "fechaLanzamiento": "2020-09-30",
+            "precio": 39.5,
+            "categoria": "ESTRATEGIA",
+            "desarrolladora": "Ironforge Interactive"
+        },
+        {
+            "id": 5,
+            "nombre": "Ultimate Kick Arena",
+            "fechaLanzamiento": "2019-04-18",
+            "precio": 29.0,
+            "categoria": "DEPORTE",
+            "desarrolladora": "GoalMaster Studios"
+        },
+        {
+            "id": 6,
+            "nombre": "Shadows of the Fallen Empire",
+            "fechaLanzamiento": "2019-04-18",
+            "precio": 29.0,
+            "categoria": "MMO",
+            "desarrolladora": "GoalMaster Studios"
+        },
+        {
+            "id": 7,
+            "nombre": "KARASSIA: The Last Conqueror",
+            "fechaLanzamiento": "2019-04-18",
+            "precio": 29.0,
+            "categoria": "RPG",
+            "desarrolladora": "GoalMaster Studios"
+        }
+    ]
+}
