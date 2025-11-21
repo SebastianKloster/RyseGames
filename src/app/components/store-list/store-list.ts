@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { JuegoService } from '../../services/juego-service';
-import { CategoriaEnum } from '../../model/categoriaEnum';
+import { JuegoService } from '../../juegos/services/juego-service';
+import { CategoriaEnum } from '../../juegos/model/categoriaEnum';
 import { Router, RouterLink } from '@angular/router';
 import { CurrencyPipe } from '@angular/common';
 
@@ -12,10 +12,10 @@ import { CurrencyPipe } from '@angular/common';
 })
 export class StoreList {
   router = inject(Router) //Router: nos permite redireccionar al usuario a otra pagina
-  
+
   juegosService = inject(JuegoService)
 
-  juegos = this.juegosService.getJuegos()
+  juegos = this.juegosService.juegos
 
 
   getCategoryColor(categoria: CategoriaEnum): string {

@@ -1,0 +1,22 @@
+<h2>Lista de juegos</h2>
+
+<section class="juegos-contenedor">
+
+  @for (item of juegos(); track $index) {
+    <article class="card">
+      <a [routerLink]="['/juegos',item.id]">
+        <img src="[{{item.foto}}]" alt="foto del juego">
+        <h3>{{item.nombre}}</h3>
+        <p>{{item.precio}}</p>
+        <p>{{item.desarrolladora}}</p>
+      </a>
+
+      <div class="actions">
+        <button (click)="editJuego(item)">Editar Juego</button>
+        <button (click)="deleteJuego(item.id)">Eliminar Juego</button>
+      </div>
+    </article>
+  }
+
+
+</section>

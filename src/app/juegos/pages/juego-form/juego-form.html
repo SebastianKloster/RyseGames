@@ -1,0 +1,60 @@
+<h2>{{ isEditMode() ? 'Editar Juego' : 'Registrar Juego'}}</h2>
+
+<form [formGroup]="form" (ngSubmit)="saveJuego()">
+
+  <div>
+    <label>Nombre</label>
+    <input type="text" formControlName="nombre">
+    @if (form.get('nombre')?.invalid && form.get('nombre')?.touched) {
+      <p class="error-msj">Debe ingresar un nombre al juego</p>
+    }
+  </div>
+
+  <div>
+    <label>Fecha de Lanzamiento</label>
+    <input type="date" formControlName="fechaLanzamiento">
+    @if (form.get('fechaLanzamiento')?.invalid && form.get('fechaLanzamiento')?.touched) {
+      <p class="error-msj">Debe ingresar una fecha válida</p>
+    }
+  </div>
+
+  <div>
+    <label>Precio</label>
+    <input type="number" formControlName="precio">
+    @if (form.get('precio')?.invalid && form.get('precio')?.touched) {
+      <p class="error-msj">Debe ingresar un precio válido</p>
+    }
+  </div>
+
+  <div>
+    <label>Categoria</label>
+    <select formControlName="categoria">
+  <option *ngFor="let c of categorias" [ngValue]="c">
+    {{ c }}
+  </option>
+</select>
+    @if (form.get('categoria')?.invalid && form.get('categoria')?.touched) {
+      <p class="error-msj">Debe seleccionar una categoría</p>
+    }
+  </div>
+
+  <div>
+    <label>Foto</label>
+    <input type="text" formControlName="foto">
+    @if (form.get('foto')?.invalid && form.get('foto')?.touched) {
+      <p class="error-msj">Debe ingresar una url para la foto del juego</p>
+    }
+  </div>
+
+
+
+  <div class="form-buttons">
+    <button type="submit" [disabled]="form.invalid">
+      {{ isEditMode() ? 'Actualizar' : 'Registrar'}}
+    </button>
+
+    @if (isEditMode()) {
+      <button type="button" (click)="cancelEdit()">Cancelar</button>
+    }
+  </div>
+</form>
