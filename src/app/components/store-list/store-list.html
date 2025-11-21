@@ -2,20 +2,19 @@
     @for (juego of juegos(); track juego.id) {
         <article [routerLink]="['/juegos', juego.id]">
             <div class="portada">
-                <img src="https://assets.dev-filo.dift.io/img/2020/09/25/hipertextual-remake-metal-gear-solid-estaria-camino-playstation-5-2020271937_re.jpg" alt="">
+                <img [src]="getCategoryImage(juego.categoria)" alt="Imagen de Prueba">
             </div>
             <div class="texto">
                 <h4>{{juego.nombre}}</h4>
                 <div class="desc">
-                    <p class="date">{{juego.fechaLanzamiento}}</p>
                     <p class="desarrolladora">{{juego.desarrolladora}}</p>
-                    <div class="categoria" [style.backgroundColor]="getCategoryColor(juego.categoria)">
-                        <!-- <p>{{juego.categoria}}</p> -->
-                        <i [class]="getCategoryIcon(juego.categoria)"></i>
-                    </div>
                 </div>
+                <p class="fecha_lanzamiento">{{juego.fechaLanzamiento}}</p>
                 <div class="precio_container">
                     <p class="precio">{{ juego.precio | currency:'USD':'symbol':'1.2-2' }}</p>
+                </div>
+                <div class="categoria" [style.backgroundColor]="getCategoryColor(juego.categoria)">
+                    <i [class]="getCategoryIcon(juego.categoria)"></i>
                 </div>
             </div>
         </article>

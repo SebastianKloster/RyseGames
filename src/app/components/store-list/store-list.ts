@@ -53,4 +53,20 @@ export class StoreList {
 
     return map[cat];
   }
+
+
+  // Funcion para Testing hasta que implementemos imagenes reales
+  getCategoryImage(cat: CategoriaEnum): string {
+    const map: Record<CategoriaEnum, string> = {
+      ACCION: "https://assets.dev-filo.dift.io/img/2020/09/25/hipertextual-remake-metal-gear-solid-estaria-camino-playstation-5-2020271937_re.jpg",
+      ARCADE: "https://www.nintendo.com/eu/media/images/10_share_images/games_15/nintendo_switch_download_software_1/H2x1_NSwitchDS_Tetris99_image1600w.jpg",
+      AVENTURA: "https://www.nintendo.com/eu/media/images/assets/nintendo_switch_2_games/thelegendofzeldabreathofthewild_nintendoswitch2edition/2x1_NSwitch2_TLoZTBotWNSwitch2Edition.jpg",
+      ESTRATEGIA: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/813780/header.jpg?t=1760473253",
+      DEPORTE: "https://i.blogs.es/5fe30d/fifa-21-intros_1/1366_521.jpeg",
+      MMO: "https://www.yeabitinformatica.com/wp-content/uploads/2020/10/world-of-warcraft-todas-las-expansiones.jpg",
+      RPG: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/72850/header.jpg?t=1721923139"
+    };
+
+    return map[cat];
+  }
 }

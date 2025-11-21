@@ -55,6 +55,22 @@
             "precio": 29.0,
             "categoria": "RPG",
             "desarrolladora": "GoalMaster Studios"
+        },
+        {
+            "id": 8,
+            "nombre": "The Legend of Zelda: Breath of the Wild",
+            "fechaLanzamiento": "2017-03-03",
+            "precio": 49.99,
+            "categoria": "AVENTURA",
+            "desarrolladora": "Nintendo Entertainment Planning & Development"
+        },
+        {
+            "id": 666,
+            "nombre": "«Aquí hay sabiduría… Su número es seiscientos sesenta y seis.»",
+            "fechaLanzamiento": "27-13-18",
+            "precio": 29.0,
+            "categoria": "RPG",
+            "desarrolladora": "IsHere"
         }
     ]
 }

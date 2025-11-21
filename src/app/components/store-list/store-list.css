@@ -7,17 +7,19 @@ section.juegos_list {
     gap: 1rem;
 }
 article {
-    height: 20rem;
+    height: 18rem;
     
     display: flex;
     flex-direction: column;
 
     color: var(--color-delta);
-    background-color: var(--color-alfa);
     border: 2px solid var(--color-alfa);
-    transition: 0.2s ease;
-
+    background-color: var(--color-alfa);
     box-shadow: 2px 2px 5px var(--color-alfa);
+
+    transition: 0.2s ease;
+    cursor: pointer;
+    overflow: hidden;
 }
 article:hover {
     border-color: var(--color-gamma);
@@ -41,6 +43,7 @@ article:hover {
     position: absolute;
     top: -1rem;
     right: 0px;
+    z-index: 1;
     
     display: flex;
     justify-content: center;
@@ -51,20 +54,47 @@ article:hover {
     
     background-color: var(--color-alfa);
     border: 2px solid var(--color-beta);
+    box-shadow: 0rem 0rem 5rem 1rem var(--color-beta);
 }
 .texto {
-    position: relative;
     height: 100%;
     width: 100%;
+    padding: 0.3rem 0.6rem;
+    position: relative;
 
     background: linear-gradient(135deg, var(--color-alfa), var(--color-beta), var(--color-alfa));
 }
 .categoria {
-    width: fit-content;
+    width: 1.8rem;
+    height: 1.8rem;
     min-width: 1.2rem;
-    padding: 0.2rem;
+
+    position: absolute;
+    left: 5px;
+    bottom: 5px;
     
-    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
     color: var(--color-alfa);
     border-radius: 5px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 2px 2px 10px var(--color-beta);
+}
+.texto h4 {
+    font-size: 1.2rem;
+    position: relative;
+    z-index: 2;
+}
+.desc {
+    display: flex;
+    justify-content: space-between;
+    color: gray;
+}
+.fecha_lanzamiento {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: gray;
 }
