@@ -21,3 +21,5 @@ body {
     background-color: var(--color-beta);
     background-image: url('./assets/images/game_pattern.png');
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

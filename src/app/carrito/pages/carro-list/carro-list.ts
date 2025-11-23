@@ -19,6 +19,7 @@ carrito = this.carritoService.carrito;
    ngOnInit(): void {
  
     if (this.carrito() === null) {
+      
      console.log("Carrito en el componente:", this.carrito());
       this.loadSubscription = this.carritoService.refrescarCarrito().subscribe({
         next: () => {
@@ -37,8 +38,8 @@ carrito = this.carritoService.carrito;
     this.loadSubscription?.unsubscribe();
   }
 
- removeJuego(idJuego: number) {
-this.carritoService.eliminarJuego(idJuego).subscribe();
+ removeJuego(id: number) {
+this.carritoService.eliminarJuego(id).subscribe();
  }
  total = computed(() => {
   const carrito = this.carrito();

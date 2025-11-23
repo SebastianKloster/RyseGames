@@ -16,44 +16,47 @@ export class StoreList {
   juegosService = inject(JuegoService)
 
   juegos = this.juegosService.getJuegos()
-
-
-  getCategoryColor(categoria: CategoriaEnum): string {
-    switch (categoria) {
-      case CategoriaEnum.ACCION:
-        return '#e53935'; // Rojo
-      case CategoriaEnum.ARCADE:
-        return '#fb8c00'; // Naranja
-      case CategoriaEnum.AVENTURA:
-        return '#43a047'; // Verde
-        case CategoriaEnum.ESTRATEGIA:
-          return '#5c6bc0'; // Azul claro
-          case CategoriaEnum.DEPORTE:
-        // return '#ba68c8'; // Violeta claro
-        return '#43a047'; // Verde
-      case CategoriaEnum.MMO:
-        return '#26a69a'; // Turquesa claro
-      case CategoriaEnum.RPG:
-        return '#7e57c2'; // Púrpura claro
-      default:
-        return '#9e9e9e';
-    }
+getCategoryColor(categoria: CategoriaEnum | undefined): string {
+  if (!categoria) {
+    return '#9e9e9e'; // Color por defecto
   }
 
-  getCategoryIcon(cat: CategoriaEnum): string {
-    const map: Record<CategoriaEnum, string> = {
-      ACCION: 'fa-solid fa-gun',
-      ARCADE: 'fa-solid fa-gamepad',
-      AVENTURA: 'fa-solid fa-person-hiking',
-      ESTRATEGIA: 'fa-solid fa-chess',
-      DEPORTE: 'fa-solid fa-futbol',
-      MMO: 'fa-solid fa-users',
-      RPG: 'fa-solid fa-dungeon'
-    };
-
-    return map[cat];
+  switch (categoria) {
+    case CategoriaEnum.ACCION:
+      return '#e53935'; // Rojo
+    case CategoriaEnum.ARCADE:
+      return '#fb8c00'; // Naranja
+    case CategoriaEnum.AVENTURA:
+      return '#43a047'; // Verde
+    case CategoriaEnum.ESTRATEGIA:
+      return '#5c6bc0'; // Azul claro
+    case CategoriaEnum.DEPORTE:
+      return '#43a047'; // Verde
+    case CategoriaEnum.MMO:
+      return '#26a69a'; // Turquesa claro
+    case CategoriaEnum.RPG:
+      return '#7e57c2'; // Púrpura claro
+    default:
+      return '#9e9e9e';
   }
+}
 
+getCategoryIcon(cat: CategoriaEnum | undefined): string {
+  if (!cat) return 'fa-solid fa-question'; // icono por defecto
+
+  const map: Record<CategoriaEnum, string> = {
+    ACCION: 'fa-solid fa-gun',
+    ARCADE: 'fa-solid fa-gamepad',
+    AVENTURA: 'fa-solid fa-person-hiking',
+    ESTRATEGIA: 'fa-solid fa-chess',
+    DEPORTE: 'fa-solid fa-futbol',
+    MMO: 'fa-solid fa-users',
+    RPG: 'fa-solid fa-dungeon'
+  };
+
+  return map[cat] ?? 'fa-solid fa-question';
+}
+  
 
   // Funcion para Testing hasta que implementemos imagenes reales
   getCategoryImage(cat: CategoriaEnum): string {
