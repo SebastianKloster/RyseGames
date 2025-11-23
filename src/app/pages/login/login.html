@@ -1,11 +1,11 @@
-<section>
+<section id="login">
     <div class="container">
         <form [formGroup]="userForm" (ngSubmit)="handleSubmit()">
-            <input id="user" formControlName="user" />
-            <input id="pass" formControlName="pass" />
+            <input id="user" formControlName="user" placeholder="username"/>
+            <input id="pass" formControlName="pass" placeholder="password"/>
                 
             <button type="submit">Login</button>
+            <button (click)="logout()">Logout</button>
         </form>
-        <button (click)="logout()">Logout</button>
     </div>
 </section>

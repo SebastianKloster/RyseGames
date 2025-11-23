@@ -2,7 +2,7 @@
     @for (juego of juegos(); track juego.id) {
         <article [routerLink]="['/juegos', juego.id]">
             <div class="portada">
-                <img [src]="getCategoryImage(juego.categoria)" alt="Imagen de Prueba">
+                <img [src]="juego.foto" alt="Imagen de Prueba">
             </div>
             <div class="texto">
                 <h4>{{juego.nombre}}</h4>

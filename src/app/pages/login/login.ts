@@ -31,13 +31,11 @@ export class Login {
   }
 
   login(user:string, pass:string) {
-    console.log(user, pass)
     this.sessionService.login(user, pass);
-    window.location.reload();
   }
   logout() {
     this.sessionService.logout();
-    window.location.reload();
+
   }
 
 

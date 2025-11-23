@@ -8,5 +8,5 @@ export interface JuegoModel {
     precio: number;
     categoria: CategoriaEnum;
     desarrolladora: DesarrolladoraModel;
-    portada: string;
+    foto: string;
 }
