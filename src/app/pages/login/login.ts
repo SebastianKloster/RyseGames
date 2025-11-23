@@ -24,7 +24,6 @@ export class Login {
   handleSubmit() {
     if (this.userForm.valid) {
       this.login(this.userForm.getRawValue().user, this.userForm.getRawValue().pass)
-      this.router.navigate(['/store']);
     } else {
       alert("Fomurlario inválido");
     }
