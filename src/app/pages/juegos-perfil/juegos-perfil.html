@@ -1,0 +1,12 @@
+<h2>Mis Juegos</h2>
+
+<ul>
+  @for (juego of perfilService.juegosPropios(); track juego.nombre) {
+    <li>
+      <img [src]="juego.foto" width="80">
+      <strong>{{ juego.nombre }}</strong>
+      <span> - {{ juego.precio | currency }}</span>
+    </li>
+  }
+</ul>
+

@@ -1,0 +1,13 @@
+<h2>Mis Favoritos</h2>
+
+<ul>
+  @for (juego of favoritos; track juego.id) {
+    <li>
+      <img [src]="juego.foto" width="80">
+
+      <strong>{{ juego.nombre }}</strong>
+
+      <button (click)="quitar(juego.id)">Eliminar de mis favoritos</button>
+    </li>
+  }
+</ul>

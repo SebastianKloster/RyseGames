@@ -10,3 +10,22 @@ export interface JuegoModel {
     desarrolladora: DesarrolladoraModel;
     foto: string;
 }
+
+export interface JuegoVerDTO {
+  nombre: string;
+  fechaLanzamiento: string;
+  precio: number;
+  categoria: CategoriaEnum;
+  foto: string;
+  nombreDesarrolladora: string;
+}
+
+export interface JuegoVerDesarrolladoraDTO{
+  id: number;
+  nombre: string;
+  fechaLanzamiento: string;
+  precio: number;
+  categoria: CategoriaEnum;
+  foto: string;
+  nombreDesarrolladora: string;
+}
