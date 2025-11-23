@@ -3,7 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Role } from '../../../model/role';
 import { UserService } from '../../../services/user-service';
 import { Router } from '@angular/router';
-import { UserModel } from '../../../model/user';
+import { UserModel, UserUpdateDTO } from '../../../model/user';
 
 @Component({
   selector: 'app-user-form.component',
@@ -12,13 +12,13 @@ import { UserModel } from '../../../model/user';
   styleUrl: './user-form.component.css',
 })
 export class UserFormComponent {
-  rol = Object.values(Role);
+  roles = Object.values(Role);
 
   private fb = inject(FormBuilder);
   userService = inject(UserService);
 
   isEditMode = signal(false);
-  private userToEdit = this.userService.userToEdit();
+  private userToEdit: UserUpdateDTO | null = null;
   private router = inject(Router);
 
   form = this.fb.nonNullable.group(
@@ -53,7 +53,37 @@ export class UserFormComponent {
       this.form.reset();
     }
   });
+
+
+  effect(()=>{
+    this.updateValidatorByRole(this.form.get('role')!.value!);
+  });
   }
+
+
+  updateValidatorByRole(role: Role){
+    const nickName = this.form.get('nickname');
+    const nombreDesarrolladora = this.form.get('nombreDesarrolladora');
+    const paisOrigen = this.form.get('paisOrigen');
+
+    nickName?.clearValidators();
+    nombreDesarrolladora?.clearValidators();
+    paisOrigen?.clearValidators();
+
+    if(role === Role.Perfil){
+      nickName?.setValidators([Validators.required,Validators.maxLength(50),Validators.minLength(2)]);
+    }
+
+    if(role === Role.Desarrolladora){
+      nombreDesarrolladora?.setValidators([Validators.required,Validators.maxLength(50),Validators.minLength(2)]);
+      paisOrigen?.setValidators([Validators.required,Validators.maxLength(50),Validators.minLength(2)]);
+    }
+
+    nickName?.updateValueAndValidity();
+    nombreDesarrolladora?.updateValueAndValidity();
+    paisOrigen?.updateValueAndValidity();
+  }
+
 
   saveUser(){
   if(this.form.invalid){
@@ -72,7 +102,7 @@ export class UserFormComponent {
   } else{
     this.userService.postUser(formValue).subscribe(()=>{
       console.log('Usuario creado con exito');
-      this.form.reset();
+      this.form.reset({role: Role.Perfil});
       this.redirect();
     })
   }

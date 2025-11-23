@@ -73,4 +73,6 @@
     </div>
   }
 
+  <button type="submit" [disabled]="form.invalid">
+    {{isEditMode() ? 'Guardar Cambios' : 'Registrarse'}}</button>
 </form>
