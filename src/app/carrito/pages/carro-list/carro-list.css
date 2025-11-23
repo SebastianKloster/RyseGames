@@ -83,9 +83,15 @@ button[mat-icon-button]:hover {
   font-size: 1.1rem;
   border-radius: 10px;
   transition: 0.2s ease;
-    background: #00eaff;
+    background: #01d9ec;
 }
 .btn-compra:hover {
   transform: scale(1.01);
     background: #00c8d7;
+}
+
+.btn-compra:disabled {
+    background: #555557;
+    color: #b2b2b2;
+    transform: none;
 }

@@ -1,4 +1,4 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { ICarroDeCompras } from '../model/carro.model/carro.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subscription, switchMap, tap } from 'rxjs';
@@ -11,7 +11,8 @@ export class Carro {
    private apiURL = 'http://localhost:8080/api/carrito';
 
    sessionService = inject(SessionService)
-     private sessionSub: Subscription | null = null;
+
+  private sessionSub: Subscription | null = null;
    
   private carritoState= signal<ICarroDeCompras | null>(null);
 
@@ -24,17 +25,21 @@ export class Carro {
       if (!logged) {
         this.carritoState.set(null); // limpia cuando el usuario sale
       } else {
-        this.http.get<ICarroDeCompras>(this.apiURL).subscribe(
+        this.http.get<ICarroDeCompras>(this.apiURL, {
+  headers: this.sessionService.getAuthHeaders()
+  }).subscribe(
           data => this.carritoState.set(data)
         )
       }});
   }
 
   public obtenerCarrito(){
-    this.http.get<ICarroDeCompras>(this.apiURL).subscribe(
+    this.http.get<ICarroDeCompras>(this.apiURL, {
+  headers: this.sessionService.getAuthHeaders()
+}).subscribe(
     (data) => {
       
-tap(c => console.log("Carrito recibido del backend:", c))
+    tap(c => console.log("Carrito recibido del backend:", c))
         this.carritoState.set(data);  
     });
   }
@@ -42,7 +47,9 @@ tap(c => console.log("Carrito recibido del backend:", c))
   agregarJuego(nombreJuego: string): Observable<ICarroDeCompras> {
     const body = { nombreJuego };
 
-    return this.http.post<ICarroDeCompras>(`${this.apiURL}/add`, body).pipe(
+    return this.http.post<ICarroDeCompras>(`${this.apiURL}/add`, body, {
+    headers: this.sessionService.getAuthHeaders()
+  } ).pipe(
       tap((carritoActualizado) => {
         this.carritoState.set(carritoActualizado);
       })
@@ -50,13 +57,17 @@ tap(c => console.log("Carrito recibido del backend:", c))
   }
 
   eliminarJuego(idJuego: number): Observable<ICarroDeCompras> {
-  return this.http.delete<void>(`${this.apiURL}/remove/${idJuego}`).pipe(
+  return this.http.delete<void>(`${this.apiURL}/remove/${idJuego}`, {
+    headers: this.sessionService.getAuthHeaders()
+  }).pipe(
         switchMap(() => this.refrescarCarrito())     
     );
       }
 
     vaciarCarrito(): Observable<void> {
-    return this.http.delete<void>(`${this.apiURL}/clear`).pipe(
+    return this.http.delete<void>(`${this.apiURL}/clear`, {
+    headers: this.sessionService.getAuthHeaders()
+  }).pipe(
       tap(() => {
         this.carritoState.set({
           idCarrito: 0,
@@ -67,10 +78,20 @@ tap(c => console.log("Carrito recibido del backend:", c))
   }
 
     public refrescarCarrito(): Observable<ICarroDeCompras> {
-    return this.http.get<ICarroDeCompras>(this.apiURL).pipe(
+    return this.http.get<ICarroDeCompras>(this.apiURL, {
+  headers: this.sessionService.getAuthHeaders()
+}).pipe(
 
       tap((carrito) => this.carritoState.set(carrito))
     );
   }
 
+
+  public totalCompra = computed(() => {
+    const carro = this.carrito();
+    if (!carro || !carro.juegos) {
+      return 0;
+    }
+    return carro.juegos.reduce((sum, item) => sum + item.precio, 0);
+  });
 }
