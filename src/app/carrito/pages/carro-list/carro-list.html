@@ -43,7 +43,7 @@
   <div class="carro-right">
     <mat-card class="total-card">
       <h3>Total: $ {{ total() }}</h3>
-      <button mat-raised-button color="primary" class="btn-compra">
+      <button mat-raised-button color="primary" [disabled]="empty()" class="btn-compra" (click)="confirmarCompra()">
         Finalizar Compra
       </button>
     </mat-card>
