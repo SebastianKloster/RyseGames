@@ -1,0 +1,11 @@
+<section>
+    <div class="container">
+        <form [formGroup]="userForm" (ngSubmit)="handleSubmit()">
+            <input id="user" formControlName="user" />
+            <input id="pass" formControlName="pass" />
+                
+            <button type="submit">Login</button>
+        </form>
+        <button (click)="logout()">Logout</button>
+    </div>
+</section>

@@ -1,4 +1,5 @@
 import { CategoriaEnum } from "./categoriaEnum";
+import { DesarrolladoraModel } from "./desarrolladora";
 
 export interface JuegoModel {
     id: number;
@@ -6,5 +7,6 @@ export interface JuegoModel {
     fechaLanzamiento: Date;
     precio: number;
     categoria: CategoriaEnum;
-    desarrolladora: string;
+    desarrolladora: DesarrolladoraModel;
+    portada: string;
 }

@@ -1,76 +1,112 @@
 {
-    "juegos": [
-        {
-            "id": 1,
-            "nombre": "Skyfall Legends",
-            "fechaLanzamiento": "2023-11-10",
-            "precio": 59.99,
-            "categoria": "ACCION",
-            "desarrolladora": "Nekosoft"
-        },
-        {
-            "id": 2,
-            "nombre": "Pixel Runner Neo",
-            "fechaLanzamiento": "2021-06-22",
-            "precio": 19.99,
-            "categoria": "ARCADE",
-            "desarrolladora": "RetroByte Studios"
-        },
-        {
-            "id": 3,
-            "nombre": "Mystic Shores",
-            "fechaLanzamiento": "2022-03-14",
-            "precio": 49.99,
-            "categoria": "AVENTURA",
-            "desarrolladora": "Blue Horizon Games"
-        },
-        {
-            "id": 4,
-            "nombre": "Empire Tactics",
-            "fechaLanzamiento": "2020-09-30",
-            "precio": 39.5,
-            "categoria": "ESTRATEGIA",
-            "desarrolladora": "Ironforge Interactive"
-        },
-        {
-            "id": 5,
-            "nombre": "Ultimate Kick Arena",
-            "fechaLanzamiento": "2019-04-18",
-            "precio": 29.0,
-            "categoria": "DEPORTE",
-            "desarrolladora": "GoalMaster Studios"
-        },
-        {
-            "id": 6,
-            "nombre": "Shadows of the Fallen Empire",
-            "fechaLanzamiento": "2019-04-18",
-            "precio": 29.0,
-            "categoria": "MMO",
-            "desarrolladora": "GoalMaster Studios"
-        },
-        {
-            "id": 7,
-            "nombre": "KARASSIA: The Last Conqueror",
-            "fechaLanzamiento": "2019-04-18",
-            "precio": 29.0,
-            "categoria": "RPG",
-            "desarrolladora": "GoalMaster Studios"
-        },
-        {
-            "id": 8,
-            "nombre": "The Legend of Zelda: Breath of the Wild",
-            "fechaLanzamiento": "2017-03-03",
-            "precio": 49.99,
-            "categoria": "AVENTURA",
-            "desarrolladora": "Nintendo Entertainment Planning & Development"
-        },
-        {
-            "id": 666,
-            "nombre": "«Aquí hay sabiduría… Su número es seiscientos sesenta y seis.»",
-            "fechaLanzamiento": "27-13-18",
-            "precio": 29.0,
-            "categoria": "RPG",
-            "desarrolladora": "IsHere"
-        }
-    ]
+  "juegos": [
+    {
+      "id": 1,
+      "nombre": "Skyfall Legends",
+      "fechaLanzamiento": "2023-11-10",
+      "precio": 59.99,
+      "categoria": "ACCION",
+      "desarrolladora": {
+        "id": 1,
+        "nombre": "Nekosoft",
+        "pais": "Argentina"
+      }
+    },
+    {
+      "id": 2,
+      "nombre": "Pixel Runner Neo",
+      "fechaLanzamiento": "2021-06-22",
+      "precio": 19.99,
+      "categoria": "ARCADE",
+      "desarrolladora": {
+        "id": 2,
+        "nombre": "RetroByte Studios",
+        "pais": "Estados Unidos"
+      }
+    },
+    {
+      "id": 3,
+      "nombre": "Mystic Shores",
+      "fechaLanzamiento": "2022-03-14",
+      "precio": 49.99,
+      "categoria": "AVENTURA",
+      "desarrolladora": {
+        "id": 3,
+        "nombre": "Blue Horizon Games",
+        "pais": "Canadá"
+      }
+    },
+    {
+      "id": 4,
+      "nombre": "Empire Tactics",
+      "fechaLanzamiento": "2020-09-30",
+      "precio": 39.5,
+      "categoria": "ESTRATEGIA",
+      "desarrolladora": {
+        "id": 4,
+        "nombre": "Ironforge Interactive",
+        "pais": "Reino Unido"
+      }
+    },
+    {
+      "id": 5,
+      "nombre": "Ultimate Kick Arena",
+      "fechaLanzamiento": "2019-04-18",
+      "precio": 29.0,
+      "categoria": "DEPORTE",
+      "desarrolladora": {
+        "id": 5,
+        "nombre": "GoalMaster Studios",
+        "pais": "Australia"
+      }
+    },
+    {
+      "id": 6,
+      "nombre": "Shadows of the Fallen Empire",
+      "fechaLanzamiento": "2019-04-18",
+      "precio": 29.0,
+      "categoria": "MMO",
+      "desarrolladora": {
+        "id": 5,
+        "nombre": "GoalMaster Studios",
+        "pais": "Australia"
+      }
+    },
+    {
+      "id": 7,
+      "nombre": "KARASSIA: The Last Conqueror",
+      "fechaLanzamiento": "2019-04-18",
+      "precio": 29.0,
+      "categoria": "RPG",
+      "desarrolladora": {
+        "id": 5,
+        "nombre": "GoalMaster Studios",
+        "pais": "Australia"
+      }
+    },
+    {
+      "id": 8,
+      "nombre": "The Legend of Zelda: Breath of the Wild",
+      "fechaLanzamiento": "2017-03-03",
+      "precio": 49.99,
+      "categoria": "AVENTURA",
+      "desarrolladora": {
+        "id": 6,
+        "nombre": "Nintendo Entertainment Planning & Development",
+        "pais": "Japón"
+      }
+    },
+    {
+      "id": 666,
+      "nombre": "«Aquí hay sabiduría… Su número es seiscientos sesenta y seis.»",
+      "fechaLanzamiento": "27-13-18",
+      "precio": 29.0,
+      "categoria": "RPG",
+      "desarrolladora": {
+        "id": 7,
+        "nombre": "IsHere",
+        "pais": "Alemania"
+      }
+    }
+  ]
 }
