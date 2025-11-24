@@ -1,0 +1,25 @@
+<div *ngIf="estadisticas() as e" class="estadisticas-container">
+
+  <div class="panel">
+
+    <h2>Juego más vendido</h2>
+    <div class="juego-item">
+      <strong>{{ e.juegoMasVendido.juegoNombre }}</strong>
+      <p>Ventas: {{ e.juegoMasVendido.cantidadVendida }}</p>
+    </div>
+
+    <h2>Ventas por juego</h2>
+    <ul>
+      <li *ngFor="let v of e.ventasPorJuego">
+        {{ v.juegoNombre }} — {{ v.cantidadVendida }} ventas
+      </li>
+    </ul>
+
+  </div>
+
+  <div class="ganancias-panel">
+    <h2>Ganancias totales</h2>
+    <p class="ganancias">${{ e.gananciasTotales }}</p>
+  </div>
+
+</div>
