@@ -1,5 +1,5 @@
 section#login {
-    height: calc(100vh - 11rem);
+    height: var(--semi-screen);
     padding: 2rem 4rem;
 
     background-color: var(--color-beta);

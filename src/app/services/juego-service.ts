@@ -1,4 +1,4 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { JuegoModel } from '../model/juego';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SessionService } from './session-service';
@@ -29,5 +29,11 @@ export class JuegoService {
 
   getJuegos() {
     return this.juegosData.asReadonly();
+  }
+
+  getJuegoById(id:number) {
+    return computed(() => {
+      return this.juegosData().find(game => game.id === id) ?? null;
+    });
   }
 }

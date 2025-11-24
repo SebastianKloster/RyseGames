@@ -1,0 +1,28 @@
+<section id="game">
+    @if (juego(); as juego) {
+        <div class="imagen">
+            <img [src]="juego.foto" alt="">
+        </div>
+        <div class="texto">
+            <div class="desc">
+                <div class="nombre_container">
+                    <h2>{{juego.nombre}}</h2>
+                    <div class="categoria" [style.backgroundColor]="getCategoryColor(juego.categoria)">
+                        <i [class]="getCategoryIcon(juego.categoria)"></i>
+                    </div>
+                </div>
+                <h3>{{juego.desarrolladora.nombre}} - {{juego.desarrolladora.pais}}</h3>
+            </div>
+            <div class="buttons">
+                <button (click)="comprar(juego.id)">Comprar</button>
+                <button (click)="addFav(juego.id)">Favoritos</button>
+            </div>
+        </div>
+
+
+
+
+    } @else {
+        <p>Buscano...</p>
+    }
+</section>
