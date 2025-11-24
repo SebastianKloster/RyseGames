@@ -1,5 +1,5 @@
 main {
-    min-height: calc(100vh - 11rem);
+    min-height: var(--semi-screen);
     /* padding-bottom: 3rem; */
     color: var(--color-delta);
 }

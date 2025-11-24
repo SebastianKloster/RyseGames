@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { UserModel } from '../model/user';
 
 @Injectable({
   providedIn: 'root',
@@ -9,6 +10,11 @@ import { BehaviorSubject } from 'rxjs';
 export class SessionService {
   router = inject(Router)
   http = inject(HttpClient)
+  apiURL = "http://localhost:8080/api/users"
+
+  user = signal<UserModel | null>(null)
+
+
   private logged$ = new BehaviorSubject<boolean>(false);
   public isLogged$ = this.logged$.asObservable();
 
@@ -17,8 +23,12 @@ export class SessionService {
     
     localStorage.setItem('authToken', token);
 
-    this.http.get("http://localhost:8080/api/users/me").subscribe(
-      ok => {
+    this.http.get<UserModel>(this.apiURL+"/me").subscribe(
+      data => {
+
+        //asigno la data que llega a User
+        this.user.set(data);
+
         this.logged$.next(true);
         this.router.navigate(['/store']);
       },
@@ -32,13 +42,11 @@ export class SessionService {
 
   logout() {
     localStorage.removeItem('authToken');
+    this.user.set(null)
     this.logged$.next(false);
   }
 
-  getAuthHeaders(): HttpHeaders {
-    const token = localStorage.getItem('authToken') || '';
-    return new HttpHeaders({
-      'Authorization': 'Basic ' + token
-    });
+  getLoggedUser(){
+    return this.user
   }
 }

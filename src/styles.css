@@ -4,8 +4,8 @@
   --color-gamma: #00ADB5;
   --color-delta: #EEEEEE;
 
-  --full-screen: calc(100vh - 5rem);
-  --semi-screen: calc(100vh - 11rem);
+  --full-screen: calc(100vh - 4rem);
+  --semi-screen: calc(100vh - 10rem);
 }
 
 * {

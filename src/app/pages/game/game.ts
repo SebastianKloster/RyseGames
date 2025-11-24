@@ -28,7 +28,7 @@ export class Game {
     this.compraService.comprar(id).subscribe({
       next: () => alert("Compra realizada"),
       error: err => {
-        alert(err.error.Error) //Mensaje de error desde el backend
+        alert(err.error.error) //Mensaje de error desde el backend
         console.error("Error al comprar", err)
       }
     });

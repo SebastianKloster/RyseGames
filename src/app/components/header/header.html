@@ -5,11 +5,30 @@
     <nav class="menu">
         <ul>
             <li><a routerLink="/store">tienda</a></li>
-            <li><a id="createButton" routerLink="/crear-juego">crear juego</a></li>
-            <li><a id="createButton" routerLink="/login">login</a></li>
+            @if (user(); as user) {
+                @if (user.role === roleEnum.PERFIL) {
+                    <!-- Seccion para Perfil -->
+                    <li><a routerLink="/biblioteca">biblioteca</a></li>
+
+                } @else {
+                    <!-- Seccion para Desarrolladora -->
+                    <li><a routerLink="/create_game">subir juego</a></li>
+                }
+                <li><a routerLink="/login">login</a></li>
+            }
         </ul>
     </nav>
     <div class="user">
-        <p>@agentesebi</p>
+        @if (user(); as user) {
+            @if (user.role === roleEnum.PERFIL) {
+                <p>{{user.perfil?.nickname}}</p>
+            } @else {
+                <p>{{user.desarrolladora?.nombre}}</p>
+            }
+        } @else {
+            <nav class="menu">
+                <li><a routerLink="/login">login</a></li>
+            </nav>
+        }
     </div>
 </header>

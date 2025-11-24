@@ -1,0 +1,4 @@
+export enum RoleEnum {
+  PERFIL = 'PERFIL',
+  DESARROLLADORA = 'DESARROLLADORA'
+}
