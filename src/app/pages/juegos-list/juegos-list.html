@@ -1,0 +1,24 @@
+<h2>Lista de juegos</h2>
+
+<section class="juegos-contenedor">
+
+  @for (item of juegoService.juegos(); track item.id) {
+
+    <article class="card">
+
+      <a [routerLink]="['/juegos', item.id]">
+        <img [src]="item.foto" alt="foto del juego" width="120">
+        <h3>{{ item.nombre }}</h3>
+        <p>Precio: {{ item.precio }}</p>
+        <p>Desarrolladora: {{ item.desarrolladora.nombre }}</p>
+      </a>
+
+      <button (click)="agregarFav(item.id)">
+        Agregar a Favoritos
+      </button>
+
+    </article>
+
+  }
+
+</section>

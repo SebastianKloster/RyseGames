@@ -6,6 +6,8 @@ import { Register } from './pages/register/register';
 import { JuegosDesarrolladora } from './pages/juegos-desarrolladora/juegos-desarrolladora';
 import { JuegosPerfil } from './pages/juegos-perfil/juegos-perfil';
 import { JuegosFavoritos } from './pages/juegos-favoritos/juegos-favoritos';
+import { JuegosList } from './pages/juegos-list/juegos-list';
+import { JuegoDetail } from './pages/juego-detail/juego-detail';
 import { CarroList } from './carrito/pages/carro-list/carro-list';
 import { Compra } from './compra/pages/compra/compra';
 import { Billetera } from './pages/billetera/billetera';
@@ -18,6 +20,8 @@ export const routes: Routes = [
     { path: 'juegos-desarrolladora', component: JuegosDesarrolladora},
     { path: 'juegos-perfil', component: JuegosPerfil},
     { path: 'juegos-favoritos', component: JuegosFavoritos},
+    { path: 'juegos', component: JuegosList},
+    { path: 'juegos/:id', component: JuegoDetail },
     // { path: 'create-event', component: CreateEvent },
     // { path: 'create-event/:id', component: CreateEvent },
     {path:'carro', component: CarroList},
