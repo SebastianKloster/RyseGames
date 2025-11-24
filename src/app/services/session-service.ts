@@ -17,21 +17,17 @@ export class SessionService {
     
     localStorage.setItem('authToken', token);
 
-    this.http.get("http://localhost:8080/api/juego/1", {
-    headers: {
-      Authorization: `Basic ${token}`
-    }
-  }).subscribe(
-    ok => {
-      this.logged$.next(true);
-      this.router.navigate(['/store']);
-    },
-    err => {
-      // Credenciales incorrectas → mostrar error
-      this.logout();
-      alert("Usuario o contraseña incorrectos");
-    }
-  );
+    this.http.get("http://localhost:8080/api/users/me").subscribe(
+      ok => {
+        this.logged$.next(true);
+        this.router.navigate(['/store']);
+      },
+      err => {
+        // Credenciales incorrectas → mostrar error
+        this.logout();
+        alert("Usuario o contraseña incorrectos");
+      }
+    );
   }
 
   logout() {
