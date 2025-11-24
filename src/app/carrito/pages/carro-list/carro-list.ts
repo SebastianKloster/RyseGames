@@ -6,10 +6,10 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
 import { Router } from '@angular/router';
-import { RouterLink } from '@angular/router';
+import { CurrencyPipe } from '@angular/common';
 @Component({
 selector: 'app-carro-list',
- imports: [  MatSlideToggleModule, MatCardModule,MatIconModule,RouterLink ],
+ imports: [  MatSlideToggleModule, MatCardModule,MatIconModule, CurrencyPipe],
 templateUrl: './carro-list.html',
  styleUrl: './carro-list.css',
 })
@@ -28,7 +28,6 @@ export class CarroList implements OnInit {
  
     if (this.carrito() === null) {
       
-     console.log("Carrito en el componente:", this.carrito());
       this.loadSubscription = this.carritoService.refrescarCarrito().subscribe({
         next: () => {
           console.log("Carrito luego de refrescar:", this.carrito())

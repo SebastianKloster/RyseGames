@@ -1,0 +1,44 @@
+<section class="billetera-container">
+
+  <mat-card *ngIf="saldo(); else loading">
+    <h2>Mi Billetera</h2>
+
+    <p><strong>Saldo Actual:</strong> 
+      {{ saldo()?.saldo | currency:'USD':'symbol':'1.2-2' }}
+    </p>
+  </mat-card>
+
+  <mat-card>
+    <h2>Cargar fondos</h2>
+
+    <form #formPago="ngForm">
+  <mat-form-field appearance="outline" class="full">
+    <mat-label>Monto</mat-label>
+    <input 
+      matInput
+      type="number"
+      min="0.01"
+      required
+      name="monto"
+      ngModel
+      #monto="ngModel"
+    >
+    <mat-error *ngIf="monto.invalid && monto.touched">
+      Ingresá un monto válido.
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary"
+          [disabled]="formPago.invalid">
+    Cargar monto
+  </button>
+</form>
+
+
+  </mat-card>
+
+  <ng-template #loading>
+    <p>Cargando información...</p>
+  </ng-template>
+
+</section>

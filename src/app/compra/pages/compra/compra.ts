@@ -7,7 +7,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import { FormsModule } from '@angular/forms'
 @Component({
   selector: 'app-compra',
-  imports: [CommonModule, CurrencyPipe,RouterLink,MatRadioModule,FormsModule],
+  imports: [CommonModule, CurrencyPipe,MatRadioModule,FormsModule],
   templateUrl: './compra.html',
   styleUrl: './compra.css',
 })
@@ -34,7 +34,7 @@ export class Compra {
   finalizarCompra() {
     if (!this.metodoPago){
       alert("Seleccioná un método de pago");
-      this.router.navigate(['/compra']);
+      this.router.navigate(['/home']);
       return;
     }
 
