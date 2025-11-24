@@ -12,10 +12,10 @@ import { CurrencyPipe } from '@angular/common';
 })
 export class StoreList {
   router = inject(Router) //Router: nos permite redireccionar al usuario a otra pagina
-  
+
   juegosService = inject(JuegoService)
 
-  juegos = this.juegosService.getJuegos()
+
 
 
   getCategoryColor(categoria: CategoriaEnum): string {

@@ -1,0 +1,14 @@
+@if (juego) {
+  <section class="detalle-juego">
+
+  <img [src]="juego.foto" width="200">
+
+  <h2>{{ juego.nombre }}</h2>
+
+  <p><strong>Precio:</strong> {{ juego.precio }}</p>
+  <p><strong>Desarrolladora:</strong> {{ juego.nombreDesarrolladora }}</p>
+  <p><strong>Categoria:</strong> {{ juego.categoria }}</p>
+  <p><strong>Fecha de lanzamiento: </strong>{{juego.fechaLanzamiento | date:'dd/MM/yyyy'}}</p>
+
+</section>
+}

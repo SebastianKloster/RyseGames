@@ -29,3 +29,27 @@ export interface JuegoVerDesarrolladoraDTO{
   foto: string;
   nombreDesarrolladora: string;
 }
+
+
+export interface JuegoCreateDTO {
+  nombre: string;
+  precio: number;
+  descripcion: string;
+  foto: string;
+}
+
+export interface JuegoUpdateDTO {
+  nombre?: string;
+  precio?: number;
+  descripcion?: string;
+  foto?: string;
+}
+
+export interface Juego {
+  id: number;
+  nombre: string;
+  precio: number;
+  descripcion: string;
+  foto: string;
+  desarrolladoraId: number;
+}

@@ -1,0 +1,50 @@
+.detalle-juego {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 30px;
+  color: var(--color-delta);
+  background-color: var(--color-alfa);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.detalle-juego img {
+  border-radius: 12px;
+  object-fit: cover;
+  width: 250px;
+  height: auto;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.detalle-juego h2 {
+  margin-top: 0;
+  font-size: 2rem;}
+
+.detalle-juego p {
+  margin: 10px 0;
+  font-size: 1.1rem;}
+
+.detalle-juego p strong {
+  color: #000;
+}
+
+.detalle-juego:hover {
+  transform: translateY(-3px);
+  transition: 0.2s ease;
+}
+
+@media (max-width: 768px) {
+  .detalle-juego {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .detalle-juego img {
+    width: 80%;
+    margin: 0 auto;
+  }
+}

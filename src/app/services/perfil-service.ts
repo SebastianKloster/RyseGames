@@ -66,7 +66,8 @@ export class PerfilService {
 
 
   agregarFavorito(juegoId: number): Observable<PerfilModel> {
-    return this.http.patch<PerfilModel>(`${this.apiUrl}/juegos/favoritos/${juegoId}`, {});
+    return this.http.patch<PerfilModel>(`${this.apiUrl}/juegos/favoritos/${juegoId}`, {}).pipe(
+      tap(()=> this.loadFavoritos()));
   }
 
 

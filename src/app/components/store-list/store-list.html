@@ -1,5 +1,5 @@
 <section class="juegos_list">
-    @for (juego of juegos(); track juego.id) {
+    @for (juego of juegosService.juegos(); track juego.id) {
         <article [routerLink]="['/juegos', juego.id]">
             <div class="portada">
                 <img [src]="juego.foto" alt="Imagen de Prueba">
