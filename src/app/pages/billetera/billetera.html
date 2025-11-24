@@ -1,0 +1,17 @@
+<section id="billetera">
+    <div class="billetera">
+        <h1>Billetera</h1>
+        <p>Saldo actual: {{saldo()}}</p>
+    </div>
+
+    <div class="buttons">
+        <form [formGroup]="cargarSaldoForm" (ngSubmit)="handleSubmit()">
+            <label for="monto">Cargar Saldo</label>
+            <input type="number" id="monto" formControlName="monto" min="0"/>
+
+            <div class="buttonArea">
+                <button type="submit" [disabled]="cargarSaldoForm.invalid">Cargar Saldo</button>
+            </div>
+        </form>
+    </div>
+</section>

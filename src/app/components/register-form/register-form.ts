@@ -81,12 +81,7 @@ export class RegisterForm {
 
   handleSubmit() {
     if (this.userForm.valid) {
-
       this.createUser(this.userForm.getRawValue(), this.userForm.getRawValue().password);
-
-      alert("Usuario registrado con éxito");
-      this.router.navigate(['/store']);
-
     } else {
       alert("Fomurlario inválido");
     }
@@ -97,11 +92,14 @@ export class RegisterForm {
     this.sessionService.postUser(newUser).subscribe({
       next: (user) => {
         console.log("Usuario registrado:", user);
-        this.sessionService.login(user.email, password)
         this.userForm.reset();
+        alert("Usuario registrado con éxito");
+        this.sessionService.login(user.email, password)
+        this.router.navigate(['/store']);
       },
       error: (err) => {
-        console.error("Error al crear el juego:", err);
+        alert(err.error.error)
+        console.error("Error al registrarse:", err);
       }
     });
   }
