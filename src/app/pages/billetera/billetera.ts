@@ -42,13 +42,16 @@ export class Billetera {
   }
     this.billeteraService.agregarFondos(monto).subscribe({
       next: () => {
-        alert("Fondos cargados con éxito");
+        
         this.billeteraService.refreshBilletera().subscribe();
+        alert("Fondos cargados con éxito");
+        
       },
       error: () => {
         alert("Error al cargar fondos");
       }
     }); 
+    
 
   }
 }
