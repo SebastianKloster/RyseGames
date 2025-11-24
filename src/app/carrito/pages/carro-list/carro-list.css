@@ -1,0 +1,97 @@
+.carro-container {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.carro-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.lista-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.item-card {
+  background: rgba(25, 25, 25, 0.75);
+  border-left: 4px solid #00c8d7;
+  padding: 0.8rem 1rem;
+  backdrop-filter: blur(4px);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.foto {
+  width: 100px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.detalles h3 {
+  margin: 0;
+  color: #e8f8ff;
+}
+button[mat-icon-button] {
+     min-width: 22px;
+    height: 26px; 
+    color: #ffffff;
+    background:#303033; ;
+    shadow:none;
+    transition: 0.2s ease;
+    border-radius:9px;
+
+
+}
+button[mat-icon-button]:hover {
+    background:#454548;
+}
+.precio {
+  margin: 0;
+  color: #00eaff;
+  font-weight: bold;
+}
+
+.carro-right {
+  align-self: start;
+}
+
+
+.total-card {
+  padding: 1.2rem;
+  background: rgba(20, 20, 20, 0.9);
+  border: 1px solid #00c8d7;
+  border-radius: 10px;
+  text-align: center;
+}
+
+
+.btn-compra {
+  width: 100%;
+  padding: 0.9rem;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  transition: 0.2s ease;
+    background: #01d9ec;
+}
+.btn-compra:hover {
+  transform: scale(1.01);
+    background: #00c8d7;
+}
+
+.btn-compra:disabled {
+    background: #555557;
+    color: #b2b2b2;
+    transform: none;
+}

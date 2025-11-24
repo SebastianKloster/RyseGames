@@ -1,24 +1,31 @@
 <section class="juegos_list">
-    @for (juego of juegosService.juegos(); track juego.id) {
-        <article [routerLink]="['/juegos', juego.id]">
+    @for (juego of juegos(); track juego?.id) {
+        <article [routerLink]="['/juegos', juego?.id]">
             <div class="portada">
-                <img [src]="juego.foto" alt="Imagen de Prueba">
+                <img [src]="juego?.foto" alt="Imagen de Prueba">
             </div>
             <div class="texto">
-                <h4>{{juego.nombre}}</h4>
+
+                <h4>{{ juego?.nombre }}</h4>
+
                 <div class="desc">
-                    <p class="desarrolladora">{{juego.desarrolladora.nombre}}</p>
+                    <p class="desarrolladora">{{ juego?.desarrolladora?.nombre }}</p>
                 </div>
-                <p class="fecha_lanzamiento">{{juego.fechaLanzamiento}}</p>
+
+                <p class="fecha_lanzamiento">{{ juego?.fechaLanzamiento }}</p>
+
                 <div class="precio_container">
-                    <p class="precio">{{ juego.precio | currency:'USD':'symbol':'1.2-2' }}</p>
+                    <p class="precio">
+                        {{ juego?.precio | currency:'USD':'symbol':'1.2-2' }}
+                    </p>
                 </div>
-                <div class="categoria" [style.backgroundColor]="getCategoryColor(juego.categoria)">
-                    <i [class]="getCategoryIcon(juego.categoria)"></i>
+
+                <div class="categoria" [style.backgroundColor]="getCategoryColor(juego?.categoria)">
+                    <i [class]="getCategoryIcon(juego?.categoria)"></i>
                 </div>
             </div>
         </article>
     } @empty {
-        <p>No hay juegoos que mostrar.</p>
+        <p>No hay juegos que mostrar.</p>
     }
 </section>
