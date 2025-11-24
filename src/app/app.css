@@ -3,3 +3,6 @@ main {
     /* padding-bottom: 3rem; */
     color: var(--color-delta);
 }
+.radio-opcion .mat-radio-label .mat-radio-label-content {
+  color: #ffffff !important;
+}

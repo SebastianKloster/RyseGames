@@ -1,0 +1,125 @@
+.page {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  padding: 2rem;
+  color: white;
+}
+
+.section {
+  background: #111;
+  color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+h2 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  border-bottom: 2px solid #1d6fff;
+  padding-bottom: .5rem;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  background: #1a1a1a;
+  padding: 1rem;
+  margin-bottom: .8rem;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.card:hover {
+  background: #242424;
+}
+
+.resumen {
+  background: #181818;
+  padding: 1.5rem;
+  border-radius: 8px;
+  height: fit-content;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  margin-bottom: .7rem;
+}
+
+.item img {
+  width: 60px;
+  border-radius: 4px;
+}
+
+.nombre {
+  margin: 0;
+  font-weight: bold;
+}
+
+.precio {
+  margin: 0;
+  font-size: .95rem;
+  color: #a2a2a2;
+}
+
+.nums {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.comprar {
+  width: 100%;
+  padding: .9rem;
+  font-size: 1rem;
+  font-weight: bold;
+  background: #00c8d7;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.comprar:hover {
+  background: #00eaff;
+}
+
+.grupo-pago {
+  display: flex;
+  color: white;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.radio-opcion {
+  display: flex;
+  align-items: center;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 500;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 8px;
+  background: #202020;
+  color: #ffffff;
+  transition: all 0.2s ease-in-out;
+  width: 100%;
+}
+
+.radio-opcion:hover {
+  border-color: #ffffff;
+  background: #2a2a2a;
+  cursor: pointer;
+}
+
+.radio-opcion.mat-radio-checked {
+  border: 2px solid #007bff;
+  background: #272727;
+}
+
+.radio-opcion .mat-radio-label .mat-radio-label-content {
+  color: #ffffff !important;
+}
