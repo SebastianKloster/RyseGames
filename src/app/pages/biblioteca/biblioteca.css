@@ -1,4 +1,4 @@
-section#store {
+section#biblioteca {
     min-height: var(--semi-screen);
 
     background-color: var(--color-beta);
@@ -15,6 +15,6 @@ section#store {
 
     /* background-color: var(--color-alfa); */
 }
-.store_list {
+.biblioteca_list {
     /* background-color: var(--color-beta); */
 }

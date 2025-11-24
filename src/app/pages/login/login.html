@@ -1,11 +1,16 @@
 <section id="login">
     <div class="container">
         <form [formGroup]="userForm" (ngSubmit)="handleSubmit()">
-            <input id="user" formControlName="user" placeholder="username"/>
-            <input id="pass" formControlName="pass" placeholder="password"/>
-                
-            <button type="submit">Login</button>
-            <button type="button" (click)="logout()">Logout</button>
+            @if (isLogged()) {
+                <button type="button" (click)="logout()">Logout</button>
+            } @else {
+                <input id="user" formControlName="user" placeholder="username"/>
+                <input id="pass" formControlName="pass" placeholder="password"/>
+                    
+                <button type="submit">Login</button>
+                <button type="button" (click)="goToRegister()">Registrarse</button>
+            }
+            
         </form>
     </div>
 </section>

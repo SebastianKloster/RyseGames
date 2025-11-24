@@ -1,1 +1,26 @@
-<p>create-game works!</p>
+<section id="create_game">
+    <form [formGroup]="gameForm" (ngSubmit)="handleSubmit()">
+        <label for="nombre">Nombre</label>
+        <input id="nombre" formControlName="nombre" />
+    
+        <label for="fechaLanzamiento">Fecha de Lanzamiento</label>
+        <input type="date" id="fechaLanzamiento" formControlName="fechaLanzamiento" />
+    
+        <label for="precio">Precio</label>
+        <input id="precio" formControlName="precio" />
+    
+        <label for="categoria">Categoria</label>
+        <select id="categoria" formControlName="categoria">
+            @for (cat of categoriaEnum; track cat) {
+                <option [value]="cat">{{ cat }}</option>
+            }
+        </select>
+    
+        <label for="for">Imagen de Portada (URL)</label>
+        <input id="foto" formControlName="foto" />
+        
+        <div class="buttonArea">
+          <button type="submit" [disabled]="gameForm.invalid">Crear</button>
+        </div>
+    </form>
+</section>

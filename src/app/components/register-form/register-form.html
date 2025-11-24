@@ -1,0 +1,43 @@
+<section id="register_form">
+    <form [formGroup]="userForm" (ngSubmit)="handleSubmit()">
+        <label for="nombre">Nombre</label>
+        <input id="nombre" formControlName="nombre" />
+        
+        <label for="apellido">Apellido</label>
+        <input id="apellido" formControlName="apellido" />
+
+        <label for="email">E-Mail</label>
+        <input id="email" formControlName="email" />
+
+        <label for="password">Contraseña</label>
+        <input id="password" formControlName="password" />
+
+        <label for="role">Rol</label>
+        <select id="role" formControlName="role">
+            @for (rol of roleEnumList; track rol) {
+                <option [value]="rol">{{ rol }}</option>
+            }
+        </select>
+
+        <!-- Perfil -->
+        @if (userForm.get('role')?.value === roleEnum.PERFIL) {
+            <label for="nickname">Nickname</label>
+            <input id="nickname" formControlName="nickname" />
+        }
+
+
+        <!-- Desarrolladora -->
+        @if (userForm.get('role')?.value === roleEnum.DESARROLLADORA) {
+            <label for="nombreDesarrolladora">Nombre de la Desarrolladora</label>
+            <input id="nombreDesarrolladora" formControlName="nombreDesarrolladora" />
+    
+            <label for="paisOrigen">País de Origen</label>
+            <input id="paisOrigen" formControlName="paisOrigen" />
+        }
+
+    
+        <div class="buttonArea">
+          <button type="submit" [disabled]="userForm.invalid">Registrarse</button>
+        </div>
+    </form>
+</section>

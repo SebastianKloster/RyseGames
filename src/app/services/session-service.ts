@@ -3,6 +3,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { UserModel } from '../model/user';
+import { CreateUserDTO } from '../model/createUserDTO';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +19,8 @@ export class SessionService {
   private logged$ = new BehaviorSubject<boolean>(false);
   public isLogged$ = this.logged$.asObservable();
 
+  private isUserLogged = signal<boolean>(!!this.user)
+
   login(username: string, password: string) {
     const token = btoa(`${username}:${password}`);
     
@@ -30,6 +33,7 @@ export class SessionService {
         this.user.set(data);
 
         this.logged$.next(true);
+        this.isUserLogged.set(true)
         this.router.navigate(['/store']);
       },
       err => {
@@ -44,9 +48,18 @@ export class SessionService {
     localStorage.removeItem('authToken');
     this.user.set(null)
     this.logged$.next(false);
+    this.isUserLogged.set(false)
+  }
+
+  postUser(user: CreateUserDTO) {
+    return this.http.post<UserModel>(this.apiURL, user)
   }
 
   getLoggedUser(){
     return this.user
+  }
+
+  isLogged() {
+    return this.isUserLogged.asReadonly();
   }
 }

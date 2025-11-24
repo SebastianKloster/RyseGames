@@ -1,17 +1,18 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SessionService } from '../../services/session-service';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink, RouterLinkActive],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
 export class Login {
   router = inject(Router)
   sessionService = inject(SessionService)
+  isLogged = this.sessionService.isLogged();
 
   fb = inject(FormBuilder)
   userForm = this.fb.nonNullable.group({
@@ -34,7 +35,9 @@ export class Login {
   }
   logout() {
     this.sessionService.logout();
-
+  }
+  goToRegister(){
+    this.router.navigate(['/register']);
   }
 
 
