@@ -1,31 +1,28 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { PerfilService } from '../../services/perfil-service';
 import { JuegoVerDesarrolladoraDTO } from '../../model/juego';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-juegos-favoritos',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './juegos-favoritos.html',
   styleUrl: './juegos-favoritos.css',
 })
 export class JuegosFavoritos implements OnInit{
 
-  favoritos: JuegoVerDesarrolladoraDTO[] = [];
   perfilService = inject(PerfilService);
 
-    ngOnInit() {
-    this.perfilService.getFavoritos().subscribe({
-      next: data => this.favoritos = data
-    });
+  ngOnInit(): void {
+   this.perfilService.loadFavoritos();
   }
-
-  quitar(juegoId: number) {
+eliminar(juegoId: number) {
     this.perfilService.quitarFavorito(juegoId).subscribe({
       next: () => {
-        this.favoritos = this.favoritos.filter(f => f.id !== juegoId);
+        this.perfilService.juegosFavoritos.update(lista =>
+          lista.filter(j => j.id !== juegoId)
+        );
       }
     });
   }
-
   }
-

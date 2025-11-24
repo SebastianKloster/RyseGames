@@ -1,13 +1,10 @@
-<h2>Mis Favoritos</h2>
-
+<h3>Mi lista de favoritos</h3>
 <ul>
-  @for (juego of favoritos; track juego.id) {
+  @for (juego of perfilService.juegosFavoritos(); track juego.id) {
     <li>
       <img [src]="juego.foto" width="80">
-
       <strong>{{ juego.nombre }}</strong>
-
-      <button (click)="quitar(juego.id)">Eliminar de mis favoritos</button>
+      <button (click)="eliminar(juego.id)">Eliminar de mis favoritos</button>
     </li>
   }
 </ul>
