@@ -34,12 +34,14 @@ export class Compra {
   finalizarCompra() {
     if (!this.metodoPago){
       alert("Seleccioná un método de pago");
-      this.router.navigate(['/home']);
       return;
     }
 
     this.compraService.realizarCompra().subscribe({
-      next: () => alert("Compra realizada con éxito!"),
+      next: () => {alert("Compra realizada con éxito!");
+        this.router.navigate(['/compra']);
+      }
+      ,
       error: () => alert("Ocurrió un error al procesar la compra")
     });
   }
