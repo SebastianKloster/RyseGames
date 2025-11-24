@@ -1,0 +1,78 @@
+<h2>{{isEditMode() ? 'Editar Usuario' : 'Registrarse'}}</h2>
+
+<form [formGroup]="form" (ngSubmit)="saveUser()">
+
+  <div>
+    <label>Nombre</label>
+    <input type="text" formControlName="nombre">
+    @if (form.get('nombre')?.invalid && form.get('nombre')?.touched) {
+      <p class="error-msj">Debe ingresar un nombre</p>
+    }
+  </div>
+
+  <div>
+    <label>Apellido</label>
+    <input type="text" formControlName="apellido">
+    @if (form.get('apellido')?.invalid && form.get('apellido')?.touched) {
+      <p class="error-msj">Debe ingresar un apellido</p>
+    }
+  </div>
+
+  <div>
+    <label>Email</label>
+    <input type="email" formControlName="email">
+    @if (form.get('email')?.invalid && form.get('email')?.touched) {
+      <p class="error-msj">Debe ingresar un email válido</p>
+    }
+  </div>
+
+  <div>
+    <label>Contraseña</label>
+    <input type="text" formControlName="password">
+    @if (form.get('password')?.invalid && form.get('password')?.touched) {
+      <p class="error-msj">Debe ingresar una contraseña</p>
+    }
+  </div>
+
+  <div>
+    <label>Rol</label>
+    <select formControlName="role">
+      @for (role of roles; track role) {
+      <option [value]="role">{{ role }}</option>
+    }
+    </select>
+    @if (form.get('role')?.invalid && form.get('role')?.touched) {
+      <p class="error-msj">Debe seleccionar un rol</p>
+    }
+  </div>
+
+  @if (form.get('role')?.value === 'PERFIL') {
+  <div>
+      <label>Nickname</label>
+      <input type="text" formControlName="nickname">
+      @if (form.get('nickname')?.invalid && form.get('nickname')?.touched) {
+        <p class="error-msj">Debe ingresar un nickname</p>
+      }
+    </div>
+  } @else {
+
+    <div>
+      <label>Nombre de la desarrolladora</label>
+      <input type="text" formControlName="nombreDesarrolladora">
+      @if (form.get('nombreDesarrolladora')?.invalid && form.get('nombreDesarrolladora')?.touched) {
+        <p class="error-msj">Debe ingresar un nombre para la desarrolladora</p>
+      }
+    </div>
+
+    <div>
+      <label>Pais de origen</label>
+      <input type="text" formControlName="paisOrigen">
+      @if (form.get('paisOrigen')?.invalid && form.get('paisOrigen')?.touched) {
+        <p class="error-msj">Debe ingresar un país de origen</p>
+      }
+    </div>
+  }
+
+  <button type="submit" [disabled]="form.invalid">
+    {{isEditMode() ? 'Guardar Cambios' : 'Registrarse'}}</button>
+</form>

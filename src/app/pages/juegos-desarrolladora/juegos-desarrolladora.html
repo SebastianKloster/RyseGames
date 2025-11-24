@@ -1,0 +1,28 @@
+<h2>Mis Juegos</h2>
+<div class="row">
+
+    @for(juego of desarrolladoraService.juegos(); track juego.id) {
+      <div>
+        <div class="game-card">
+
+          <img [src]="juego.foto" class="card-img-top" alt="Imagen del juego">
+
+          <div class="card-body">
+            <h5 class="card-title">{{ juego.nombre }}</h5>
+
+            <p class="card-text">
+              <strong>Categoría:</strong> {{ juego.categoria }} <br>
+              <strong>Precio:</strong> $ {{ juego.precio }} <br>
+              <strong>Lanzado:</strong> {{ juego.fechaLanzamiento }} <br>
+              <strong>Desarrolladora:</strong> {{ juego.nombreDesarrolladora }}
+            </p>
+          </div>
+          <div class="actions">
+      <!-- <button (click)="editJuego(item)">Editar</button>
+      <button (click)="deleteJuego(item.id)">Eliminar</button> -->
+    </div>
+        </div>
+      </div>
+    }
+
+  </div>
