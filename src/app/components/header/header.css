@@ -3,7 +3,7 @@ header {
     height: 5rem;
     padding: 0rem 3rem;
     position: relative;
-    
+
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     justify-content: center;
@@ -22,14 +22,14 @@ header {
 
 }
 .logo h1 {
-    font-size: 2.5rem;
+  font-size: 2.5rem;
+  cursor: pointer;
 }
-.menu ul {
-    list-style: none;
-    display: flex;
-    gap: 2rem;
 
-    font-size: 1.5rem;
+.menu {
+  gap: 2rem;
+  justify-content: center;
+  font-size: 1.3rem;
 }
 .menu a {
     color: var(--color-delta);
@@ -43,4 +43,23 @@ header {
 }
 .menu a:hover {
     text-decoration-color: var(--color-gamma);
+}
+.user-info {
+  margin-right: 1rem;
+  font-weight: bold;
+}
+
+.btn-logout {
+  padding: .3rem .8rem;
+  border-radius: .5rem;
+  border: 1px solid var(--color-gamma);
+  background: transparent;
+  color: var(--color-delta);
+  cursor: pointer;
+  transition: all .2s;
+}
+
+.btn-logout:hover {
+  background: var(--color-gamma);
+  color: white;
 }

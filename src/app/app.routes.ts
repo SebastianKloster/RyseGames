@@ -11,20 +11,28 @@ import { JuegoDetail } from './pages/juego-detail/juego-detail';
 import { CarroList } from './carrito/pages/carro-list/carro-list';
 import { Compra } from './compra/pages/compra/compra';
 import { Billetera } from './pages/billetera/billetera';
+import { authGuardFn } from './auth/authGuardFn';
+import { authGuardFnLogin } from './auth/authGuardFnLogin';
+import { AccessDenied } from './pages/access-denied/access-denied';
 import { Estadisticas } from './pages/estadisticas/estadisticas';
 
 export const routes: Routes = [
     { path: 'home', component: Home },
     { path: 'store', component: Store },
-    { path: 'login', component: Login },
-    { path: 'register', component: Register},
-    { path: 'juegos-desarrolladora', component: JuegosDesarrolladora},
-    { path: 'juegos-perfil', component: JuegosPerfil},
-    { path: 'juegos-favoritos', component: JuegosFavoritos},
+    { path: 'login', component: Login, canActivate: [authGuardFnLogin] },
+    { path: 'register', component: Register, canActivate: [authGuardFnLogin]},
+    { path: 'juegos-desarrolladora', component: JuegosDesarrolladora, canActivate: [authGuardFn],data: { roles: ['DESARROLLADORA'] }},
+     {path: 'juegos-perfil',component: JuegosPerfil,canActivate: [authGuardFn],data: { roles: ['PERFIL'] }},
+
+    { path: 'juegos-favoritos', component: JuegosFavoritos, canActivate: [authGuardFn],data: { roles: ['PERFIL'] }},
     { path: 'juegos', component: JuegosList},
     { path: 'juegos/:id', component: JuegoDetail },
     // { path: 'create-event', component: CreateEvent },
     // { path: 'create-event/:id', component: CreateEvent },
+    {path:'carro', component: CarroList, canActivate: [authGuardFn],data: { roles: ['PERFIL'] }},
+    {path: 'compra', component: Compra, canActivate: [authGuardFn],data: { roles: ['PERFIL'] }},
+    {path: 'billetera',component: Billetera, canActivate: [authGuardFn],data: { roles: ['PERFIL'] }},
+    {path: 'access-denied',component: AccessDenied},
     {path:'carro', component: CarroList},
     {path: 'compra', component: Compra},
     {path: 'billetera',component: Billetera},
