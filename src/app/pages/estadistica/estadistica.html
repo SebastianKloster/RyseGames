@@ -1,0 +1,25 @@
+<section id="estadisticas">
+    <div class="juegos_list">
+        @for (dato of datos(); track dato.juego.id) {
+            <article [routerLink]="['/game', dato.juego.id]">
+                <div class="portada">
+                    <img [src]="dato.juego.foto" alt="Imagen de Prueba">
+                </div>
+                <div class="texto">
+                    <h4>{{dato.juego.nombre}}</h4>
+                    <p class="fecha_lanzamiento">{{dato.juego.fechaLanzamiento}}</p>
+                    <div class="precio_container">
+                        <p class="precio">{{ dato.juego.precio | currency:'USD':'symbol':'1.2-2' }}</p>
+                    </div>
+
+                    <div class="stats">
+                        <p><i class="fa-solid fa-heart"></i> {{dato.favoritos}}</p>
+                        <p><i class="fa-solid fa-basket-shopping"></i> {{dato.ventas}}</p>
+                    </div>
+                </div>
+            </article>
+        } @empty {
+            <p>No hay juegos que mostrar.</p>
+        }
+    </div>
+</section>

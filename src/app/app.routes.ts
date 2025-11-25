@@ -11,6 +11,7 @@ import { User } from './pages/user/user';
 import { authGuardFnLogin } from './auth/authGuardFnLogin';
 import { authGuardFn } from './auth/auth.guard';
 import { AccessDenied } from './pages/access-denied/access-denied';
+import { Estadistica } from './pages/estadistica/estadistica';
 
 export const routes: Routes = [
     { path: 'home', component: Home },
@@ -24,6 +25,7 @@ export const routes: Routes = [
     { path: 'billetera', component: Billetera, canActivate: [authGuardFn], data:  { roles: ['PERFIL'] }},
     {path: 'access-denied',component: AccessDenied},
     { path: 'user', component: User },
+    { path: 'estadisticas', component: Estadistica },
     { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redirige la ruta vacía a /home
     { path: '**', redirectTo: '/home' } // Redirige cualquier otra ruta a /home (opcional)
 ];
