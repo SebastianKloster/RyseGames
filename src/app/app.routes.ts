@@ -7,16 +7,20 @@ import { CreateGame } from './pages/create-game/create-game';
 import { Biblioteca } from './pages/biblioteca/biblioteca';
 import { Register } from './pages/register/register';
 import { Billetera } from './pages/billetera/billetera';
+import { authGuardFnLogin } from './auth/authGuardFnLogin';
+import { authGuardFn } from './auth/auth.guard';
+import { AccessDenied } from './pages/access-denied/access-denied';
 
-export const routes: Routes = [    
+export const routes: Routes = [
     { path: 'home', component: Home },
     { path: 'store', component: Store },
-    { path: 'login', component: Login },
-    { path: 'biblioteca', component: Biblioteca },
+    { path: 'login', component: Login, canActivate: [authGuardFnLogin] },
+    { path: 'biblioteca', component: Biblioteca , canActivate: [authGuardFn], data:  { roles: ['PERFIL'] }},
     { path: 'game/:id', component: Game },
-    { path: 'create_game', component: CreateGame },
-    { path: 'register', component: Register },
-    { path: 'billetera', component: Billetera },
+    { path: 'create_game', component: CreateGame,},
+    { path: 'register', component: Register, canActivate: [authGuardFnLogin]},
+    { path: 'billetera', component: Billetera, canActivate: [authGuardFn], data:  { roles: ['PERFIL'] }},
+    {path: 'access-denied',component: AccessDenied},
     { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redirige la ruta vacía a /home
     { path: '**', redirectTo: '/home' } // Redirige cualquier otra ruta a /home (opcional)
 ];

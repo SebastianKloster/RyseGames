@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
-import { UserModel } from '../model/user';
+import { BehaviorSubject, map, Observable, of } from 'rxjs';
+import { UserModel, UserVerDTO } from '../model/user';
 import { CreateUserDTO } from '../model/createUserDTO';
 
 @Injectable({
@@ -23,7 +23,7 @@ export class SessionService {
 
   login(username: string, password: string) {
     const token = btoa(`${username}:${password}`);
-    
+
     localStorage.setItem('authToken', token);
 
     this.http.get<UserModel>(this.apiURL+"/me").subscribe(
@@ -61,5 +61,39 @@ export class SessionService {
 
   isLogged() {
     return this.isUserLogged.asReadonly();
+  }
+
+    isAuthenticated(): boolean {
+    return !!localStorage.getItem('authToken');
+  }
+
+   getAuthHeaders(): HttpHeaders {
+    const token = localStorage.getItem('authToken') || '';
+    return new HttpHeaders({
+      'Authorization': 'Basic ' + token
+    });
+  }
+
+   loadUserRole(): Observable<string> {
+    const token = localStorage.getItem('authToken');
+    if (!token) return of("");
+
+    const decoded = atob(token);
+    const username = decoded.split(":")[0];
+
+    return this.http.get<UserVerDTO[]>(this.apiURL, {
+      headers: this.getAuthHeaders()
+    }).pipe(
+      map(users => {
+        const found = users.find(u => u.email === username);
+        const role = found?.role || "";
+        localStorage.setItem("userRole", role);
+        return role;
+      })
+    );
+  }
+
+  getRole(): string {
+    return localStorage.getItem("userRole") || "";
   }
 }
