@@ -12,11 +12,13 @@ export const authGuardFn: CanActivateFn = (route) => {
 
   if (!role) {
     console.log(role);
+    console.log("GuardFn Ejecutado")
     router.navigate(['/login']);
     return false;
   }
 
   if (requiredRoles && !requiredRoles.includes(role)) {
+    console.log("GuardFn Ejecutado")
     router.navigate(['/access-denied']);
     return false;
   }

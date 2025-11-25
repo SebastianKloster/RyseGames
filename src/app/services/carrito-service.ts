@@ -25,6 +25,7 @@ export class CarritoService {
           this.http.get<JuegoModel[]>(this.apiURL).subscribe(
             data => this.carritoData.set(data)
           )
+          console.log("Carrito Buscado")
         }
       }
     });
@@ -44,6 +45,7 @@ export class CarritoService {
         console.error("Error al agregar al carrito", err)
       }
     });
+    console.log(this.carritoData())
   }
 
   comprarTodo(){

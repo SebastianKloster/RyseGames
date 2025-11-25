@@ -6,9 +6,11 @@ export const authGuardFnLogin: CanActivateFn = () => {
   const router = inject(Router);
 
   if (!localStorage.getItem('loggedUser')) {
+    console.log("GuardFnLogin Ejecutado")
     return true;
   }
 
   router.navigate(['/access-denied-login']);
+  console.log("GuardFnLogin Ejecutado")
   return false;
 };

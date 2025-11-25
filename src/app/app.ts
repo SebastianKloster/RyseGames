@@ -13,7 +13,4 @@ import { Carrito } from './components/carrito/carrito';
 })
 export class App {
   protected readonly title = signal('ryzeGames');
-  sessionService = inject(SessionService)
-
-  isLogged = this.sessionService.isLogged();
 }
