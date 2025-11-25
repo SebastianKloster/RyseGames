@@ -1,0 +1,36 @@
+<h2>Editar Usuario</h2>
+
+<div *ngIf="user() as u; else noUser">
+  <form [formGroup]="form" (ngSubmit)="save()">
+
+    <div>
+      <label>Nombre</label>
+      <input type="text" formControlName="nombre">
+      <div *ngIf="form.get('nombre')?.invalid && form.get('nombre')?.touched">
+        <p class="error-msj">Debe ingresar un nombre</p>
+      </div>
+    </div>
+
+    <div>
+      <label>Apellido</label>
+      <input type="text" formControlName="apellido">
+      <div *ngIf="form.get('apellido')?.invalid && form.get('apellido')?.touched">
+        <p class="error-msj">Debe ingresar un apellido</p>
+      </div>
+    </div>
+
+    <div>
+      <label>Contraseña</label>
+      <input type="password" formControlName="password">
+      <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
+        <p class="error-msj">La contraseña debe tener al menos 6 caracteres</p>
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="form.invalid">Guardar Cambios</button>
+  </form>
+</div>
+
+<ng-template #noUser>
+  <p>No hay usuario logueado.</p>
+</ng-template>

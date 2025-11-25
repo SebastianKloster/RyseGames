@@ -15,12 +15,18 @@ import { authGuardFn } from './auth/authGuardFn';
 import { authGuardFnLogin } from './auth/authGuardFnLogin';
 import { AccessDenied } from './pages/access-denied/access-denied';
 import { Estadisticas } from './pages/estadisticas/estadisticas';
+import { UserDetail } from './pages/user-detail/user-detail';
+import { UserEdit } from './pages/user-edit/user-edit';
 
 export const routes: Routes = [
     { path: 'home', component: Home },
     { path: 'store', component: Store },
     { path: 'login', component: Login, canActivate: [authGuardFnLogin] },
     { path: 'register', component: Register, canActivate: [authGuardFnLogin]},
+
+    { path: 'user/profile', component: UserDetail , canActivate: [authGuardFn]},
+    { path: 'user/edit/:id', component: UserEdit , canActivate: [authGuardFn]},
+
     { path: 'juegos-desarrolladora', component: JuegosDesarrolladora, canActivate: [authGuardFn],data: { roles: ['DESARROLLADORA'] }},
      {path: 'juegos-perfil',component: JuegosPerfil,canActivate: [authGuardFn],data: { roles: ['PERFIL'] }},
 

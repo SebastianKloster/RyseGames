@@ -1,0 +1,28 @@
+<h2>Mis datos</h2>
+
+<div class="card-user" *ngIf="user() as u; else noUser">
+
+  <p><strong>Nombre:</strong> {{ u.nombre }}</p>
+  <p><strong>Apellido:</strong> {{ u.apellido }}</p>
+  <p><strong>Email:</strong> {{ u.email }}</p>
+  <p><strong>Rol:</strong> {{ u.role }}</p>
+
+
+  <div *ngIf="u.role === 'PERFIL'">
+    <p><strong>Nickname:</strong> {{ u.nickName }}</p>
+  </div>
+
+
+  <div *ngIf="u.role === 'DESARROLLADORA'">
+    <p><strong>Nombre de la desarrolladora:</strong> {{ u.nombreDesarrolladora }}</p>
+    <p><strong>País:</strong> {{ u.paisOrigen }}</p>
+  </div>
+
+  <div class="button">
+    <button (click)="edit()">Editar</button>
+  </div>
+</div>
+
+<ng-template #noUser>
+  <p>No hay usuario logueado.</p>
+</ng-template>

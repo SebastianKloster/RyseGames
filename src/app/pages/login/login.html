@@ -2,7 +2,7 @@
     <div class="container">
         <form [formGroup]="userForm" (ngSubmit)="handleSubmit()">
             <input id="user" formControlName="user" placeholder="username"/>
-            <input id="pass" formControlName="pass" placeholder="password"/>
+            <input id="pass" type="password" formControlName="pass" placeholder="password"/>
                 
             <button type="submit">Login</button>
             <button (click)="logout()">Logout</button>
