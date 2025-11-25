@@ -3,6 +3,7 @@ import { JuegoModel } from '../model/juego';
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 import { SessionService } from './session-service';
+import { RoleEnum } from '../model/roleEnum';
 
 @Injectable({
   providedIn: 'root',
@@ -20,9 +21,11 @@ export class CarritoService {
       if (!logged) {
         this.carritoData.set([]); // limpia cuando el usuario sale
       } else {
-        this.http.get<JuegoModel[]>(this.apiURL).subscribe(
-          data => this.carritoData.set(data)
-        )
+        if (this.sessionService.user()?.role !== RoleEnum.DESARROLLADORA) {
+          this.http.get<JuegoModel[]>(this.apiURL).subscribe(
+            data => this.carritoData.set(data)
+          )
+        }
       }
     });
   }

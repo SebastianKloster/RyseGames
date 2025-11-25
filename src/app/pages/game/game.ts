@@ -7,6 +7,8 @@ import { CategoriaEnum } from '../../model/categoriaEnum';
 import { CompraService } from '../../services/compra-service';
 import { FavServices } from '../../services/fav-services';
 import { CarritoService } from '../../services/carrito-service';
+import { SessionService } from '../../services/session-service';
+import { RoleEnum } from '../../model/roleEnum';
 
 @Component({
   selector: 'app-game',
@@ -15,36 +17,45 @@ import { CarritoService } from '../../services/carrito-service';
   styleUrl: './game.css',
 })
 export class Game {
-  router = inject(ActivatedRoute)
+  routerNav = inject(ActivatedRoute)
+  router = inject(Router)
   juegoService = inject(JuegoService)
   compraService = inject(CompraService)
   carritoService = inject(CarritoService)
   favService = inject(FavServices)
 
-  juegoId = Number(this.router.snapshot.paramMap.get('id'))
+  sessionService = inject(SessionService)
+  roleEnum = RoleEnum;
+  user = this.sessionService.getLoggedUser()
+
+  juegoId = Number(this.routerNav.snapshot.paramMap.get('id'))
   juego = this.juegoService.getJuegoById(this.juegoId);
 
   isFav = signal<boolean>(false)
   isCarrito = signal<boolean>(false)
   isOwner = signal<boolean>(false)
+  isDeveloper = signal<boolean>(false)
 
   constructor(){
-    this.consultarFavorito();
-    this.consultarCarrito();
-    this.consultarOwner();
+    if (this.user()?.role === RoleEnum.PERFIL) {
+      this.consultarFavorito();
+      this.consultarCarrito();
+      this.consultarOwner();
+    }
+    this.consultaDeveloper();
 
   }
 
-
-  // comprar(id:number) {
-  //   this.compraService.comprar(id).subscribe({
-  //     next: () => alert("Compra realizada"),
-  //     error: err => {
-  //       alert(err.error.error) //Mensaje de error desde el backend
-  //       console.error("Error al comprar", err)
-  //     }
-  //   });
-  // }
+  consultaDeveloper(){
+    console.log(this.user()?.desarrolladora?.nombre)
+    console.log(this.juego()?.desarrolladora.nombre)
+    console.log("aaaaaaa------------------------")
+    if (this.user()?.desarrolladora?.nombre === this.juego()?.desarrolladora.nombre) {
+      this.isDeveloper.set(true)
+    } else {
+      this.isDeveloper.set(false)
+    }
+  }
 
   consultarOwner() {
     this.juegoService.isInBiblioteca(this.juegoId).subscribe(
@@ -106,6 +117,10 @@ export class Game {
         console.error("Error al eliminar", err)
       }
     });
+  }
+
+  goToEditGame(id:number){
+    this.router.navigate(['/game/update/'+id])
   }
 
 

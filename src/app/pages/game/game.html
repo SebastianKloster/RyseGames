@@ -14,20 +14,30 @@
                 <h3>{{juego.desarrolladora.nombre}} - {{juego.desarrolladora.pais}}</h3>
             </div>
             <div class="buttons">
-                @if (!isOwner()) {
-                    @if (isCarrito()) {
-                    <button (click)="removeCarrito(juego.id)">Quitar del Carrito</button>
+                @if (user(); as user) {
+                    @if (user.role !== roleEnum.PERFIL) {
+                        <!-- Desarrolladora no puede comprar -->
+                         @if (isDeveloper()) {
+                            <button (click)="goToEditGame(juego.id)">Editar</button>
+                         }
                     } @else {
-                        <button (click)="addCarrito(juego.id)">Comprar</button>
+                        <!-- Perfil puede comprar -->
+                        @if (!isOwner()) {
+                            @if (isCarrito()) {
+                            <button (click)="removeCarrito(juego.id)">Quitar del Carrito</button>
+                            } @else {
+                                <button (click)="addCarrito(juego.id)">Comprar</button>
+                            }
+                        }
+                        @if (isFav()) {
+                            <button (click)="removeFav(juego.id)">Quitar de Favoritos</button>
+                        } @else {
+                            <button (click)="addFav(juego.id)">Favoritos</button>
+                        }
                     }
                 }
                 
                 
-                @if (isFav()) {
-                    <button (click)="removeFav(juego.id)">Quitar de Favoritos</button>
-                } @else {
-                    <button (click)="addFav(juego.id)">Favoritos</button>
-                }
             </div>
         </div>
 
