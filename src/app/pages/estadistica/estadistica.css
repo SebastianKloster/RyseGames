@@ -1,0 +1,122 @@
+section#estadisticas {
+    min-height: var(--semi-screen);
+
+    background-color: var(--color-beta);
+    background: linear-gradient(175deg, var(--color-alfa), var(--color-beta));
+    padding: 2rem 4rem;
+}
+.juegos_list {
+    display: flex;
+    flex-direction: column;
+    width: 50rem;
+    gap: 1rem;
+}
+article {
+    height: 10rem;
+    
+    display: flex;
+
+    color: var(--color-delta);
+    border: 2px solid var(--color-alfa);
+    background-color: var(--color-alfa);
+    box-shadow: 2px 2px 5px var(--color-alfa);
+
+    transition: 0.2s ease;
+    cursor: pointer;
+    overflow: hidden;
+}
+article:hover {
+    border-color: var(--color-gamma);
+    transform:scale(1.1)
+    /* box-shadow: 2px 2px 5px var(--color-gamma); */
+}
+.portada {
+    width: 100%;
+    /* background-color: green; */
+    overflow: hidden;
+}
+.portada img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.precio_container {
+    width: fit-content;
+    min-width: 3rem;
+    padding: 0rem 0.2rem;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    color: var(--color-delta);
+    font-size: 1rem;
+    
+    background-color: var(--color-alfa);
+    border: 2px solid var(--color-beta);
+    box-shadow: 0rem 0rem 5rem 1rem var(--color-beta);
+}
+.texto {
+    height: 100%;
+    width: 100%;
+    padding: 0.3rem 0.6rem;
+    position: relative;
+
+    background: linear-gradient(135deg, var(--color-alfa), var(--color-beta), var(--color-alfa));
+}
+.categoria {
+    width: 1.8rem;
+    height: 1.8rem;
+    min-width: 1.2rem;
+
+    position: absolute;
+    left: 5px;
+    bottom: 5px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* color: var(--color-alfa); */
+    border-radius: 5px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 2px 2px 10px var(--color-beta);
+}
+.texto h4 {
+    font-size: 1.2rem;
+    position: relative;
+    z-index: 2;
+}
+.desc {
+    display: flex;
+    justify-content: space-between;
+    color: gray;
+}
+.fecha_lanzamiento {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: gray;
+}
+
+.stats {
+    height: fit-content;
+    width: fit-content;
+
+    position: absolute;
+    right: 0px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1.2rem;
+    font-weight: bolder;
+
+    background-color: var(--color-alfa);
+    border-radius: 5px;
+}
+.stats p {
+    margin: 0.2rem;
+}

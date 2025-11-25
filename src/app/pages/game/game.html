@@ -21,21 +21,21 @@
                     @if (user.role !== roleEnum.PERFIL) {
                         <!-- Desarrolladora no puede comprar -->
                          @if (isDeveloper()) {
-                            <button (click)="goToEditGame(juego.id)">Editar</button>
+                            <button (click)="goToEditGame(juego.id)">Editar <i class="fa-solid fa-pen-to-square"></i></button>
                          }
                     } @else {
                         <!-- Perfil puede comprar -->
                         @if (!isOwner()) {
                             @if (isCarrito()) {
-                            <button (click)="removeCarrito(juego.id)">Quitar del Carrito</button>
+                            <button (click)="removeCarrito(juego.id)">Quitar del Carrito <i class="fa-solid fa-ban"></i></button>
                             } @else {
-                                <button (click)="addCarrito(juego.id)">Comprar</button>
+                                <button (click)="addCarrito(juego.id)">Comprar <i class="fa-solid fa-basket-shopping"></i></button>
                             }
                         }
                         @if (isFav()) {
-                            <button (click)="removeFav(juego.id)">Quitar de Favoritos</button>
+                            <button (click)="removeFav(juego.id)">Quitar de Favoritos <i class="fa-solid fa-heart-crack"></i></button>
                         } @else {
-                            <button (click)="addFav(juego.id)">Favoritos</button>
+                            <button (click)="addFav(juego.id)">Favoritos <i class="fa-solid fa-heart"></i></button>
                         }
                     }
                 }

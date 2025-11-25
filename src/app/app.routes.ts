@@ -8,6 +8,7 @@ import { Biblioteca } from './pages/biblioteca/biblioteca';
 import { Register } from './pages/register/register';
 import { Billetera } from './pages/billetera/billetera';
 import { User } from './pages/user/user';
+import { Estadistica } from './pages/estadistica/estadistica';
 
 export const routes: Routes = [    
     { path: 'home', component: Home },
@@ -20,6 +21,7 @@ export const routes: Routes = [
     { path: 'register', component: Register },
     { path: 'billetera', component: Billetera },
     { path: 'user', component: User },
+    { path: 'estadisticas', component: Estadistica },
     { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redirige la ruta vacía a /home
     { path: '**', redirectTo: '/home' } // Redirige cualquier otra ruta a /home (opcional)
 ];
