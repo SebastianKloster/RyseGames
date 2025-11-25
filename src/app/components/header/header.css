@@ -45,7 +45,7 @@ header {
     text-decoration-color: var(--color-gamma);
 }
 
-.user a {
+.user a#loginButton {
     padding: 0.2rem;
     
     font-size: 1.2rem;
@@ -59,13 +59,27 @@ header {
     transition: all ease 0.2s;
     cursor: pointer;
 }
-.user a:hover {
+.user a#loginButton:hover {
     border-color: rgba(0, 0, 0, 0.3);
 }
 .nick {
     font-size: 1.2rem;
     margin: 0rem 2rem;
+    
+    color: var(--color-delta);
+
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    transition: all ease 0.2s;
+
+    cursor: pointer;
+    font-variant: small-caps;
 }
+.nick:hover {
+    text-decoration-color: var(--color-gamma);
+}
+
+
 #logoutButton {
     padding: 0.2rem;
 

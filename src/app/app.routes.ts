@@ -7,6 +7,7 @@ import { CreateGame } from './pages/create-game/create-game';
 import { Biblioteca } from './pages/biblioteca/biblioteca';
 import { Register } from './pages/register/register';
 import { Billetera } from './pages/billetera/billetera';
+import { User } from './pages/user/user';
 
 export const routes: Routes = [    
     { path: 'home', component: Home },
@@ -18,6 +19,7 @@ export const routes: Routes = [
     { path: 'create_game', component: CreateGame },
     { path: 'register', component: Register },
     { path: 'billetera', component: Billetera },
+    { path: 'user', component: User },
     { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redirige la ruta vacía a /home
     { path: '**', redirectTo: '/home' } // Redirige cualquier otra ruta a /home (opcional)
 ];
