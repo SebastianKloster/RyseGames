@@ -1,6 +1,6 @@
 # RyzeGames
 
-Rama Principal -> pruebas_kloster
+Rama Principal -> version_final
 
 ## Development server
 
