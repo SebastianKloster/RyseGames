@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
@@ -7,9 +7,7 @@ import { Injectable } from '@angular/core';
 export class CompraService {
   apiURL = "http://localhost:8080/api/juego"
 
-  constructor(private http: HttpClient) {
-
-  }
+  http = inject(HttpClient)
 
 
   comprar(id:number){

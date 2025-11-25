@@ -14,8 +14,20 @@
                 <h3>{{juego.desarrolladora.nombre}} - {{juego.desarrolladora.pais}}</h3>
             </div>
             <div class="buttons">
-                <button (click)="comprar(juego.id)">Comprar</button>
-                <button (click)="addFav(juego.id)">Favoritos</button>
+                @if (!isOwner()) {
+                    @if (isCarrito()) {
+                    <button (click)="removeCarrito(juego.id)">Quitar del Carrito</button>
+                    } @else {
+                        <button (click)="addCarrito(juego.id)">Comprar</button>
+                    }
+                }
+                
+                
+                @if (isFav()) {
+                    <button (click)="removeFav(juego.id)">Quitar de Favoritos</button>
+                } @else {
+                    <button (click)="addFav(juego.id)">Favoritos</button>
+                }
             </div>
         </div>
 

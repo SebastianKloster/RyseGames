@@ -15,6 +15,6 @@ section#biblioteca {
 
     /* background-color: var(--color-alfa); */
 }
-.biblioteca_list {
-    /* background-color: var(--color-beta); */
+.list {
+    margin-bottom: 2rem;
 }

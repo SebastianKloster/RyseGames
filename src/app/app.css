@@ -3,3 +3,10 @@ main {
     /* padding-bottom: 3rem; */
     color: var(--color-delta);
 }
+
+aside {
+    position: fixed;
+    top: 5rem;
+    right: 0rem;
+    z-index: 1000;
+}

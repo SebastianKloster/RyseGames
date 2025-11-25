@@ -2,7 +2,7 @@ import { computed, inject, Injectable, signal } from '@angular/core';
 import { JuegoModel } from '../model/juego';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SessionService } from './session-service';
-import { Subscription, tap } from 'rxjs';
+import { map, Observable, Subscription, tap } from 'rxjs';
 import { CreateGameDTO } from '../model/createGameDTO';
 
 @Injectable({
@@ -41,6 +41,13 @@ export class JuegoService {
   getBiblioteca(){ //Juegos comprados por perfil
     return this.http.get<JuegoModel[]>("http://localhost:8080/api/perfil/juegos")
   }
+
+  isInBiblioteca(juegoId: number): Observable<boolean> {
+    return this.getBiblioteca().pipe(
+      map(juegos => juegos.some(j => j.id === juegoId))
+    );
+  }
+  
 
   postGame(newGame:CreateGameDTO) {
     return this.http.post<JuegoModel>(this.apiURL, newGame).pipe(

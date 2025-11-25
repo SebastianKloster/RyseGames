@@ -1,0 +1,22 @@
+@if (juegos().length > 0) {
+    <section id="carrito">
+        <div class="encabezado">
+            <p>total {{ precioTotal() | currency:'USD':'symbol':'1.2-2' }}</p>
+            <div class="div">
+                <button class="clearButton" (click)="clear()">X</button>
+                <button class="comprarButton" (click)="comprarTodo()">Comprar</button>
+            </div>
+        </div>
+        <div class="contenedor">
+            @for (juego of juegos(); track juego.id) {
+                <article>
+                    <div class="portada">
+                        <img [src]="juego.foto" alt="Imagen de Prueba">
+                    </div>
+                    <p class="precio">{{ juego.precio | currency:'USD':'symbol':'1.2-2' }}</p>
+                    <button class="deleteButton" (click)="delete(juego.id)">X</button>
+                </article>
+            }
+        </div>
+    </section>
+}

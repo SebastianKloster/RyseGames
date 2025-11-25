@@ -1,0 +1,21 @@
+<section class="juegos_list">
+    @for (juego of juegos(); track juego.id) {
+        <article [routerLink]="['/game', juego.id]">
+            <div class="portada">
+                <img [src]="juego.foto" alt="Imagen de Prueba">
+            </div>
+            <div class="texto">
+                <h4>{{juego.nombre}}</h4>
+                <div class="desc">
+                    <p class="desarrolladora">{{juego.desarrolladora.nombre}}</p>
+                </div>
+                <p class="fecha_lanzamiento">{{juego.fechaLanzamiento}}</p>
+                <!-- <div class="categoria" [style.backgroundColor]="getCategoryColor(juego.categoria)">
+                    <i [class]="getCategoryIcon(juego.categoria)"></i>
+                </div> -->
+            </div>
+        </article>
+    } @empty {
+        <p>No hay juegoos que mostrar.</p>
+    }
+</section>
