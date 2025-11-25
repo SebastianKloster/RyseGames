@@ -1,10 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { CompraService } from '../../services/compra.service';
-import { Carro } from '../../../carrito/services/carro';
+import { Carro } from '../../services/carro';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import {MatRadioModule} from '@angular/material/radio';
 import { FormsModule } from '@angular/forms'
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-compra',
   imports: [CommonModule, CurrencyPipe,MatRadioModule,FormsModule],
@@ -22,7 +24,8 @@ export class Compra {
 
   constructor(
     private compraService: CompraService,
-    private carroService: Carro
+    private carroService: Carro,
+    private snack: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -30,21 +33,30 @@ export class Compra {
     this.total = this.carroService.totalCompra();
   }
 
-
-  finalizarCompra() {
-    if (!this.metodoPago){
-      alert("Seleccioná un método de pago");
-      return;
-    }
-
-    this.compraService.realizarCompra().subscribe({
-      next: () => {alert("Compra realizada con éxito!");
-        this.router.navigate(['/compra']);
-      }
-      ,
-      error: () => alert("Ocurrió un error al procesar la compra")
-    });
+finalizarCompra() {
+  if (!this.metodoPago) {
+    alert("Seleccioná un método de pago");
+    return;
   }
+
+  this.compraService.realizarCompra().subscribe({
+    next: () => {
+  this.snack.open("¡Compra realizada con éxito! 🛒", "Ok", { 
+    duration: 3000,
+    panelClass: ['compra-exitosa-snack']
+  });
+  this.router.navigate(['/compra']);
+},
+    error: (err) => {
+      if (err.status === 409) {
+        this.snack.open("No tenés saldo suficiente 💸", "Entendido", { duration: 3500 });
+      } else {
+        alert("Ocurrió un error al procesar la compra");
+      }
+    }
+  });
+}
+
   
 
   seleccionarMetodo(metodo: string) {

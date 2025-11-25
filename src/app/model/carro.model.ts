@@ -1,5 +1,5 @@
 export interface IJuegoToCarro {
-  id: number;
+  idJuego: number;
   nombre: string;
   precio: number;
   foto: string;
