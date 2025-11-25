@@ -33,10 +33,7 @@ export const routes: Routes = [
     {path: 'compra', component: Compra, canActivate: [authGuardFn],data: { roles: ['PERFIL'] }},
     {path: 'billetera',component: Billetera, canActivate: [authGuardFn],data: { roles: ['PERFIL'] }},
     {path: 'access-denied',component: AccessDenied},
-    {path:'carro', component: CarroList},
-    {path: 'compra', component: Compra},
-    {path: 'billetera',component: Billetera},
-    {path: 'estadisticas', component: Estadisticas},
+    {path: 'estadisticas', component: Estadisticas, canActivate: [authGuardFn], data: { roles: ['DESARROLLADORA']}},
     { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redirige la ruta vacía a /home
     { path: '**', redirectTo: '/home' } // Redirige cualquier otra ruta a /home (opcional)
 ];
