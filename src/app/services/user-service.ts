@@ -73,4 +73,15 @@ export class UserService {
   clearUserToEdit(){
     this.userToEditState.set(null);
   }
+
+  getLoggedUser(): UserVerDTO | null {
+  const token = localStorage.getItem('authToken');
+  if (!token) return null;
+
+  const decoded = atob(token);
+  const username = decoded.split(":")[0]; // email del user
+
+  const users = this.userState();
+  return users.find(u => u.email === username) || null;
+}
 }

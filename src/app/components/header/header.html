@@ -1,16 +1,27 @@
-<header>
-    <div class="logo">
-        <h1>RYZE GAMES</h1>
-    </div>
-    <nav class="menu">
-        <ul>
-            <li><a routerLink="/store">tienda</a></li>
-            <li><a id="createButton" routerLink="/crear-juego">crear juego</a></li>
-            <li><a id="createButton" routerLink="/login">login</a></li>
-            <li><a id="createButton" routerLink="/carro">carro</a></li>
-        </ul>
-    </nav>
-    <div class="user">
-        <p>@agentesebi</p>
-    </div>
+<header class="header">
+  <div class="logo" routerLink="/home">RYZE GAMES</div>
+
+  <nav class="menu">
+
+    @if (!isLogged()) {
+      <a routerLink="/login">Login</a>
+      <a routerLink="/register">Register</a>
+    }
+
+    @if (isLogged() && user()) {
+
+      @if (user()?.role === 'PERFIL') {
+        <a routerLink="/store">Store</a>
+        <a routerLink="/juegos-favoritos">Favoritos</a>
+        <a routerLink="/carro">Carrito</a>
+      }
+
+      @if (user()?.role === 'DESARROLLADORA') {
+        <a routerLink="/juegos-desarrolladora">Mis Juegos</a>
+      }
+
+      <span class="user-info">Hola, {{ user()?.nombre }}</span>
+      <button class="btn-logout" (click)="logout()">Logout</button>
+    }
+  </nav>
 </header>
