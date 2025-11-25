@@ -26,6 +26,7 @@ input {
     color: var(--color-alfa);
 
     border-radius: 5px;
+    outline: 2px transparent red;
 }
 button {
     padding: 0.2rem;
@@ -34,6 +35,27 @@ button {
     font-weight: bolder;
     color: var(--color-alfa);
     
+    border: 2px solid rgba(107, 107, 107, 0.3);
     background-color: var(--color-delta);
     border-radius: 5px;
+}
+
+button#loginButton {
+    /* background-color: var(--color-gamma); */
+}
+button#registerButton {
+    color: var(--color-delta);
+    background-color: var(--color-alfa);
+}
+button:hover {
+    cursor: pointer;
+    filter: brightness(1.2);
+}
+button:disabled {
+    cursor: not-allowed;
+    filter: brightness(0.8);
+}
+
+.input_invalido {
+  outline: 2px solid red !important;
 }

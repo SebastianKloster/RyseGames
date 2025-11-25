@@ -33,7 +33,7 @@ export class RegisterForm {
 
     //Desarrolladora
     nombreDesarrolladora: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
-    paisOrigen: ['', [Validators.required, Validators.minLength(2)]],
+    paisOrigen: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
   })
 
 
@@ -68,7 +68,7 @@ export class RegisterForm {
     // si es DESARROLLADORA -> nombreDesarrolladora y paisOrigen requeridos
     if (role === this.roleEnum.DESARROLLADORA) {
       nombreDev.setValidators([Validators.required, Validators.minLength(3), Validators.maxLength(50)]);
-      paisOrigen.setValidators([Validators.required, Validators.minLength(2)]);
+      paisOrigen.setValidators([Validators.required, Validators.minLength(2), Validators.maxLength(50)]);
       // opcional: limpiar campo de perfil
       nickname.reset('');
     }

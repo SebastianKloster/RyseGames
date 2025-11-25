@@ -49,6 +49,7 @@ export class SessionService {
     this.user.set(null)
     this.logged$.next(false);
     this.isUserLogged.set(false)
+    this.router.navigate(['/login'])
   }
 
   postUser(user: CreateUserDTO) {

@@ -6,17 +6,17 @@ section#game {
 
 .imagen {
     height: 60%;
-    box-shadow: 0 0 5px black;
+    background: linear-gradient(to right, transparent, var(--color-alfa), transparent);
 }
 .imagen img {
     height: 100%;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 .texto {
     height: 40%;
-    padding: 1rem 2rem;
-
+    padding: 1rem 3rem;
+    position: relative;
 
     background-color: var(--color-beta);
     border-bottom: 4px solid var(--color-alfa);
@@ -49,4 +49,51 @@ section#game {
     box-shadow: 2px 2px 10px var(--color-beta);
 
     font-size: 2rem;
+}
+
+.buttons {
+    margin: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+.buttons button {
+    height: fit-content;
+    width: fit-content;
+    padding: 0.2rem;
+
+    color: var(--color-delta);
+    font-size: 1.2rem;
+    font-weight: bolder;
+
+    border-radius: 4px;
+    border: 3px solid rgba(230, 230, 230, 0.3);
+    background-color: var(--color-gamma);
+    transition: all ease 0.1s;
+}
+.buttons button:hover {
+    background-color: var(--color-alfa);
+    /* border-color: var(--color-delta); */
+    cursor: pointer;
+}
+
+.precio_container {
+    width: fit-content;
+    min-width: 3rem;
+    padding: 0rem 0.4rem;
+
+    /* position: absolute;
+    top: -1rem;
+    right: 10px;
+    z-index: 1; */
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    color: var(--color-delta);
+    font-size: 1.6rem;
+    
+    background-color: var(--color-alfa);
+    border: 2px solid var(--color-beta);
+    box-shadow: 0rem 0rem 5rem 1rem var(--color-beta);
 }

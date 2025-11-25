@@ -14,6 +14,9 @@
                 <h3>{{juego.desarrolladora.nombre}} - {{juego.desarrolladora.pais}}</h3>
             </div>
             <div class="buttons">
+                <div class="precio_container">
+                    <p class="precio">{{ juego.precio | currency:'USD':'symbol':'1.2-2' }}</p>
+                </div>
                 @if (user(); as user) {
                     @if (user.role !== roleEnum.PERFIL) {
                         <!-- Desarrolladora no puede comprar -->

@@ -9,10 +9,11 @@ import { FavServices } from '../../services/fav-services';
 import { CarritoService } from '../../services/carrito-service';
 import { SessionService } from '../../services/session-service';
 import { RoleEnum } from '../../model/roleEnum';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-game',
-  imports: [],
+  imports: [CurrencyPipe],
   templateUrl: './game.html',
   styleUrl: './game.css',
 })

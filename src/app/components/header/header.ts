@@ -15,4 +15,8 @@ export class Header {
   sessionService = inject(SessionService)
 
   user = this.sessionService.getLoggedUser()
+
+  logout() {
+    this.sessionService.logout()
+  }
 }
