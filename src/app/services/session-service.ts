@@ -9,6 +9,7 @@ import { UpdateUserDTO } from '../model/updateUserDTO';
 @Injectable({
   providedIn: 'root',
 })
+
 export class SessionService {
   router = inject(Router)
   http = inject(HttpClient)
@@ -22,23 +23,35 @@ export class SessionService {
 
   private isUserLogged = signal<boolean>(!!this.user)
 
-  login(username: string, password: string) {
+login(username: string, password: string) {
     const token = btoa(`${username}:${password}`);
-
     localStorage.setItem('authToken', token);
 
-    this.http.get<UserModel>(this.apiURL+"/me").subscribe(
-      data => {
+    this.http.get("http://localhost:8080/api/juego/1", {
+      headers: { Authorization: `Basic ${token}` }
+    }).subscribe(
+      ok => {
 
-        //asigno la data que llega a User
-        this.user.set(data);
+        this.loadUserRole().subscribe(() => {
 
-        this.logged$.next(true);
-        this.isUserLogged.set(true)
-        this.router.navigate(['/store']);
+          const role = this.getRole();
+
+          this.http.get<UserModel[]>(this.apiURL, {
+            headers: this.getAuthHeaders()
+          }).subscribe(list => {
+
+            const user = list.find(u => u.email === username) || null;
+
+            localStorage.setItem("loggedUser", JSON.stringify(user));
+            this.user.set(user);
+
+            this.logged$.next(true);
+            this.router.navigate(['/store']);
+          });
+        });
+
       },
       err => {
-        // Credenciales incorrectas → mostrar error
         this.logout();
         alert("Usuario o contraseña incorrectos");
       }
@@ -102,3 +115,4 @@ export class SessionService {
     return localStorage.getItem("userRole") || "";
   }
 }
+
