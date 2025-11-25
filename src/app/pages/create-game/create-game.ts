@@ -65,10 +65,13 @@ export class CreateGame {
   createGame(newGame: CreateGameDTO){
     this.juegoService.postGame(newGame).subscribe({
       next: (game) => {
+        alert("Juego creado con exito")
         console.log("Juego creado:", game);
         this.gameForm.reset();
+        this.router.navigate(['/store']);
       },
       error: (err) => {
+        alert(err.error.error)
         console.error("Error al crear el juego:", err);
       }
     });
@@ -82,6 +85,7 @@ export class CreateGame {
         alert("Juego editado con exito")
         console.log("Juego editado:", game);
         this.gameForm.reset();
+        this.router.navigate(['/store']);
       },
       error: (err) => {
         alert(err.error.error)

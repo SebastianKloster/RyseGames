@@ -74,6 +74,7 @@ header {
 
     cursor: pointer;
     font-variant: small-caps;
+    white-space: nowrap;
 }
 .nick:hover {
     text-decoration-color: var(--color-gamma);
