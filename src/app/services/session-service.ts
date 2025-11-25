@@ -27,7 +27,7 @@ login(username: string, password: string) {
     const token = btoa(`${username}:${password}`);
     localStorage.setItem('authToken', token);
 
-    this.http.get("http://localhost:8080/api/juego/1", {
+    this.http.get(this.apiURL+"/me", {
       headers: { Authorization: `Basic ${token}` }
     }).subscribe(
       ok => {
@@ -60,6 +60,9 @@ login(username: string, password: string) {
 
   logout() {
     localStorage.removeItem('authToken');
+    localStorage.removeItem('loggedUser');
+    localStorage.removeItem('userRole');
+    
     this.user.set(null)
     this.logged$.next(false);
     this.isUserLogged.set(false)
