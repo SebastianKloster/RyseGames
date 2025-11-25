@@ -3,14 +3,21 @@
         <h1>RYZE GAMES</h1>
     </div>
     <nav class="menu">
-        <ul>
-            <li><a routerLink="/store">tienda</a></li>
-            <li><a id="createButton" routerLink="/crear-juego">crear juego</a></li>
-            <li><a id="createButton" routerLink="/login">login</a></li>
-            <li><a id="createButton" routerLink="/carro">carro</a></li>
-        </ul>
+        <mat-tab-group 
+      [selectedIndex]="selectedTab"
+      (selectedIndexChange)="tabChange($event)"
+      class="tabs">
+
+    <mat-tab label="Tienda"></mat-tab>
+    <mat-tab label="Crear Juego"></mat-tab>
+    <mat-tab label="Login"></mat-tab>
+    <mat-tab label="Carrito"></mat-tab>
+
+  </mat-tab-group>
+
     </nav>
     <div class="user">
-        <p>@agentesebi</p>
+        <mat-icon>account_circle</mat-icon>
+        <p>  @agentesebi</p>
     </div>
 </header>

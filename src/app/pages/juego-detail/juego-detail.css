@@ -1,50 +1,48 @@
+
+
+.detalle-juego img {
+  border-radius: 10px;
+  width: 260px;
+  height: auto;
+}
+
+h2 {
+  margin-bottom: 12px;
+}
+
+
 .detalle-juego {
   max-width: 900px;
   margin: 40px auto;
-  padding: 30px;
-  color: var(--color-delta);
-  background-color: var(--color-alfa);
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  padding: 25px;
+  background: #1e2a38;
+  border-radius: 18px;
   display: flex;
-  gap: 30px;
-  align-items: flex-start;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  gap: 25px;
 }
 
-.detalle-juego img {
-  border-radius: 12px;
-  object-fit: cover;
-  width: 250px;
-  height: auto;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+.info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 8px;
+  position: relative;
 }
 
-.detalle-juego h2 {
-  margin-top: 0;
-  font-size: 2rem;}
-
-.detalle-juego p {
-  margin: 10px 0;
-  font-size: 1.1rem;}
-
-.detalle-juego p strong {
-  color: #000;
+.carrito {
+  margin-top: auto;
+  align-self: flex-end;
+  background: #00d4ff !important;
+  color: black !important;
+  border-radius: 8px;
+  padding: 8px 15px;
 }
+.favorito {
+  margin-top: auto;
+  align-self: flex-end;
 
-.detalle-juego:hover {
-  transform: translateY(-3px);
-  transition: 0.2s ease;
-}
-
-@media (max-width: 768px) {
-  .detalle-juego {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .detalle-juego img {
-    width: 80%;
-    margin: 0 auto;
-  }
+  background: #63b9ff !important;
+  color: black !important;
+  border-radius: 8px;
+  padding: 8px 15px;
 }

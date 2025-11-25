@@ -24,6 +24,7 @@ export class Login {
   handleSubmit() {
     if (this.userForm.valid) {
       this.login(this.userForm.getRawValue().user, this.userForm.getRawValue().pass)
+
     } else {
       alert("Fomurlario inválido");
     }
@@ -31,6 +32,7 @@ export class Login {
 
   login(user:string, pass:string) {
     this.sessionService.login(user, pass);
+    
   }
   logout() {
     this.sessionService.logout();

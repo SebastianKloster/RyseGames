@@ -2,10 +2,11 @@ import { Component, inject, OnInit } from '@angular/core';
 import { PerfilService } from '../../services/perfil-service';
 import { JuegoVerDesarrolladoraDTO } from '../../model/juego';
 import { CommonModule } from '@angular/common';
+import {MatIconModule} from '@angular/material/icon';
 
 @Component({
   selector: 'app-juegos-favoritos',
-  imports: [CommonModule],
+  imports: [CommonModule, MatIconModule],
   templateUrl: './juegos-favoritos.html',
   styleUrl: './juegos-favoritos.css',
 })
