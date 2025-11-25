@@ -1,9 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subscription, tap } from 'rxjs';
-import { Carro } from '../../carrito/services/carro';
-import { SessionService } from '../../services/session-service';
-import { ICompra } from '../models/compra';
+import { Carro } from './carro';
+import { SessionService } from './session-service';
+import { ICompra } from '../model/compra';
 @Injectable({
   providedIn: 'root'
 })

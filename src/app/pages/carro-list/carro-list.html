@@ -7,7 +7,7 @@
       @if (carrito(); as carritoActual) {
         @if (carritoActual.juegos && carritoActual.juegos.length > 0) {
 
-          @for (juego of carritoActual.juegos; track juego.id) {
+          @for (juego of carritoActual.juegos; track juego.idJuego) {
         
             <mat-card class="item-card">
               <div class="row">
@@ -19,7 +19,7 @@
                   <p class="precio">$ {{ juego.precio }}</p>
                 </div>
 
-                <button mat-icon-button color="warn" (click)="removeJuego(juego.id)">
+                <button mat-icon-button color="warn" (click)="removeJuego(juego.idJuego)">
                   <mat-icon>delete</mat-icon>
                 </button>
 

@@ -1,8 +1,8 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
-import { ICarroDeCompras } from '../model/carro.model/carro.model';
+import { ICarroDeCompras } from '../model/carro.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subscription, switchMap, tap } from 'rxjs';
-import { SessionService } from '../../services/session-service';
+import { SessionService } from './session-service';
 
 @Injectable({
   providedIn: 'root',
