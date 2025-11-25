@@ -1,14 +1,19 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { environment } from '../enviroments/enviroments';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserModel, UserUpdateDTO, UserVerDTO } from '../model/user';
 import { Observable, tap } from 'rxjs';
+import { SessionService } from './session-service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
    private apiUrl = `${environment.api}/users`;
+   session = inject(SessionService);
+
+// usuario logueado
+
 
   private http = inject(HttpClient);
 
@@ -36,27 +41,34 @@ export class UserService {
     )
   }
 
-
-  delete (id: number):Observable<void>{
-    return this.http.delete<void>(`${this.apiUrl}/${id}`).pipe(
-      tap(()=>{
-        this.userState.update(currentUsers=>
-          currentUsers.filter(user=> user.id !== id)
-        )
+  // Eliminar usuario logueado
+  delete(): Observable<void> {
+    return this.http.delete<void>(this.apiUrl).pipe(
+      tap(() => {
+        // Opcional: quitarlo de la lista local
+        const current = this.userState().find(u => u.id === this.userToEditState()?.id);
+        if (current) {
+          this.userState.update(users => users.filter(u => u.id !== current.id));
+        }
+        this.userToEditState.set(null);
       })
-    )
+    );
   }
+update(userUpdate: UserUpdateDTO) {
+  const headers = this.getAuthHeaders();
+  return this.http.put<UserVerDTO>(`${this.apiUrl}`, userUpdate, { headers }).pipe(
+    tap(updatedUser => {
+      this.userState.update(currentUsers =>
+        currentUsers.map(user => user.id === updatedUser.id ? updatedUser : user)
+      );
+    })
+  );
+}
 
-
-  update(userUpdate: UserUpdateDTO):Observable<UserVerDTO>{
-    return this.http.put<UserVerDTO>(`${this.apiUrl}/${userUpdate.id}`, userUpdate).pipe(
-      tap(updatedUser=>{
-        this.userState.update(currentUsers=>
-          currentUsers.map(user=> user.id === updatedUser.id ? updatedUser: user)
-        )
-      })
-    )
-  }
+private getAuthHeaders() {
+  const token = localStorage.getItem('authToken') || '';
+  return new HttpHeaders({ 'Authorization': 'Basic ' + token });
+}
 
   getUserById(id: number):Observable<UserVerDTO>{
     return this.http.get<UserVerDTO>(`${this.apiUrl}/${id}`);

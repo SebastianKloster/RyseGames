@@ -8,6 +8,8 @@ export interface UserVerDTO {
     role: Role;
     nickName: string;
     nombreDesarrolladora: string;
+    paisOrigen: string;
+    password: string
 }
 
 export interface UserModel {
@@ -30,3 +32,5 @@ export interface UserUpdateDTO {
   nombreDesarrolladora?: string;
   paisOrigen?: string;
 }
+
+

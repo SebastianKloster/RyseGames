@@ -10,6 +10,8 @@
 
     @if (isLogged() && user()) {
 
+      <a routerLink="/user/profile">Mi Perfil</a>
+
       @if (user()?.role === 'PERFIL') {
         <a routerLink="/store">Store</a>
         <a routerLink="/juegos-favoritos">Favoritos</a>
