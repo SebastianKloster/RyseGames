@@ -1,0 +1,60 @@
+
+h2 {
+  text-align: center;
+  color: var(--color-delta);
+  margin: 30px auto 20px;
+  padding-bottom: 8px;
+  border-bottom: 3px solid #00c8d7;
+  display: inline-block;
+}
+
+
+.card-user {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 25px 30px;
+
+  background: rgba(20, 20, 20, 0.85);
+  border-radius: 18px;
+  border: 1px solid rgba(0, 200, 215, 0.25);
+  backdrop-filter: blur(10px);
+
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.35);
+}
+
+
+.card-user p {
+  font-size: 1.1rem;
+  color: #e8f8ff;
+  margin: 10px 0;
+}
+
+.card-user strong {
+  color: #00c8d7;
+}
+
+
+.button {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.button button {
+  padding: 10px 20px;
+
+  background: #00c8d7;
+  border: none;
+  border-radius: 10px;
+
+  color: #0e1b20;
+  font-size: 1rem;
+  font-weight: bold;
+
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.button button:hover {
+  background: #04e0f5;
+  transform: scale(1.05);
+}

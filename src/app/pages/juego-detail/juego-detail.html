@@ -1,14 +1,28 @@
+<div class="page">
 @if (juego) {
   <section class="detalle-juego">
 
-  <img [src]="juego.foto" width="200">
+    <img [src]="juego.foto" width="200">
 
-  <h2>{{ juego.nombre }}</h2>
+    <div class="info">
+      <h2>{{ juego.nombre }}</h2>
 
-  <p><strong>Precio:</strong> {{ juego.precio }}</p>
-  <p><strong>Desarrolladora:</strong> {{ juego.nombreDesarrolladora }}</p>
-  <p><strong>Categoria:</strong> {{ juego.categoria }}</p>
-  <p><strong>Fecha de lanzamiento: </strong>{{juego.fechaLanzamiento | date:'dd/MM/yyyy'}}</p>
+      <p><strong>Precio:</strong> {{ juego.precio }}</p>
+      <p><strong>Desarrolladora:</strong> {{ juego.nombreDesarrolladora }}</p>
+      <p><strong>Categoria:</strong> {{ juego.categoria }}</p>
+      <p><strong>Fecha de lanzamiento: </strong>{{ juego.fechaLanzamiento | date:'dd/MM/yyyy' }}</p>
 
-</section>
+      <button mat-raised-button color="primary" class="carrito" (click)="agregarAlCarrito(juego)">
+        Agregar al Carrito
+      </button>
+      <button mat-raised-button color="primary" class="carrito" (click)="agregarAFavoritos(juego)">
+        Agregar a favoritos
+      </button>
+      
+    </div>
+
+  </section>
+}@else {
+  <p>Juego no encontrado.</p>
 }
+</div>
