@@ -14,6 +14,7 @@ import { Billetera } from './pages/billetera/billetera';
 import { authGuardFn } from './auth/authGuardFn';
 import { authGuardFnLogin } from './auth/authGuardFnLogin';
 import { AccessDenied } from './pages/access-denied/access-denied';
+import { Estadisticas } from './pages/estadisticas/estadisticas';
 
 export const routes: Routes = [
     { path: 'home', component: Home },
@@ -32,6 +33,10 @@ export const routes: Routes = [
     {path: 'compra', component: Compra, canActivate: [authGuardFn],data: { roles: ['PERFIL'] }},
     {path: 'billetera',component: Billetera, canActivate: [authGuardFn],data: { roles: ['PERFIL'] }},
     {path: 'access-denied',component: AccessDenied},
+    {path:'carro', component: CarroList},
+    {path: 'compra', component: Compra},
+    {path: 'billetera',component: Billetera},
+    {path: 'estadisticas', component: Estadisticas},
     { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redirige la ruta vacía a /home
     { path: '**', redirectTo: '/home' } // Redirige cualquier otra ruta a /home (opcional)
 ];
