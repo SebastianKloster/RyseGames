@@ -14,6 +14,7 @@ export const routes: Routes = [
     { path: 'login', component: Login },
     { path: 'biblioteca', component: Biblioteca },
     { path: 'game/:id', component: Game },
+    { path: 'game/update/:id', component: CreateGame },
     { path: 'create_game', component: CreateGame },
     { path: 'register', component: Register },
     { path: 'billetera', component: Billetera },

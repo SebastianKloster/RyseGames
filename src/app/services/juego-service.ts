@@ -56,4 +56,13 @@ export class JuegoService {
       })
     )
   }
+
+  updateGame(newGame:JuegoModel){
+    return this.http.put<JuegoModel>(this.apiURL+"/"+newGame.id, newGame).pipe(
+      tap( eventUpdated => {
+        this.juegosData.update(juegosDataOld => juegosDataOld.map(juego => juego.id === newGame.id ? newGame : juego))
+      })
+    )
+
+  }
 }

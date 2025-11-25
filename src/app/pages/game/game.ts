@@ -47,9 +47,6 @@ export class Game {
   }
 
   consultaDeveloper(){
-    console.log(this.user()?.desarrolladora?.nombre)
-    console.log(this.juego()?.desarrolladora.nombre)
-    console.log("aaaaaaa------------------------")
     if (this.user()?.desarrolladora?.nombre === this.juego()?.desarrolladora.nombre) {
       this.isDeveloper.set(true)
     } else {
