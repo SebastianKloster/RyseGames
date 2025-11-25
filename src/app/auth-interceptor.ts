@@ -1,6 +1,10 @@
 import { HttpInterceptorFn } from '@angular/common/http';
+import { inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
+  const router = inject(Router)
+
   const token = localStorage.getItem('authToken');
   console.log('[AuthInterceptor] ejecutado. token=', token);
   let modifiedReq = req;
@@ -8,7 +12,6 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     modifiedReq = req.clone({
       setHeaders: { Authorization: `Basic ${token}` }
     });
-    console.log('[AuthInterceptor] headers a enviar:', modifiedReq.headers.keys().map(k => `${k}: ${modifiedReq.headers.get(k)}`));
   } else {
     console.log('[AuthInterceptor] No hay token, request sin Authorization');
   }

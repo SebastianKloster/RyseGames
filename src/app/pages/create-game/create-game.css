@@ -1,9 +1,12 @@
 section#create_game {
     min-height: var(--semi-screen);
+    width: 100%;
 
     background-color: var(--color-beta);
     background: linear-gradient(175deg, var(--color-alfa), var(--color-beta));
-    padding: 2rem 4rem;
+    padding: 4rem 10rem;
+
+    background-color: green;
 }
 
 form {
@@ -13,7 +16,59 @@ form {
 form input, select {
     width: fit-content;
     min-width: 20rem;
-
-    margin-bottom: 1rem;
     font-size: 1.2rem;
+}
+
+.input_container {
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+input, select {
+    padding: 0.1rem 0.2rem;
+
+    font-size: 1.2rem;
+    color: var(--color-alfa);
+
+    border-radius: 4px;
+    outline: 2px transparent red;
+}
+span.error {
+    padding: 0.2rem;
+    height: fit-content;
+    /* position: absolute; */
+
+    color: red;
+
+    border: 2px solid red;
+    border-radius: 3px;
+    background-color: var(--color-alfa);
+}
+
+.input_invalido {
+  outline: 2px solid red !important;
+}
+
+button {
+    width: fit-content;
+    padding: 0.2rem;
+    margin: 1rem 0rem;
+
+    font-size: 1.2rem;
+    font-weight: bolder;
+    color: var(--color-alfa);
+
+    border: 2px solid rgba(107, 107, 107, 0.3);
+    background-color: var(--color-delta);
+    border-radius: 5px;
+}
+button:hover {
+    cursor: pointer;
+    filter: brightness(1.2);
+}
+button:disabled {
+    cursor: not-allowed;
+    filter: brightness(0.8);
 }

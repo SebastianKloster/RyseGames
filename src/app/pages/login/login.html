@@ -2,13 +2,17 @@
     <div class="container">
         <form [formGroup]="userForm" (ngSubmit)="handleSubmit()">
             @if (isLogged()) {
-                <button type="button" (click)="logout()">Logout</button>
+                <button id="logoutButton" type="button" (click)="logout()">Logout</button>
             } @else {
-                <input id="user" formControlName="user" placeholder="username"/>
-                <input id="pass" formControlName="pass" placeholder="password"/>
+                <input id="user" formControlName="user" placeholder="username" 
+                [class.input_invalido]="userForm.get('user')?.invalid && userForm.get('user')?.touched" />
+
+
+                <input id="pass" formControlName="pass" placeholder="password"
+                [class.input_invalido]="userForm.get('pass')?.invalid && userForm.get('pass')?.touched" />
                     
-                <button type="submit">Login</button>
-                <button type="button" (click)="goToRegister()">Registrarse</button>
+                <button id="loginButton" type="submit" [disabled]="userForm.invalid">Iniciar Sesión</button>
+                <button id="registerButton" type="button" (click)="goToRegister()">Registrarse</button>
             }
             
         </form>

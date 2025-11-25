@@ -2,10 +2,11 @@ import { Component, inject, signal } from '@angular/core';
 import { BilleteraService } from '../../services/billetera-service';
 import { OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-billetera',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CurrencyPipe],
   templateUrl: './billetera.html',
   styleUrl: './billetera.css',
 })

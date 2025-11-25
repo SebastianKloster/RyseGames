@@ -9,10 +9,11 @@ import { FavServices } from '../../services/fav-services';
 import { CarritoService } from '../../services/carrito-service';
 import { SessionService } from '../../services/session-service';
 import { RoleEnum } from '../../model/roleEnum';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-game',
-  imports: [],
+  imports: [CurrencyPipe],
   templateUrl: './game.html',
   styleUrl: './game.css',
 })
@@ -47,9 +48,6 @@ export class Game {
   }
 
   consultaDeveloper(){
-    console.log(this.user()?.desarrolladora?.nombre)
-    console.log(this.juego()?.desarrolladora.nombre)
-    console.log("aaaaaaa------------------------")
     if (this.user()?.desarrolladora?.nombre === this.juego()?.desarrolladora.nombre) {
       this.isDeveloper.set(true)
     } else {

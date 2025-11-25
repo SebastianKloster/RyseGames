@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, map, Observable, of } from 'rxjs';
 import { UserModel, UserVerDTO } from '../model/user';
 import { CreateUserDTO } from '../model/createUserDTO';
+import { UpdateUserDTO } from '../model/updateUserDTO';
 
 @Injectable({
   providedIn: 'root',
@@ -49,10 +50,14 @@ export class SessionService {
     this.user.set(null)
     this.logged$.next(false);
     this.isUserLogged.set(false)
+    this.router.navigate(['/login'])
   }
 
   postUser(user: CreateUserDTO) {
     return this.http.post<UserModel>(this.apiURL, user)
+  }
+  updateUser(user:UpdateUserDTO) {
+    return this.http.put<UserModel>(this.apiURL, user)
   }
 
   getLoggedUser(){

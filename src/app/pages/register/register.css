@@ -1,0 +1,7 @@
+section#register {
+    height: var(--semi-screen);
+    padding: 2rem 4rem;
+
+    background-color: var(--color-beta);
+    background: linear-gradient(175deg, var(--color-alfa), var(--color-beta));
+}

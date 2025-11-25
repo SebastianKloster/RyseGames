@@ -4,32 +4,32 @@
     </div>
     <nav class="menu">
         <ul>
-            <li><a routerLink="/store">tienda</a></li>
             @if (user(); as user) {
+                <li><a routerLink="/store">tienda</a></li>
                 @if (user.role === roleEnum.PERFIL) {
                     <!-- Seccion para Perfil -->
                     <li><a routerLink="/biblioteca">biblioteca</a></li>
                     <li><a routerLink="/billetera">billetera</a></li>
-
                 } @else {
                     <!-- Seccion para Desarrolladora -->
                     <li><a routerLink="/create_game">subir juego</a></li>
                 }
-                <li><a routerLink="/login">login</a></li>
+                <!-- <li><a routerLink="/login">Iniciar sesión</a></li> -->
             }
         </ul>
     </nav>
     <div class="user">
         @if (user(); as user) {
-            @if (user.role === roleEnum.PERFIL) {
-                <p>{{user.perfil?.nickname}}</p>
-            } @else {
-                <p>{{user.desarrolladora?.nombre}}</p>
-            }
+            <div class="username">
+                @if (user.role === roleEnum.PERFIL) {
+                    <a class="nick" routerLink="/user">{{user.perfil?.nickname}}</a>
+                } @else {
+                    <a class="nick" routerLink="/user">{{user.desarrolladora?.nombre}}</a>
+                }
+            </div>
+            <button id="logoutButton" (click)="logout()"><i class="fa-solid fa-right-from-bracket"></i></button>
         } @else {
-            <nav class="menu">
-                <li><a routerLink="/login">login</a></li>
-            </nav>
+            <a id="loginButton" routerLink="/login">Iniciar Sesión <i class="fa-solid fa-arrow-right-to-bracket"></i></a>
         }
     </div>
 </header>

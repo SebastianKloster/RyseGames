@@ -1,0 +1,65 @@
+section#billetera {
+    min-height: var(--semi-screen);
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    background-color: var(--color-beta);
+    background: linear-gradient(175deg, var(--color-alfa), var(--color-beta));
+    padding: 2rem 4rem;
+}
+
+.billetera:hover, form:hover {
+    box-shadow: 0 0 10rem var(--color-alfa);
+}
+
+.billetera {
+    background-color: var(--color-alfa);
+    padding: 2rem;
+    border-radius: 6px;
+    text-align: center;
+
+    transition: ease 1s;
+    box-shadow: 0 0 0rem var(--color-alfa);
+}
+.billetera p {
+    font-size: 1.2rem;
+}
+
+form {
+    padding: 2rem;
+
+    display: flex;
+    flex-direction: column;
+
+    text-align: center;
+    border-radius: 6px;
+    background-color: var(--color-alfa);
+
+    transition: ease 1s;
+    box-shadow: 0 0 0rem var(--color-alfa);
+}
+form label {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+.buttonArea input{
+    width: 10rem;
+    font-size: 1.2rem;
+    padding: 0.1rem 0.3rem;
+} 
+.buttonArea button {
+    height: 100%;
+    padding: 0.1rem;
+
+    font-size: 1.2rem;
+    font-weight: bolder;
+    color: var(--color-delta);
+    background-color: var(--color-gamma);
+    transition: ease 0.1s;
+}
+.buttonArea button:disabled {
+    background-color: var(--color-delta);
+    color: rgba(0, 0, 0, 0.3);
+}

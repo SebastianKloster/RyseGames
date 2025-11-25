@@ -7,6 +7,7 @@ import { CreateGame } from './pages/create-game/create-game';
 import { Biblioteca } from './pages/biblioteca/biblioteca';
 import { Register } from './pages/register/register';
 import { Billetera } from './pages/billetera/billetera';
+import { User } from './pages/user/user';
 import { authGuardFnLogin } from './auth/authGuardFnLogin';
 import { authGuardFn } from './auth/auth.guard';
 import { AccessDenied } from './pages/access-denied/access-denied';
@@ -17,10 +18,12 @@ export const routes: Routes = [
     { path: 'login', component: Login, canActivate: [authGuardFnLogin] },
     { path: 'biblioteca', component: Biblioteca , canActivate: [authGuardFn], data:  { roles: ['PERFIL'] }},
     { path: 'game/:id', component: Game },
+    { path: 'game/update/:id', component: CreateGame },
     { path: 'create_game', component: CreateGame,},
     { path: 'register', component: Register, canActivate: [authGuardFnLogin]},
     { path: 'billetera', component: Billetera, canActivate: [authGuardFn], data:  { roles: ['PERFIL'] }},
     {path: 'access-denied',component: AccessDenied},
+    { path: 'user', component: User },
     { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redirige la ruta vacía a /home
     { path: '**', redirectTo: '/home' } // Redirige cualquier otra ruta a /home (opcional)
 ];
