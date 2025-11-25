@@ -23,13 +23,15 @@ export class SessionService {
 
   private isUserLogged = signal<boolean>(!!this.user)
 
-login(username: string, password: string) {
+  constructor() {
+    this.logout();
+  }
+  
+  login(username: string, password: string) {
     const token = btoa(`${username}:${password}`);
     localStorage.setItem('authToken', token);
 
-    this.http.get(this.apiURL+"/me", {
-      headers: { Authorization: `Basic ${token}` }
-    }).subscribe(
+    this.http.get(this.apiURL+"/me").subscribe(
       ok => {
 
         this.loadUserRole().subscribe(() => {
@@ -61,7 +63,7 @@ login(username: string, password: string) {
   logout() {
     localStorage.removeItem('authToken');
     localStorage.removeItem('loggedUser');
-    localStorage.removeItem('userRole');
+    localStorage.removeItem('loggedUser');
     
     this.user.set(null)
     this.logged$.next(false);

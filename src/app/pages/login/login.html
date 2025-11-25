@@ -1,7 +1,7 @@
 <section id="login">
     <div class="container">
         <form [formGroup]="userForm" (ngSubmit)="handleSubmit()">
-            @if (isLogged()) {
+            @if (isLogged() === true) {
                 <button id="logoutButton" type="button" (click)="logout()">Logout</button>
             } @else {
                 <input id="user" formControlName="user" placeholder="username" 
