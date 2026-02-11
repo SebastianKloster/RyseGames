@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { CanActivate, CanActivateFn, Router } from '@angular/router';
 import { SessionService } from '../services/session-service';
+import { filter, map, take } from 'rxjs';
 
 export const authGuardFn: CanActivateFn = (route) => {
   const session = inject(SessionService);
@@ -9,17 +10,24 @@ export const authGuardFn: CanActivateFn = (route) => {
   const role = session.getRole();
   const requiredRoles = route.data?.['roles'] as string[];
 
-  if (!session.isAuthenticated()) {
-    console.log("Guard Ejecutado")
-    router.navigate(['/login']);
-    return false;
-  }
+  return session.isLoading$.pipe(
+    filter(loading => !loading),
+    take(1),
+    map(() => {
 
-  if (requiredRoles && !requiredRoles.includes(role)) {
-    console.log("Guard Ejecutado")
-    router.navigate(['/access-denied']);
-    return false;
-  }
+      if (!session.isLoggedIn()) {
+        console.log("Guard Ejecutado")
+        router.navigate(['/login']);
+        return false;
+      }
 
-  return true;
+      if (requiredRoles && !requiredRoles.includes(session.getRole())) {
+        console.log("Guard Ejecutado")
+        router.navigate(['/access-denied']);
+        return false;
+      }
+
+      return true;
+    })
+  );
 };
