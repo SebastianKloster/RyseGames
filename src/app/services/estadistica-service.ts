@@ -8,7 +8,7 @@ import { SessionService } from './session-service';
   providedIn: 'root',
 })
 export class EstadisticaService {
-  apiURL = "http://localhost:8080/api/desarrolladora/estadistica"
+  apiURL = "https://localhost:8443/api/desarrolladora/estadistica"
 
   sessionService = inject(SessionService)
   private sessionSub: Subscription | null = null;

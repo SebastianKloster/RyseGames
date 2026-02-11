@@ -6,7 +6,7 @@ import { JuegoModel } from '../model/juego';
   providedIn: 'root',
 })
 export class FavServices {
-  apiURL = "http://localhost:8080/api/perfil/juegos/favoritos"
+  apiURL = "https://localhost:8443/api/perfil/juegos/favoritos"
 
   http = inject(HttpClient)
 

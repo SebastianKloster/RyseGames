@@ -5,7 +5,7 @@ import { inject, Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class CompraService {
-  apiURL = "http://localhost:8080/api/juego"
+  apiURL = "https://localhost:8443/api/juego"
 
   http = inject(HttpClient)
 

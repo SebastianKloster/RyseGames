@@ -9,7 +9,7 @@ import { CreateGameDTO } from '../model/createGameDTO';
   providedIn: 'root',
 })
 export class JuegoService {
-  apiURL = "http://localhost:8080/api/juego"
+  apiURL = "https://localhost:8443/api/juego"
   sessionService = inject(SessionService)
   private sessionSub: Subscription | null = null;
 
@@ -47,7 +47,7 @@ export class JuegoService {
       map(juegos => juegos.some(j => j.id === juegoId))
     );
   }
-  
+
 
   postGame(newGame:CreateGameDTO) {
     return this.http.post<JuegoModel>(this.apiURL, newGame).pipe(

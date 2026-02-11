@@ -9,7 +9,7 @@ import { RoleEnum } from '../model/roleEnum';
   providedIn: 'root',
 })
 export class CarritoService {
-  apiURL = "http://localhost:8080/api/carrito"
+  apiURL = "https://localhost:8443/api/carrito"
   sessionService = inject(SessionService)
   private sessionSub: Subscription | null = null;
 
@@ -39,7 +39,7 @@ export class CarritoService {
 
     this.http.post<JuegoModel[]>(this.apiURL+"/"+id, null).subscribe({
       next: data => this.carritoData.set(data),
-      
+
       error: err => {
         alert(err.error.error) //Mensaje de error desde el backend
         console.error("Error al agregar al carrito", err)
@@ -51,7 +51,7 @@ export class CarritoService {
   comprarTodo(){
     this.http.post(this.apiURL, null).subscribe({
       next: () => this.carritoData.set([]),
-      
+
       error: err => {
         alert(err.error.error) //Mensaje de error desde el backend
         console.error("Error al agregar al comprar", err)
@@ -64,7 +64,7 @@ export class CarritoService {
 
     this.http.delete<JuegoModel[]>(this.apiURL+"/"+id).subscribe({
       next: data => this.carritoData.set(data),
-      
+
       error: err => {
         alert(err.error.error) //Mensaje de error desde el backend
         console.error("Error al eliminar del carrito", err)
@@ -75,7 +75,7 @@ export class CarritoService {
   clear() {
     this.http.delete<void>(this.apiURL).subscribe({
       next: () => this.carritoData.set([]),
-      
+
       error: err => {
         alert(err.error.error) //Mensaje de error desde el backend
         console.error("Error al limpiar el carrito", err)
