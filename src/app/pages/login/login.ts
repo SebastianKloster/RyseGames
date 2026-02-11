@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class Login {
   router = inject(Router)
   sessionService = inject(SessionService)
-  isLogged = this.sessionService.isLogged();
+    
 
   fb = inject(FormBuilder)
   userForm = this.fb.nonNullable.group({
@@ -42,6 +42,10 @@ export class Login {
   }
   goToRegister(){
     this.router.navigate(['/register']);
+  }
+
+  isLogged() {
+    return this.sessionService.isLoggedIn();
   }
 
 

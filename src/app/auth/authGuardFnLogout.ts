@@ -6,7 +6,7 @@ export const authGuardFnLogout: CanActivateFn = () => {
   const session = inject(SessionService);
   const router = inject(Router);
 
-  if (!session.isAuthenticated()) {
+  if (!session.isLoggedIn()) {
     console.log("GuardFnLogout Ejecutado")
     router.navigate(['/login']);
     return false;
