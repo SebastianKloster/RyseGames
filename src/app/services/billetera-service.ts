@@ -5,7 +5,7 @@ import { inject, Injectable, signal } from '@angular/core';
   providedIn: 'root',
 })
 export class BilleteraService {
-  apiURL = "http://localhost:8080/api/billetera"
+  apiURL = "https://localhost:8443/api/billetera"
   http = inject(HttpClient)
 
   consultarSaldo() {

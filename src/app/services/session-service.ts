@@ -13,8 +13,8 @@ import { UpdateUserDTO } from '../model/updateUserDTO';
 export class SessionService {
   router = inject(Router)
   http = inject(HttpClient)
-  apiAuthURL = "http://localhost:8080/auth";
-  apiURL = "http://localhost:8080/api/users"
+  apiAuthURL = "https://localhost:8443/auth";
+  apiURL = "https://localhost:8443/api/users"
 
   user = signal<UserModel | null>(null)
 
@@ -30,7 +30,7 @@ export class SessionService {
   constructor() {
     this.restoreSession();
   }
-  
+
   login(username: string, password: string) {
     this.http.post<{ token: string }>(
       `${this.apiAuthURL}/login`,
@@ -65,7 +65,7 @@ export class SessionService {
     localStorage.removeItem('token');
     // localStorage.removeItem('loggedUser');
     // localStorage.removeItem('userRole');
-    
+
     this.user.set(null)
     this.logged$.next(false);
     this.isUserLogged.set(false)
