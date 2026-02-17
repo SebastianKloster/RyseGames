@@ -29,7 +29,7 @@
                             @if (isCarrito()) {
                             <button (click)="removeCarrito(juego.id)">Quitar del Carrito <i class="fa-solid fa-ban"></i></button>
                             } @else {
-                                <button (click)="addCarrito(juego.id)">Comprar <i class="fa-solid fa-basket-shopping"></i></button>
+                                <button (click)="addCarrito(juego)">Comprar <i class="fa-solid fa-basket-shopping"></i></button>
                             }
                         }
                         @if (isFav()) {

@@ -1,4 +1,4 @@
-import { computed, inject, Injectable, signal } from '@angular/core';
+import { computed, effect, inject, Injectable, signal } from '@angular/core';
 import { JuegoModel } from '../model/juego';
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
@@ -12,21 +12,22 @@ export class CarritoService {
   apiURL = "https://localhost:8443/api/carrito"
   sessionService = inject(SessionService)
   private sessionSub: Subscription | null = null;
+  private STORAGE_KEY = 'carrito';
 
 
-  private carritoData = signal<JuegoModel[]>([])
+  private carritoData = signal<JuegoModel[]>(this.cargarDesdeStorage());
 
   constructor(private http: HttpClient) {
-    this.sessionSub = this.sessionService.isLogged$.subscribe(logged => {
-      if (!logged) {
-        this.carritoData.set([]); // limpia cuando el usuario sale
-      } else {
-        if (this.sessionService.user()?.role !== RoleEnum.DESARROLLADORA) {
-          this.http.get<JuegoModel[]>(this.apiURL).subscribe(
-            data => this.carritoData.set(data)
-          )
-          console.log("Carrito Buscado")
-        }
+    // Persistir automáticamente cada cambio
+    effect(() => {
+      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(this.carritoData()));
+    });
+
+    // Limpiar al cerrar sesión
+    effect(() => {
+      if (!this.sessionService.isLoggedIn()) {
+        this.carritoData.set([]);
+        localStorage.removeItem(this.STORAGE_KEY);
       }
     });
   }
@@ -34,59 +35,49 @@ export class CarritoService {
   getCarrito() {
     return this.carritoData.asReadonly();
   }
-  agregarAlCarrito(id:number) {
-    if (this.isInCarrito(id)) return;
 
-    this.http.post<JuegoModel[]>(this.apiURL+"/"+id, null).subscribe({
-      next: data => this.carritoData.set(data),
-
-      error: err => {
-        alert(err.error.error) //Mensaje de error desde el backend
-        console.error("Error al agregar al carrito", err)
-      }
-    });
+  agregarAlCarrito(juego:JuegoModel) {
+    if (this.isInCarrito(juego.id)) return;
+    this.carritoData.update(c => [...c, juego]);
     console.log(this.carritoData())
   }
-
-  comprarTodo(){
-    this.http.post(this.apiURL, null).subscribe({
-      next: () => this.carritoData.set([]),
-
-      error: err => {
-        alert(err.error.error) //Mensaje de error desde el backend
-        console.error("Error al agregar al comprar", err)
-      }
-    });
+  borrarDelCarrito(id:number) {
+    this.carritoData.update(c => c.filter(j => j.id !== id));
   }
 
-  borrarDelCarrito(id:number) {
-    if (!this.isInCarrito(id)) return;
+  comprarTodo() {
+    const ids = this.getIds();
 
-    this.http.delete<JuegoModel[]>(this.apiURL+"/"+id).subscribe({
-      next: data => this.carritoData.set(data),
-
+    this.http.post('https://localhost:8443/api/compra', { gameIds: ids }).subscribe({
+      next: () => this.clear(),
       error: err => {
-        alert(err.error.error) //Mensaje de error desde el backend
-        console.error("Error al eliminar del carrito", err)
+        alert(err.error.error);
+        console.error("Error al comprar", err);
       }
     });
   }
 
   clear() {
-    this.http.delete<void>(this.apiURL).subscribe({
-      next: () => this.carritoData.set([]),
-
-      error: err => {
-        alert(err.error.error) //Mensaje de error desde el backend
-        console.error("Error al limpiar el carrito", err)
-      }
-    });
+    this.carritoData.set([]);
   }
 
   isInCarrito(id: number): boolean {
     return this.carritoData().some(juego => juego.id === id);
   }
 
+  getIds(): number[] {
+    return this.carritoData().map(j => j.id);
+  }
 
 
+  private cargarDesdeStorage(): JuegoModel[] {
+    const raw = localStorage.getItem(this.STORAGE_KEY);
+    if (!raw) return [];
+
+    try {
+      return JSON.parse(raw);
+    } catch {
+      return [];
+    }
+  }
 }

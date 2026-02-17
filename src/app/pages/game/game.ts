@@ -70,8 +70,8 @@ export class Game {
     console.log(this.carritoService.isInCarrito(this.juegoId))
   }
 
-  addCarrito(id:number) {
-    this.carritoService.agregarAlCarrito(id);
+  addCarrito(juego:JuegoModel) {
+    this.carritoService.agregarAlCarrito(juego);
     this.isCarrito.set(true)
   }
   removeCarrito(id:number) {
