@@ -1,0 +1,19 @@
+<section>
+  <h1>Pago pendiente ⏳</h1>
+
+  <p>
+    Tu pago está en proceso de confirmación.
+  </p>
+
+  <p>
+    Cuando Mercado Pago confirme la operación,
+    el saldo se acreditará automáticamente.
+  </p>
+
+  @if (paymentId()) {
+    <small>ID pago: {{ paymentId() }}</small>
+  }
+  <button routerLink="/billetera">
+    Volver a la billetera
+  </button>
+</section>

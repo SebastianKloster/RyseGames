@@ -1,8 +1,8 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, OnInit } from '@angular/core';
 import { BilleteraService } from '../../services/billetera-service';
-import { OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CurrencyPipe } from '@angular/common';
+import { PaymentService } from '../../services/payment-service';
 
 @Component({
   selector: 'app-billetera',
@@ -12,6 +12,7 @@ import { CurrencyPipe } from '@angular/common';
 })
 export class Billetera {
   billeteraService = inject(BilleteraService)
+  paymentService = inject(PaymentService);
 
   saldo = signal<number>(0)
 
@@ -46,16 +47,15 @@ export class Billetera {
   }
 
   cargarSaldo(monto:number) {
-    this.billeteraService.cargarSaldo(monto).subscribe({
-      next: (saldo) => {
-        console.log("Saldo:", saldo);
-        this.saldo.set(saldo)
-      },
-      error: (err) => {
-        alert(err.error.error)
-        console.error("Error al cargar saldo:", err);
-      }
-    });
-  }
+  this.billeteraService.cargarSaldo(monto).subscribe({
+    next: (resp: any) => {
+      window.location.href = resp.initPoint;
+    },
+    error: (err: any) => {
+      alert(err.error.error)
+      console.error("Error al cargar saldo:", err);
+    }
+  });
+}
 
 }
