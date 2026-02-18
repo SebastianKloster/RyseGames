@@ -49,11 +49,14 @@ export class Billetera {
   cargarSaldo(monto:number) {
   this.billeteraService.cargarSaldo(monto).subscribe({
     next: (resp: any) => {
-      window.location.href = resp.initPoint;
+      console.log(resp);
+      alert("redirigiendo")
+      console.log(resp.sandboxInitPoint);
+      window.location.href = resp.sandboxInitPoint;
     },
     error: (err: any) => {
-      alert(err.error.error)
       console.error("Error al cargar saldo:", err);
+      alert("Error creando preferencia de pago: " + err.error.error);
     }
   });
 }
