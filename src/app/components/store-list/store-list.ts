@@ -1,8 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { JuegoService } from '../../services/juego-service';
 import { CategoriaEnum } from '../../model/categoriaEnum';
 import { Router, RouterLink } from '@angular/router';
 import { CurrencyPipe } from '@angular/common';
+import { JuegoModel } from '../../model/juego';
+import { Page } from '../../model/page';
 
 @Component({
   selector: 'app-store-list',
@@ -15,7 +17,48 @@ export class StoreList {
   
   juegosService = inject(JuegoService)
 
-  juegos = this.juegosService.getJuegos()
+  page = signal<Page<JuegoModel> | null>(null);
+  juegos = computed(() => this.page()?.content ?? []);
+
+  paginaActual = signal(0);
+  loading = signal(false);
+
+
+  ngOnInit() {
+    this.cargarPagina(0);
+  }
+
+  cargarPagina(page: number) {
+    if (page < 0) return;
+
+    this.loading.set(true);
+
+    this.juegosService.getPage(page).subscribe({
+      next: data => {
+        this.page.set(data);
+        this.paginaActual.set(data.number);
+        this.loading.set(false);
+      },
+      error: () => {
+        this.loading.set(false);
+        console.log("Error al intentar cargar la pagina "+page)
+      }
+    });
+  }
+
+  siguiente() { //Siguiente pagina
+    const page = this.page();
+    if (page && !page.last) {
+    this.cargarPagina(this.paginaActual() + 1);
+  }
+  }
+
+  anterior() { //Pagina anterior
+    const page = this.page();
+    if (page && !page.first) {
+      this.cargarPagina(this.paginaActual() - 1);
+    }
+  }
 
 
   getCategoryColor(categoria: CategoriaEnum): string {
@@ -49,22 +92,6 @@ export class StoreList {
       DEPORTE: 'fa-solid fa-futbol',
       MMO: 'fa-solid fa-users',
       RPG: 'fa-solid fa-dungeon'
-    };
-
-    return map[cat];
-  }
-
-
-  // Funcion para Testing hasta que implementemos imagenes reales
-  getCategoryImage(cat: CategoriaEnum): string {
-    const map: Record<CategoriaEnum, string> = {
-      ACCION: "https://assets.dev-filo.dift.io/img/2020/09/25/hipertextual-remake-metal-gear-solid-estaria-camino-playstation-5-2020271937_re.jpg",
-      ARCADE: "https://www.nintendo.com/eu/media/images/10_share_images/games_15/nintendo_switch_download_software_1/H2x1_NSwitchDS_Tetris99_image1600w.jpg",
-      AVENTURA: "https://www.nintendo.com/eu/media/images/assets/nintendo_switch_2_games/thelegendofzeldabreathofthewild_nintendoswitch2edition/2x1_NSwitch2_TLoZTBotWNSwitch2Edition.jpg",
-      ESTRATEGIA: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/813780/header.jpg?t=1760473253",
-      DEPORTE: "https://i.blogs.es/5fe30d/fifa-21-intros_1/1366_521.jpeg",
-      MMO: "https://www.yeabitinformatica.com/wp-content/uploads/2020/10/world-of-warcraft-todas-las-expansiones.jpg",
-      RPG: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/72850/header.jpg?t=1721923139"
     };
 
     return map[cat];

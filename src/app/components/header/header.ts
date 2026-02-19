@@ -14,10 +14,6 @@ export class Header {
   roleEnum = RoleEnum
   sessionService = inject(SessionService)
   user = this.sessionService.getLoggedUser()
-  
-  constructor(){
-    console.log(this.user())
-  }
 
   logout() {
     this.sessionService.logout()

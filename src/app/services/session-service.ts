@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, map, Observable, of, tap } from 'rxjs';
 import { UserModel, UserVerDTO } from '../model/user';
@@ -25,7 +25,10 @@ export class SessionService {
   private loading$ = new BehaviorSubject<boolean>(true);
   isLoading$ = this.loading$.asObservable();
 
-  private isUserLogged = signal<boolean>(!!this.user)
+  private loading = signal(true);
+  readonly isLoading = computed(() => this.loading());
+
+  readonly isUserLogged = computed(() => !!this.user());
 
   constructor() {
     this.restoreSession();
@@ -63,13 +66,11 @@ export class SessionService {
 
   logout() {
     localStorage.removeItem('token');
-    // localStorage.removeItem('loggedUser');
-    // localStorage.removeItem('userRole');
+    // localStorage.removeItem('carrito'); //Carrito de compras
 
     this.user.set(null)
     this.logged$.next(false);
-    this.isUserLogged.set(false)
-    this.router.navigate(['/login'])
+    this.router.navigate(['/login']);
   }
 
   postUser(user: CreateUserDTO) {
@@ -100,6 +101,7 @@ export class SessionService {
     if (!this.isLoggedIn()) {
       this.logged$.next(false);
       this.loading$.next(false);
+      this.loading.set(false);
       return;
     }
 
@@ -108,9 +110,11 @@ export class SessionService {
         this.user.set(user);
         this.logged$.next(true);
         this.loading$.next(false);
+        this.loading.set(false);
       },
       error: () => {
         this.loading$.next(false);
+        this.loading.set(false);
         this.logout();
       }
     });
