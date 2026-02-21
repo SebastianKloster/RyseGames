@@ -1,0 +1,100 @@
+.wallet-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at top, #1f1f2e, #0f0f17);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.wallet-card {
+  background: #181825;
+  padding: 50px 40px;
+  border-radius: 20px;
+  text-align: center;
+  width: 420px;
+  box-shadow: 0 0 40px rgba(0, 255, 140, 0.15);
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+.check-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.check-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00ff99, #00cc66);
+  color: #0f0f17;
+  font-size: 40px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 20px rgba(0, 255, 140, 0.6);
+}
+
+.title {
+  color: #ffffff;
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #a0a0b8;
+  margin-bottom: 30px;
+  font-size: 15px;
+}
+
+.amount-box {
+  background: #10101a;
+  border: 1px solid #2a2a40;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+}
+
+.label {
+  display: block;
+  font-size: 13px;
+  color: #8a8ab0;
+  margin-bottom: 5px;
+}
+
+.amount {
+  font-size: 22px;
+  font-weight: bold;
+  color: #00ff99;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #00ff99, #00cc66);
+  color: #0f0f17;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(0, 255, 140, 0.5);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
