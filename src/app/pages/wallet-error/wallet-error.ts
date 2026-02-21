@@ -19,4 +19,8 @@ export class WalletError {
       this.paymentType.set(params[ 'payment_type'] || null);
     });
   }
+
+  sendToBilletera(){
+    window.location.href = "/billetera";
+  }
 }

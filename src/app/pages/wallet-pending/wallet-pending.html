@@ -1,19 +1,22 @@
-<section>
-  <h1>Pago pendiente ⏳</h1>
+<div class="wallet-container">
+  <div class="wallet-card pending">
 
-  <p>
-    Tu pago está en proceso de confirmación.
-  </p>
+    <div class="icon-wrapper">
+      <div class="icon-circle pending-circle">
+        ⏳
+      </div>
+    </div>
 
-  <p>
-    Cuando Mercado Pago confirme la operación,
-    el saldo se acreditará automáticamente.
-  </p>
+    <h1 class="title">Pago pendiente</h1>
 
-  @if (paymentId()) {
-    <small>ID pago: {{ paymentId() }}</small>
-  }
-  <button routerLink="/billetera">
-    Volver a la billetera
-  </button>
-</section>
+    <p class="subtitle">
+      Tu pago está siendo procesado.
+      Te avisaremos cuando se acredite.
+    </p>
+
+    <button class="btn-primary pending-btn" (click)="sendToBilletera()">
+      Volver a mi billetera
+    </button>
+
+  </div>
+</div>

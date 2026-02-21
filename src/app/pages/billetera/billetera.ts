@@ -51,8 +51,8 @@ export class Billetera {
     next: (resp: any) => {
       console.log(resp);
       alert("redirigiendo")
-      console.log(resp.sandboxInitPoint);
-      window.location.href = resp.sandboxInitPoint;
+      console.log(resp.initPoint);
+      window.location.href = resp.initPoint;
     },
     error: (err: any) => {
       console.error("Error al cargar saldo:", err);

@@ -19,4 +19,8 @@ export class WalletPending {
       this.status.set(params['status'] || null);
     });
   }
+
+  sendToBilletera(){
+    window.location.href = "/billetera";
+  }
 }

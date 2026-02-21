@@ -19,4 +19,7 @@ export class WalletOk {
     }, 2000);
   }
 
+  sendToBilletera(){
+    window.location.href = "/billetera";
+  }
 }

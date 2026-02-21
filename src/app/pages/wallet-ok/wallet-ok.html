@@ -1,5 +1,26 @@
-<h1>Pago aprobado ✅</h1>
-<p>Tu saldo fue acreditado</p>
-<p>Saldo actual: {{saldo()|currency}}</p>
+<div class="wallet-container">
+  <div class="wallet-card">
 
-<button routerLink="/store">Volver</button>
+    <div class="check-wrapper">
+      <div class="check-circle">
+        ✓
+      </div>
+    </div>
+
+    <h1 class="title">¡Pago aprobado!</h1>
+
+    <p class="subtitle">
+      Tu recarga fue procesada correctamente.
+    </p>
+
+    <div class="amount-box">
+      <span class="label">Saldo actual</span>
+      <span class="amount">$ {{ saldo() }}</span>
+    </div>
+
+    <button class="btn-primary" (click)="sendToBilletera()">
+      Volver a mi billetera
+    </button>
+
+  </div>
+</div>

@@ -1,0 +1,81 @@
+.wallet-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at top, #1b2838, #0f141c);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.wallet-card {
+  background: #16202d;
+  padding: 50px 40px;
+  border-radius: 20px;
+  text-align: center;
+  width: 420px;
+  animation: fadeIn 0.5s ease;
+}
+
+.wallet-card.error {
+  box-shadow: 0 0 40px rgba(255, 70, 70, 0.2);
+}
+
+.icon-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.icon-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  font-size: 38px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-circle {
+  background: linear-gradient(135deg, #ff4b4b, #b31217);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(255, 70, 70, 0.6);
+}
+
+.title {
+  color: #ffffff;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #9db2c6;
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.error-btn {
+  background: linear-gradient(135deg, #ff4b4b, #b31217);
+  color: white;
+}
+
+.error-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(255, 70, 70, 0.5);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
