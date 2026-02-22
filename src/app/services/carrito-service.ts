@@ -11,7 +11,6 @@ import { RoleEnum } from '../model/roleEnum';
 export class CarritoService {
   apiURL = "https://localhost:8443/api/carrito"
   sessionService = inject(SessionService)
-  private sessionSub: Subscription | null = null;
   private STORAGE_KEY = 'carrito';
 
 
@@ -25,7 +24,7 @@ export class CarritoService {
 
     // Limpiar al cerrar sesión
     effect(() => {
-      if (!this.sessionService.isLoggedIn()) {
+      if (!this.sessionService.isUserLogged() && !this.sessionService.isLoading()) {
         this.carritoData.set([]);
         localStorage.removeItem(this.STORAGE_KEY);
       }

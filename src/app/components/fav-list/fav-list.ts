@@ -1,6 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
 import { JuegoModel } from '../../model/juego';
-import { JuegoService } from '../../services/juego-service';
 import { RouterLink } from '@angular/router';
 import { FavServices } from '../../services/fav-services';
 

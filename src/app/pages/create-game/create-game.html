@@ -1,57 +1,59 @@
 <section id="create_game">
-    <form [formGroup]="gameForm" (ngSubmit)="handleSubmit()">
-        <label for="nombre">Nombre</label>
-        <div class="input_container">
-            <input id="nombre" formControlName="nombre"
-            [class.input_invalido]="gameForm.get('nombre')?.invalid && gameForm.get('nombre')?.touched" />
-            @if (gameForm.get('nombre')?.invalid && gameForm.get('nombre')?.touched) {
-                <span class="error">El nombre debe tener entre 2 y 50 caracteres.</span>
-            }
-        </div>
-
-        <label for="fechaLanzamiento">Fecha de Lanzamiento</label>
-        <div class="input_container">
-            <input type="date" id="fechaLanzamiento" formControlName="fechaLanzamiento"
-            [class.input_invalido]="gameForm.get('fechaLanzamiento')?.invalid && gameForm.get('fechaLanzamiento')?.touched" />
-            @if (gameForm.get('fechaLanzamiento')?.invalid && gameForm.get('fechaLanzamiento')?.touched) {
-                <span class="error">El nombre debe tener entre 2 y 50 caracteres.</span>
-            }
-        </div>
-
-         <label for="precio">Precio</label>
-        <div class="input_container">
-            <input type="number" id="precio" formControlName="precio"
-            [class.input_invalido]="gameForm.get('precio')?.invalid && gameForm.get('precio')?.touched" />
-            @if (gameForm.get('precio')?.invalid && gameForm.get('precio')?.touched) {
-                <span class="error">El nombre debe tener entre 2 y 50 caracteres.</span>
-            }
-        </div>
-
-        <label for="categoria">Categoria</label>
-        <div class="input_container">
-            <select id="categoria" formControlName="categoria" 
-            [class.input_invalido]="gameForm.get('categoria')?.invalid && gameForm.get('categoria')?.touched">
-                @for (cat of categoriaEnum; track cat) {
-                    <option [value]="cat">{{ cat }}</option>
+    @if (!loading()) {
+        <form [formGroup]="gameForm" (ngSubmit)="handleSubmit()">
+            <label for="nombre">Nombre</label>
+            <div class="input_container">
+                <input id="nombre" formControlName="nombre"
+                [class.input_invalido]="gameForm.get('nombre')?.invalid && gameForm.get('nombre')?.touched" />
+                @if (gameForm.get('nombre')?.invalid && gameForm.get('nombre')?.touched) {
+                    <span class="error">El nombre debe tener entre 2 y 50 caracteres.</span>
                 }
-            </select> 
-            
-            @if (gameForm.get('categoria')?.invalid && gameForm.get('categoria')?.touched) {
-                <span class="error">El nombre debe tener entre 2 y 50 caracteres.</span>
-            }
-        </div>
+            </div>
 
-        <label for="foto">Imagen de Portada (URL)</label>
-        <div class="input_container">
-            <input id="foto" formControlName="foto" 
-            [class.input_invalido]="gameForm.get('foto')?.invalid && gameForm.get('foto')?.touched" />
-            @if (gameForm.get('foto')?.invalid && gameForm.get('foto')?.touched) {
-                <span class="error">El nombre debe tener entre 2 y 50 caracteres.</span>
-            }
-        </div>
-        
-        <div class="buttonArea">
-          <button type="submit" [disabled]="gameForm.invalid">{{ isEditing() ? "Actualizar" : "Guardar"}}</button>
-        </div>
-    </form>
+            <label for="fechaLanzamiento">Fecha de Lanzamiento</label>
+            <div class="input_container">
+                <input type="date" max="today" id="fechaLanzamiento" formControlName="fechaLanzamiento"
+                [class.input_invalido]="gameForm.get('fechaLanzamiento')?.invalid && gameForm.get('fechaLanzamiento')?.touched" />
+                @if (gameForm.get('fechaLanzamiento')?.invalid && gameForm.get('fechaLanzamiento')?.touched) {
+                    <span class="error">La fecha debe ser pasada u hoy.</span>
+                }
+            </div>
+
+            <label for="precio">Precio</label>
+            <div class="input_container">
+                <input type="number" id="precio" formControlName="precio"
+                [class.input_invalido]="gameForm.get('precio')?.invalid && gameForm.get('precio')?.touched" />
+                @if (gameForm.get('precio')?.invalid && gameForm.get('precio')?.touched) {
+                    <span class="error">Debe ser entre 0 y 999.999.999</span>
+                }
+            </div>
+
+            <label for="categoria">Categoria</label>
+            <div class="input_container">
+                <select id="categoria" formControlName="categoria" 
+                [class.input_invalido]="gameForm.get('categoria')?.invalid && gameForm.get('categoria')?.touched">
+                    @for (cat of categoriaEnum; track cat) {
+                        <option [value]="cat">{{ cat }}</option>
+                    }
+                </select> 
+                
+                @if (gameForm.get('categoria')?.invalid && gameForm.get('categoria')?.touched) {
+                    <span class="error">Este campo es obligatorio.</span>
+                }
+            </div>
+
+            <label for="foto">Imagen de Portada (URL)</label>
+            <div class="input_container">
+                <input id="foto" formControlName="foto" 
+                [class.input_invalido]="gameForm.get('foto')?.invalid && gameForm.get('foto')?.touched" />
+                @if (gameForm.get('foto')?.invalid && gameForm.get('foto')?.touched) {
+                    <span class="error">Este campo es obligatorio.</span>
+                }
+            </div>
+            
+            <div class="buttonArea">
+            <button type="submit" [disabled]="gameForm.invalid">{{ isEditing() ? "Actualizar" : "Guardar"}}</button>
+            </div>
+        </form>
+    }
 </section>
