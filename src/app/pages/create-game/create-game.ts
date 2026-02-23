@@ -20,13 +20,15 @@ export class CreateGame {
   categoriaEnum = Object.values(CategoriaEnum)
 
   isEditing = signal(false)
-  juego:any = null;
+  juego = signal<JuegoModel | null>(null);
+
+  loading = signal(false);
 
 
   fb = inject(FormBuilder);
   gameForm = this.fb.nonNullable.group({
-    nombre: ['', [Validators.required, Validators.maxLength(50)]],
-    fechaLanzamiento: [[Validators.required]],
+    nombre: ['', [Validators.required,Validators.minLength(2) , Validators.maxLength(50)]],
+    fechaLanzamiento: [new Date(), [Validators.required]],
     precio: [0, [Validators.required, Validators.min(0), Validators.max(999999999)]],
     categoria: [CategoriaEnum.ACCION, [Validators.required]],
     foto: ['', [Validators.required]]
@@ -37,9 +39,16 @@ export class CreateGame {
     const idParam = Number(this.route.snapshot.paramMap.get('id'));
 
     if (idParam) {
+      this.loading.set(true)
       this.isEditing.set(true)
-      this.juego = this.juegoService.getJuegoById(idParam);
-      this.gameForm.patchValue(this.juego());
+      
+      this.juegoService.getJuegoById(idParam).subscribe({
+        next: juego => {
+          this.juego.set(juego);
+          this.patchForm(juego);
+          this.loading.set(false)
+        }
+      });
     };
   }
 
@@ -78,7 +87,9 @@ export class CreateGame {
   }
 
   updateGame(newGame: CreateGameDTO){
+
     const gameObject:JuegoModel = {...newGame, id: this.juego().id, desarrolladora: this.juego().desarrolladora, precioFinal: newGame.precio, porcentajeDescuento: 0};
+
 
     this.juegoService.updateGame(gameObject).subscribe({
       next: (game) => {
@@ -88,9 +99,20 @@ export class CreateGame {
         this.router.navigate(['/store']);
       },
       error: (err) => {
-        alert(err.error.error)
+        alert(JSON.stringify(err.error))
         console.error("Error al editar el juego:", err);
       }
     });
   }
+
+  //Metodo para patchear el formulario con el juego a actualizar
+  private patchForm(juego: JuegoModel) {
+  this.gameForm.patchValue({
+    nombre: juego.nombre,
+    fechaLanzamiento: juego.fechaLanzamiento,
+    precio: juego.precio,
+    categoria: juego.categoria,
+    foto: juego.foto,
+  });
+}
 }

@@ -20,11 +20,6 @@ export class Login {
     pass: ['', [Validators.required]],
   })
 
-  constructor(){
-    console.log("Está logeado??")
-    console.log(this.isLogged())
-  }
-
 
   handleSubmit() {
     if (this.userForm.valid) {

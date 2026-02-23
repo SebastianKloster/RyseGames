@@ -30,7 +30,7 @@ export class Game {
   user = this.sessionService.getLoggedUser()
 
   juegoId = Number(this.routerNav.snapshot.paramMap.get('id'))
-  juego = this.juegoService.getJuegoById(this.juegoId);
+  juego = signal<JuegoModel | null>(null);
 
   isFav = signal<boolean>(false)
   isCarrito = signal<boolean>(false)
@@ -38,12 +38,21 @@ export class Game {
   isDeveloper = signal<boolean>(false)
 
   constructor(){
-    if (this.user()?.role === RoleEnum.PERFIL) {
-      this.consultarFavorito();
-      this.consultarCarrito();
-      this.consultarOwner();
-    }
-    this.consultaDeveloper();
+    this.juegoService.getJuegoById(this.juegoId).subscribe({
+      next: juego => {
+        this.juego.set(juego);
+        
+        if (this.user()?.role === RoleEnum.PERFIL) {
+          this.consultarFavorito();
+          this.consultarCarrito();
+          this.consultarOwner();
+        } else {
+          this.consultaDeveloper();
+        }
+      }
+    });
+    
+
 
   }
 

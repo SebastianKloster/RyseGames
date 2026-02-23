@@ -1,10 +1,11 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { JuegoModel } from '../model/juego';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { SessionService } from './session-service';
 import { map, Observable, Subscription, tap } from 'rxjs';
 import { CreateGameDTO } from '../model/createGameDTO';
 import { JuegoDescuentoDTO } from '../model/juegoDescuentoDTO';
+import { Page } from '../model/page';
 
 @Injectable({
   providedIn: 'root',
@@ -12,32 +13,26 @@ import { JuegoDescuentoDTO } from '../model/juegoDescuentoDTO';
 export class JuegoService {
   apiURL = "https://localhost:8443/api/juego"
   sessionService = inject(SessionService)
-  private sessionSub: Subscription | null = null;
+
+  constructor(private http: HttpClient) {}
 
 
-  private juegosData = signal<JuegoModel[]>([])
+  
+  getPage(page: number, categoria?: string) {
+    let params = new HttpParams().set('page', page);
 
-  constructor(private http: HttpClient) {
-    this.sessionSub = this.sessionService.isLogged$.subscribe(logged => {
-      if (!logged) {
-        this.juegosData.set([]); // limpia cuando el usuario sale
-      } else {
-        this.http.get<JuegoModel[]>(this.apiURL).subscribe(
-          data => this.juegosData.set(data)
-        )
-      }
-    });
+    if (categoria) {
+      params = params.set('categoria', categoria);
+    }
+
+    return this.http.get<Page<JuegoModel>>(this.apiURL, { params });
   }
 
-  getJuegos() {
-    return this.juegosData.asReadonly();
+
+  getJuegoById(id: number) {
+    return this.http.get<JuegoModel>(`${this.apiURL}/${id}`);
   }
 
-  getJuegoById(id:number) {
-    return computed(() => {
-      return this.juegosData().find(game => game.id === id) ?? null;
-    });
-  }
 
   getBiblioteca(){ //Juegos comprados por perfil
     return this.http.get<JuegoModel[]>("http://localhost:8080/api/perfil/juegos")
@@ -50,21 +45,12 @@ export class JuegoService {
   }
 
 
-  postGame(newGame:CreateGameDTO) {
-    return this.http.post<JuegoModel>(this.apiURL, newGame).pipe(
-      tap( game => {
-        this.juegosData.update(juegosDataOld => [...juegosDataOld, game]);
-      })
-    )
+  postGame(newGame: CreateGameDTO) {
+    return this.http.post<JuegoModel>(this.apiURL, newGame);
   }
 
-  updateGame(newGame:JuegoModel){
-    return this.http.put<JuegoModel>(this.apiURL+"/"+newGame.id, newGame).pipe(
-      tap( eventUpdated => {
-        this.juegosData.update(juegosDataOld => juegosDataOld.map(juego => juego.id === newGame.id ? newGame : juego))
-      })
-    )
-
+  updateGame(game: JuegoModel) {
+    return this.http.put<JuegoModel>(`${this.apiURL}/${game.id}`, game);
   }
 
   getByDesarrolladora(){

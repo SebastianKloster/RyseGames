@@ -1,4 +1,5 @@
 <section class="juegos_list">
+
     @for (juego of juegos(); track juego.id) {
         <article [routerLink]="['/game', juego.id]">
             <div class="portada">
@@ -45,3 +46,20 @@
         <p>No hay juegoos que mostrar.</p>
     }
 </section>
+
+<!-- PAGINADOR -->
+@if (page()) {
+  <div class="paginador">
+    <button (click)="anterior()" [disabled]="page()!.first">
+      Anterior
+    </button>
+
+    <span>
+      Página {{ paginaActual() + 1 }} de {{ page()!.totalPages }}
+    </span>
+
+    <button (click)="siguiente()" [disabled]="page()!.last">
+      Siguiente
+    </button>
+  </div>
+}
