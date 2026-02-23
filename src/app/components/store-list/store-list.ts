@@ -1,10 +1,12 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, effect, inject, signal, untracked } from '@angular/core';
 import { JuegoService } from '../../services/juego-service';
 import { CategoriaEnum } from '../../model/categoriaEnum';
 import { Router, RouterLink } from '@angular/router';
 import { CurrencyPipe } from '@angular/common';
 import { JuegoModel } from '../../model/juego';
 import { Page } from '../../model/page';
+import { combineLatest, debounceTime, merge, skip, switchMap, take, tap } from 'rxjs';
+import { toObservable } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-store-list',
@@ -21,42 +23,88 @@ export class StoreList {
   juegos = computed(() => this.page()?.content ?? []);
 
   paginaActual = signal(0);
-  loading = signal(false);
+  loading = signal(true);
+
+  search = signal('');
+
+  private base$ = combineLatest([ //Trigers para actualizar la busqueda
+    toObservable(this.paginaActual),
+    toObservable(this.search)
+  ]);
+  private firstLoad$ = this.base$.pipe( //Carga incial, sin debounce 
+    take(1)
+  );
+  private changes$ = this.base$.pipe( //Carga tras cambios del usuario -> debounce
+    skip(1),
+    debounceTime(400)
+  );
+
+  private trigger$ = merge( //Realizar la peticion
+    this.firstLoad$,
+    this.changes$
+  ).pipe(
+    tap(() => this.loading.set(true)),
+    switchMap(([page, search]) =>
+      //Argumentos: paginacion, categoria, texto de busqueda.
+      this.juegosService.getPage(page, undefined, search) 
+    )
+  );
+
+
+  readonly scrollEffect = effect(() => { //Scrollear al tope al pasar de pagina
+    const page = this.paginaActual();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+
+  readonly resetPageOnSearchEffect = effect(() => { //Volver a la primera pagina al cambiar parametros de busqueda
+    const search = this.search(); // 👈 única dependencia
+
+    untracked(() => { //Untracked evita que el effect actue sobre cambios en el singal 'paginaActual' (evitando así bucles)
+      if (this.paginaActual() !== 0) {
+        this.paginaActual.set(0);
+      }
+    });
+  });
 
 
   ngOnInit() {
-    this.cargarPagina(0);
-  }
-
-  cargarPagina(page: number) {
-    if (page < 0) return;
-
-    this.loading.set(true);
-
-    this.juegosService.getPage(page).subscribe({
+    this.trigger$.subscribe({
       next: data => {
         this.page.set(data);
-        this.paginaActual.set(data.number);
         this.loading.set(false);
       },
       error: () => {
         this.loading.set(false);
-        console.log("Error al intentar cargar la pagina "+page)
+        console.error("Error cargando página");
       }
     });
   }
+  
 
   siguiente() { //Siguiente pagina
+    if (this.loading()) return;
+    
     const page = this.page();
     if (page && !page.last) {
-    this.cargarPagina(this.paginaActual() + 1);
-  }
+      if (this.paginaActual() >= page.totalPages - 1) {
+        return
+      }
+      this.paginaActual.set(this.paginaActual() + 1);
+    }
   }
 
   anterior() { //Pagina anterior
+    if (this.loading()) return;
+
     const page = this.page();
     if (page && !page.first) {
-      this.cargarPagina(this.paginaActual() - 1);
+      if (this.paginaActual() < 1) {
+        return
+      }
+      this.paginaActual.set(this.paginaActual() - 1);
     }
   }
 

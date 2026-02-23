@@ -15,6 +15,7 @@ export const authGuardFn: CanActivateFn = (route) => {
     take(1),
     map(() => {
 
+      console.log("isLoggedIn? = "+session.isLoggedIn())
       if (!session.isLoggedIn()) {
         console.log("Guard Ejecutado")
         router.navigate(['/login']);

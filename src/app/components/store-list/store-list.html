@@ -1,61 +1,92 @@
-<!-- PAGINADOR -->
-@if (page()) {
-  <div class="paginador">
-    <button (click)="anterior()" [disabled]="page()!.first">
-      Anterior
-    </button>
-
-    <span>
-      Página {{ paginaActual() + 1 }} de {{ page()!.totalPages }}
-    </span>
-
-    <button (click)="siguiente()" [disabled]="page()!.last">
-      Siguiente
-    </button>
-  </div>
-}
-
-
 <section class="juegos_list">
 
-  @if (loading()) {
-    <p>Cargando juegos...</p>
-  }
+  <div class="inputs">
+    <!-- BUSCADOR -->
+    <input type="text" class="buscador"
+    placeholder="Buscar juego o desarrolladora"
+    [value]="search()"
+    (input)="search.set($any($event.target).value)"
+    />
 
-  @for (juego of juegos(); track juego.id) {
-    <article [routerLink]="['/game', juego.id]">
-      <div class="portada">
-        <img [src]="juego.foto" alt="Imagen de Prueba">
+    <!-- PAGINADOR -->
+    @if (page()) {
+      <div class="paginador">
+        <button (click)="anterior()"  [disabled]="loading() || page()?.first">
+          Anterior
+        </button>
+    
+        <span>
+          Página {{ paginaActual() + 1 }} de {{ page()!.totalPages }}
+        </span>
+    
+        <button (click)="siguiente()" [disabled]="loading() || page()?.last">
+          Siguiente
+        </button>
       </div>
+    }
+  </div>
 
-      <div class="texto">
-        <h4>{{ juego.nombre }}</h4>
 
-        <div class="desc">
-          <p class="desarrolladora">
-            {{ juego.desarrolladora.nombre }}
+  <div class="contenido">
+    @if (loading()) {
+      <p>Cargando juegos...</p>
+    }
+  
+    @for (juego of juegos(); track juego.id) {
+      <article [routerLink]="['/game', juego.id]">
+        <div class="portada">
+          <img [src]="juego.foto" alt="Imagen de Prueba">
+        </div>
+  
+        <div class="texto">
+          <h4>{{ juego.nombre }}</h4>
+  
+          <div class="desc">
+            <p class="desarrolladora">
+              {{ juego.desarrolladora.nombre }}
+            </p>
+          </div>
+  
+          <p class="fecha_lanzamiento">
+            {{ juego.fechaLanzamiento }}
           </p>
+  
+          <div class="precio_container">
+            <p class="precio">
+              {{ juego.precio | currency:'USD':'symbol':'1.2-2' }}
+            </p>
+          </div>
+  
+          <div
+            class="categoria"
+            [style.backgroundColor]="getCategoryColor(juego.categoria)">
+            <i [class]="getCategoryIcon(juego.categoria)"></i>
+          </div>
         </div>
+      </article>
+    } @empty {
+      <p>No hay juegos que mostrar.</p>
+    }
+  </div>
 
-        <p class="fecha_lanzamiento">
-          {{ juego.fechaLanzamiento }}
-        </p>
 
-        <div class="precio_container">
-          <p class="precio">
-            {{ juego.precio | currency:'USD':'symbol':'1.2-2' }}
-          </p>
+  <div class="bottom_inputs">
+    <!-- PAGINADOR -->
+      @if (page()) {
+        <div class="paginador">
+          <button (click)="anterior()"  [disabled]="loading() || page()?.first">
+            Anterior
+          </button>
+      
+          <span>
+            Página {{ paginaActual() + 1 }} de {{ page()!.totalPages }}
+          </span>
+      
+          <button (click)="siguiente()" [disabled]="loading() || page()?.last">
+            Siguiente
+          </button>
         </div>
-
-        <div
-          class="categoria"
-          [style.backgroundColor]="getCategoryColor(juego.categoria)">
-          <i [class]="getCategoryIcon(juego.categoria)"></i>
-        </div>
-      </div>
-    </article>
-  } @empty {
-    <p>No hay juegos que mostrar.</p>
-  }
+      }
+  </div>
 
 </section>
