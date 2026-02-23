@@ -5,7 +5,7 @@ import { Carrito } from "../../components/carrito/carrito";
 
 @Component({
   selector: 'app-biblioteca',
-  imports: [BibliotecaList, FavList, Carrito],
+  imports: [BibliotecaList, FavList],
   templateUrl: './biblioteca.html',
   styleUrl: './biblioteca.css',
 })

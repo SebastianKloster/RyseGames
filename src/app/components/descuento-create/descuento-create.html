@@ -1,0 +1,58 @@
+<div class="descuento-container">
+
+  <h2>Crear Descuento</h2>
+
+  @if (cargando()) {
+    <p>Cargando juegos...</p>
+  }
+
+  @if (!cargando()) {
+
+    <form (ngSubmit)="crear()">
+
+      <label>Juego</label>
+
+      <select [(ngModel)]="juegoId" name="juegoId" required>
+
+        @for (j of juegos(); track j.id) {
+          <option [value]="j.id">
+            {{ j.nombre }}
+          </option>
+        }
+
+      </select>
+
+      <label>Porcentaje</label>
+      <input type="number"
+             [(ngModel)]="porcentaje"
+             name="porcentaje"
+             min="5"
+             max="100"
+             required />
+
+      <label>Fecha Inicio</label>
+      <input type="datetime-local"
+             [(ngModel)]="fechaInicio"
+             name="fechaInicio"
+             required />
+
+      <label>Fecha Fin</label>
+      <input type="datetime-local"
+             [(ngModel)]="fechaFin"
+             name="fechaFin"
+             required />
+
+      <button type="submit">
+        Crear Descuento
+      </button>
+
+    </form>
+  }
+
+  @if (mensaje()) {
+    <p class="mensaje">
+      {{ mensaje() }}
+    </p>
+  }
+
+</div>

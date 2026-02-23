@@ -10,9 +10,32 @@
                     <p class="desarrolladora">{{juego.desarrolladora.nombre}}</p>
                 </div>
                 <p class="fecha_lanzamiento">{{juego.fechaLanzamiento}}</p>
-                <div class="precio_container">
-                    <p class="precio">{{ juego.precio | currency:'USD':'symbol':'1.2-2' }}</p>
-                </div>
+
+              <div class="precio_container">
+
+                  @if (juego.porcentajeDescuento) {
+
+                    <span class="descuento_chip">
+                      -{{ juego.porcentajeDescuento }}%
+                    </span>
+
+                    <div class="precios">
+                      <span class="precio_original">
+                        {{ juego.precio | currency:'USD':'symbol':'1.2-2' }}
+                      </span>
+
+                      <span class="precio_final">
+                        {{ juego.precioFinal | currency:'USD':'symbol':'1.2-2' }}
+                      </span>
+                    </div>
+
+                  } @else {
+                    <span class="precio_normal">
+                      {{ juego.precio | currency:'USD':'symbol':'1.2-2' }}
+                    </span>
+                  }
+              </div>
+
                 <div class="categoria" [style.backgroundColor]="getCategoryColor(juego.categoria)">
                     <i [class]="getCategoryIcon(juego.categoria)"></i>
                 </div>

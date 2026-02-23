@@ -13,7 +13,7 @@ export class Carrito {
 
   juegos = this.carritoService.getCarrito()
   precioTotal = computed(() =>
-    this.juegos().reduce((acc, juego) => acc + juego.precio, 0)
+    this.juegos().reduce((acc, juego) => acc + juego.precioFinal, 0)
   );
 
 
