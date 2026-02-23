@@ -16,28 +16,28 @@ export class CreateGame {
   route = inject(ActivatedRoute)
   router = inject(Router)
   juegoService = inject(JuegoService)
-  
+
   categoriaEnum = Object.values(CategoriaEnum)
-  
+
   isEditing = signal(false)
   juego = signal<JuegoModel | null>(null);
 
   loading = signal(false);
 
-  
+
   fb = inject(FormBuilder);
   gameForm = this.fb.nonNullable.group({
     nombre: ['', [Validators.required,Validators.minLength(2) , Validators.maxLength(50)]],
     fechaLanzamiento: [new Date(), [Validators.required]],
     precio: [0, [Validators.required, Validators.min(0), Validators.max(999999999)]],
     categoria: [CategoriaEnum.ACCION, [Validators.required]],
-    foto: ['', [Validators.required]],
+    foto: ['', [Validators.required]]
   })
 
 
   ngOnInit() {
     const idParam = Number(this.route.snapshot.paramMap.get('id'));
- 
+
     if (idParam) {
       this.loading.set(true)
       this.isEditing.set(true)
@@ -87,7 +87,9 @@ export class CreateGame {
   }
 
   updateGame(newGame: CreateGameDTO){
-    const gameObject:JuegoModel = {...newGame, id: this.juego()!.id, desarrolladora: this.juego()!.desarrolladora};
+
+    const gameObject:JuegoModel = {...newGame, id: this.juego().id, desarrolladora: this.juego().desarrolladora, precioFinal: newGame.precio, porcentajeDescuento: 0};
+
 
     this.juegoService.updateGame(gameObject).subscribe({
       next: (game) => {

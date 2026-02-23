@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { SessionService } from './session-service';
 import { map, Observable, Subscription, tap } from 'rxjs';
 import { CreateGameDTO } from '../model/createGameDTO';
+import { JuegoDescuentoDTO } from '../model/juegoDescuentoDTO';
 import { Page } from '../model/page';
 
 @Injectable({
@@ -50,5 +51,9 @@ export class JuegoService {
 
   updateGame(game: JuegoModel) {
     return this.http.put<JuegoModel>(`${this.apiURL}/${game.id}`, game);
+  }
+
+  getByDesarrolladora(){
+  return this.http.get<JuegoDescuentoDTO[]>("https://localhost:8443/api/desarrolladora/juegos-propios")
   }
 }
