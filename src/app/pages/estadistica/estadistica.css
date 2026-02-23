@@ -1,6 +1,9 @@
 section#estadisticas {
     min-height: var(--semi-screen);
 
+    display: flex;
+    justify-content: center;
+
     background-color: var(--color-beta);
     background: linear-gradient(175deg, var(--color-alfa), var(--color-beta));
     padding: 2rem 4rem;
@@ -12,7 +15,7 @@ section#estadisticas {
     gap: 1rem;
 }
 article {
-    height: 10rem;
+    /* height: 10rem; */
     
     display: flex;
 
@@ -32,7 +35,7 @@ article:hover {
 }
 .portada {
     width: 100%;
-    /* background-color: green; */
+    aspect-ratio: 1.9 / 1;
     overflow: hidden;
 }
 .portada img {
@@ -57,7 +60,8 @@ article:hover {
     box-shadow: 0rem 0rem 5rem 1rem var(--color-beta);
 }
 .texto {
-    height: 100%;
+    /* height: 20rem; */
+    /* height: 100%; */
     width: 100%;
     padding: 0.3rem 0.6rem;
     position: relative;
