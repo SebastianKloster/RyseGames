@@ -6,7 +6,10 @@ export interface JuegoModel {
     nombre: string;
     fechaLanzamiento: Date;
     precio: number;
+    precioFinal: number;
+    porcentajeDescuento: number;
     categoria: CategoriaEnum;
     foto: string;
     desarrolladora: DesarrolladoraModel;
 }
+

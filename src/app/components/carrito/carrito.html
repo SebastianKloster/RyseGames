@@ -13,7 +13,7 @@
                     <div class="portada">
                         <img [src]="juego.foto" alt="Imagen de Prueba">
                     </div>
-                    <p class="precio">{{ juego.precio | currency:'USD':'symbol':'1.2-2' }}</p>
+                    <p class="precio">{{ juego.precioFinal | currency:'USD':'symbol':'1.2-2' }}</p>
                     <button class="deleteButton" (click)="delete(juego.id)">X</button>
                 </article>
             }
