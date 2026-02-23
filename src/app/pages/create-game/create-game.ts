@@ -41,7 +41,7 @@ export class CreateGame {
     if (idParam) {
       this.loading.set(true)
       this.isEditing.set(true)
-      
+
       this.juegoService.getJuegoById(idParam).subscribe({
         next: juego => {
           this.juego.set(juego);
@@ -88,7 +88,7 @@ export class CreateGame {
 
   updateGame(newGame: CreateGameDTO){
 
-    const gameObject:JuegoModel = {...newGame, id: this.juego().id, desarrolladora: this.juego().desarrolladora, precioFinal: newGame.precio, porcentajeDescuento: 0};
+    const gameObject:JuegoModel = {...newGame, id: this.juego()!.id, desarrolladora: this.juego()!.desarrolladora, precioFinal: newGame.precio, porcentajeDescuento: 0};
 
 
     this.juegoService.updateGame(gameObject).subscribe({
