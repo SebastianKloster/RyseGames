@@ -75,7 +75,7 @@ section#game {
     /* border-color: var(--color-delta); */
     cursor: pointer;
 }
-
+/*
 .precio_container {
     width: fit-content;
     min-width: 3rem;
@@ -85,15 +85,60 @@ section#game {
     top: -1rem;
     right: 10px;
     z-index: 1; */
-    
+  /*
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     color: var(--color-delta);
     font-size: 1.6rem;
-    
+
     background-color: var(--color-alfa);
     border: 2px solid var(--color-beta);
     box-shadow: 0rem 0rem 5rem 1rem var(--color-beta);
+} */
+ .precio_container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+/* CHIP de descuento */
+.descuento_chip {
+  background: linear-gradient(135deg, #7f00ff, #00d4ff);
+  color: white;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 4px 8px;
+  border-radius: 20px;
+  box-shadow: 0 0 8px rgba(0, 212, 255, 0.6);
+}
+
+/* Contenedor precios */
+.precios {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Precio original */
+.precio_original {
+  text-decoration: line-through;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Precio final */
+.precio_final {
+  font-size: 18px;
+  font-weight: bold;
+  color: #00d4ff;
+  letter-spacing: 0.5px;
+}
+
+/* Precio normal */
+.precio_normal {
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
 }

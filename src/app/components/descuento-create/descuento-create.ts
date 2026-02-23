@@ -22,6 +22,18 @@ porcentaje = 5;
 
   mensaje = signal<string | null>(null);
   cargando = signal<boolean>(true);
+  dropdownAbierto = false;
+juegoSeleccionado: any = null;
+
+toggleDropdown() {
+  this.dropdownAbierto = !this.dropdownAbierto;
+}
+
+seleccionarJuego(j: any) {
+  this.juegoSeleccionado = j;
+  this.juegoId = j.id;
+  this.dropdownAbierto = false;
+}
 
 
   ngOnInit() {

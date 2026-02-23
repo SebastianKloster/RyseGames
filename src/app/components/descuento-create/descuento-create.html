@@ -12,15 +12,24 @@
 
       <label>Juego</label>
 
-      <select [(ngModel)]="juegoId" name="juegoId" required>
+<div class="custom-select">
 
-        @for (j of juegos(); track j.id) {
-          <option [value]="j.id">
-            {{ j.nombre }}
-          </option>
-        }
+  <div class="selected" (click)="toggleDropdown()">
+    {{ juegoSeleccionado?.nombre || 'Seleccionar juego' }}
+  </div>
 
-      </select>
+  @if (dropdownAbierto) {
+    <div class="options">
+      @for (j of juegos(); track j.id) {
+        <div class="option"
+             (click)="seleccionarJuego(j)">
+          {{ j.nombre }}
+        </div>
+      }
+    </div>
+  }
+
+</div>
 
       <label>Porcentaje</label>
       <input type="number"
