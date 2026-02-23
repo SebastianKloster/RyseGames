@@ -129,6 +129,9 @@ export class Game {
   goToEditGame(id:number){
     this.router.navigate(['/game/update/'+id])
   }
+  goToDescuento(id:number){
+    this.router.navigate(['/descuento-create/'+id])
+  }
 
 
 

@@ -32,7 +32,8 @@ export const routes: Routes = [
     { path: 'wallet-ok', component:WalletOk},
     {path: 'wallet-pending', component:WalletPending},
     {path: 'wallet-error', component:WalletError},
-    {path: 'descuento-create', component: DescuentoCreate, canActivate: [authGuardFn], data: {roles: ['DESARROLLADORA']}},
+    // {path: 'descuento-create', component: DescuentoCreate, canActivate: [authGuardFn], data: {roles: ['DESARROLLADORA']}},
+    {path: 'descuento-create/:id', component: DescuentoCreate, canActivate: [authGuardFn], data: {roles: ['DESARROLLADORA']}},
     { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redirige la ruta vacía a /home
     { path: '**', redirectTo: '/home' } // Redirige cualquier otra ruta a /home (opcional)
 ];

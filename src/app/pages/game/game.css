@@ -75,70 +75,63 @@ section#game {
     /* border-color: var(--color-delta); */
     cursor: pointer;
 }
-/*
 .precio_container {
     width: fit-content;
     min-width: 3rem;
-    padding: 0rem 0.4rem;
+    gap: 0.3rem;
 
     /* position: absolute;
-    top: -1rem;
-    right: 10px;
+    bottom: 7rem;
+    right: 0px;
     z-index: 1; */
-  /*
+    
+    display: flex;
+    justify-content: center;
+    
+    color: var(--color-delta);
+    font-size: 1.1rem;
+    
+    background-color: var(--color-alfa);
+    border: 2px solid var(--color-beta);
+    box-shadow: 0rem 0rem 5rem 1rem var(--color-beta);
+}
+
+/* CHIP de descuento */
+.descuento_chip {
+    padding: 0rem 0.2rem;
     display: flex;
     justify-content: center;
     align-items: center;
 
     color: var(--color-delta);
-    font-size: 1.6rem;
+    font-size: 1.5rem;
+    /* font-family: monospace; */
+    font-weight: bolder;
+    
+    text-shadow: 1px 1px 2px rgb(11, 95, 125);
+    background: linear-gradient(135deg, rgb(40, 132, 168), rgb(88, 194, 218));
 
-    background-color: var(--color-alfa);
-    border: 2px solid var(--color-beta);
-    box-shadow: 0rem 0rem 5rem 1rem var(--color-beta);
-} */
- .precio_container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 6px;
 }
-
-/* CHIP de descuento */
-.descuento_chip {
-  background: linear-gradient(135deg, #7f00ff, #00d4ff);
-  color: white;
-  font-weight: 600;
-  font-size: 13px;
-  padding: 4px 8px;
-  border-radius: 20px;
-  box-shadow: 0 0 8px rgba(0, 212, 255, 0.6);
-}
-
 /* Contenedor precios */
 .precios {
   display: flex;
   flex-direction: column;
+  padding: 0rem 0.2rem;
 }
-
 /* Precio original */
 .precio_original {
   text-decoration: line-through;
-  font-size: 13px;
+  font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.4);
 }
-
 /* Precio final */
 .precio_final {
-  font-size: 18px;
   font-weight: bold;
-  color: #00d4ff;
-  letter-spacing: 0.5px;
+  color: rgb(88, 194, 218);
 }
-
-/* Precio normal */
 .precio_normal {
-  font-size: 18px;
-  font-weight: bold;
-  color: white;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
