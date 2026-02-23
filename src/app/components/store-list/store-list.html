@@ -1,3 +1,21 @@
+<!-- PAGINADOR -->
+@if (page()) {
+  <div class="paginador">
+    <button (click)="anterior()" [disabled]="page()!.first">
+      Anterior
+    </button>
+
+    <span>
+      Página {{ paginaActual() + 1 }} de {{ page()!.totalPages }}
+    </span>
+
+    <button (click)="siguiente()" [disabled]="page()!.last">
+      Siguiente
+    </button>
+  </div>
+}
+
+
 <section class="juegos_list">
 
   @if (loading()) {
@@ -41,20 +59,3 @@
   }
 
 </section>
-
-<!-- PAGINADOR -->
-@if (page()) {
-  <div class="paginador">
-    <button (click)="anterior()" [disabled]="page()!.first">
-      Anterior
-    </button>
-
-    <span>
-      Página {{ paginaActual() + 1 }} de {{ page()!.totalPages }}
-    </span>
-
-    <button (click)="siguiente()" [disabled]="page()!.last">
-      Siguiente
-    </button>
-  </div>
-}

@@ -7,7 +7,7 @@ section.juegos_list {
     gap: 1rem;
 }
 article {
-    height: 17rem;
+    /* height: 17rem; */
     
     display: flex;
     flex-direction: column;
@@ -27,8 +27,9 @@ article:hover {
     /* box-shadow: 2px 2px 5px var(--color-gamma); */
 }
 .portada {
-    height: 20rem;
+    /* height: 20rem; */
     width: 100%;
+    aspect-ratio: 1.9 / 1;
     /* background-color: green; */
     overflow: hidden;
 }
@@ -59,7 +60,7 @@ article:hover {
     box-shadow: 0rem 0rem 5rem 1rem var(--color-beta);
 }
 .texto {
-    height: 100%;
+    height: 7rem;
     width: 100%;
     padding: 0.3rem 0.6rem;
     position: relative;
@@ -99,4 +100,42 @@ article:hover {
     bottom: 10px;
     right: 10px;
     color: gray;
+}
+
+
+
+.paginador {
+    width: 100%;
+    margin-bottom: 2rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1rem;
+
+    gap: 0.5rem;
+}
+.paginador button {
+    /* width: 4rem; */
+    /* height: 2rem; */
+
+    padding: 0.3rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 2px solid var(--color-beta);
+    
+    color: var(--color-delta);
+    background-color: var(--color-beta);
+    box-shadow: 2px 2px 5px var(--color-alfa);
+
+    transition: 0.2s ease;
+    cursor: pointer;
+}
+.paginador button:hover {
+    border-color: var(--color-delta);
+}
+.paginador button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
 }
