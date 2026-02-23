@@ -1,67 +1,89 @@
-<div class="descuento-container">
+<section id="create_discount">
+  @if (!loading()) {
+    <form [formGroup]="descuentoForm" (ngSubmit)="handleSubmit()">
 
-  <h2>Crear Descuento</h2>
+      <!-- Porcentaje -->
+      <label for="porcentaje">Porcentaje (%)</label>
+      <div class="input_container">
+        <input
+          id="porcentaje"
+          type="number"
+          formControlName="porcentaje"
+          min="5"
+          max="100"
+          [class.input_invalido]="descuentoForm.get('porcentaje')?.invalid && descuentoForm.get('porcentaje')?.touched"
+        />
+        @if (descuentoForm.get('porcentaje')?.invalid && descuentoForm.get('porcentaje')?.touched) {
+          <span class="error">
+            @if (descuentoForm.get('porcentaje')?.errors?.['required']) { El porcentaje es obligatorio. }
+            @if (descuentoForm.get('porcentaje')?.errors?.['min']) { El mínimo es 5%. }
+            @if (descuentoForm.get('porcentaje')?.errors?.['max']) { El máximo es 100%. }
+          </span>
+        }
+      </div>
 
-  @if (cargando()) {
-    <p>Cargando juegos...</p>
-  }
+      <!-- Fecha inicio -->
+      <label for="fechaInicio">Fecha de inicio</label>
+      <div class="input_container">
+        <input
+          id="fechaInicio"
+          type="datetime-local"
+          formControlName="fechaInicio"
+          [min]="minDateTime"
+          [class.input_invalido]="descuentoForm.get('fechaInicio')?.invalid && descuentoForm.get('fechaInicio')?.touched"
+        />
+        @if (descuentoForm.get('fechaInicio')?.invalid && descuentoForm.get('fechaInicio')?.touched) {
+          <span class="error">La fecha de inicio es obligatoria.</span>
+        }
+        @if (descuentoForm.errors?.['inicioPasado'] && descuentoForm.touched) {
+          <span class="error">
+            La fecha de inicio no puede ser anterior a la actual.
+          </span>
+        }
+        @if (descuentoForm.errors?.['finAnterior'] && descuentoForm.touched) {
+          <span class="error">
+            La fecha de fin debe ser posterior a la fecha de inicio.
+          </span>
+        }
+      </div>
 
-  @if (!cargando()) {
+      <!-- Fecha fin -->
+      <label for="fechaFin">Fecha de fin</label>
+      <div class="input_container">
+        <input
+          id="fechaFin"
+          type="datetime-local"
+          formControlName="fechaFin"
+          [min]="minDateTime"
+          [class.input_invalido]="descuentoForm.get('fechaFin')?.invalid && descuentoForm.get('fechaFin')?.touched"
+        />
+        @if (descuentoForm.get('fechaFin')?.invalid && descuentoForm.get('fechaFin')?.touched) {
+          <span class="error">La fecha de fin es obligatoria.</span>
+        }
+        @if (descuentoForm.errors?.['inicioPasado'] && descuentoForm.touched) {
+          <span class="error">
+            La fecha de inicio no puede ser anterior a la actual.
+          </span>
+        }
+        @if (descuentoForm.errors?.['finAnterior'] && descuentoForm.touched) {
+          <span class="error">
+            La fecha de fin debe ser posterior a la fecha de inicio.
+          </span>
+        }
+      </div>
 
-    <form (ngSubmit)="crear()">
-
-      <label>Juego</label>
-
-<div class="custom-select">
-
-  <div class="selected" (click)="toggleDropdown()">
-    {{ juegoSeleccionado?.nombre || 'Seleccionar juego' }}
-  </div>
-
-  @if (dropdownAbierto) {
-    <div class="options">
-      @for (j of juegos(); track j.id) {
-        <div class="option"
-             (click)="seleccionarJuego(j)">
-          {{ j.nombre }}
-        </div>
+      <!-- Info opcional del juego -->
+      @if (juego()) {
+        <p class="info">
+          Descuento para: <strong>{{ juego()!.nombre }}</strong>
+        </p>
       }
-    </div>
-  }
 
-</div>
-
-      <label>Porcentaje</label>
-      <input type="number"
-             [(ngModel)]="porcentaje"
-             name="porcentaje"
-             min="5"
-             max="100"
-             required />
-
-      <label>Fecha Inicio</label>
-      <input type="datetime-local"
-             [(ngModel)]="fechaInicio"
-             name="fechaInicio"
-             required />
-
-      <label>Fecha Fin</label>
-      <input type="datetime-local"
-             [(ngModel)]="fechaFin"
-             name="fechaFin"
-             required />
-
-      <button type="submit">
-        Crear Descuento
-      </button>
-
+      <div class="buttonArea">
+        <button type="submit" [disabled]="descuentoForm.invalid">
+          Crear descuento
+        </button>
+      </div>
     </form>
   }
-
-  @if (mensaje()) {
-    <p class="mensaje">
-      {{ mensaje() }}
-    </p>
-  }
-
-</div>
+</section>

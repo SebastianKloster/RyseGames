@@ -18,6 +18,10 @@ html, body {
     margin: 0px;
     padding: 0px;
 }
+html {
+    overflow-y: scroll;
+    /* scrollbar-gutter: stable; */
+}
 
 body {
     font-family: sans-serif;

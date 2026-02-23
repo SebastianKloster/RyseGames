@@ -3,7 +3,7 @@ import { provideRouter, withInMemoryScrolling } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { jwtInterceptor } from './jwt-interceptor';
+import { jwtInterceptor } from './auth/jwt-interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [

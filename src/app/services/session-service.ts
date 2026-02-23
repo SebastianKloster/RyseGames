@@ -5,6 +5,7 @@ import { BehaviorSubject, map, Observable, of, tap } from 'rxjs';
 import { UserModel, UserVerDTO } from '../model/user';
 import { CreateUserDTO } from '../model/createUserDTO';
 import { UpdateUserDTO } from '../model/updateUserDTO';
+import { AuthEvents } from '../auth/auth-events';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +14,7 @@ import { UpdateUserDTO } from '../model/updateUserDTO';
 export class SessionService {
   router = inject(Router)
   http = inject(HttpClient)
+  authEvents = inject(AuthEvents);
   apiAuthURL = "https://localhost:8443/auth";
   apiURL = "https://localhost:8443/api/users"
 
@@ -32,6 +34,10 @@ export class SessionService {
 
   constructor() {
     this.restoreSession();
+
+    this.authEvents.logout$.subscribe(() => { //Deslogearse al trigerearse el evento de Logout
+      this.logout();
+    });
   }
 
   login(username: string, password: string) {
@@ -98,6 +104,7 @@ export class SessionService {
 
 
   restoreSession() {
+    console.log('[restoreSession] token exists?', this.isLoggedIn());
     if (!this.isLoggedIn()) {
       this.logged$.next(false);
       this.loading$.next(false);
@@ -112,7 +119,11 @@ export class SessionService {
         this.loading$.next(false);
         this.loading.set(false);
       },
-      error: () => {
+      error: (err) => {
+        console.log('[restoreSession] /me failed status=', err.status);
+        console.log('[restoreSession] ok=', err.ok);
+        console.log('[restoreSession] message=', err.message);
+        console.log('[restoreSession] error payload=', err.error);
         this.loading$.next(false);
         this.loading.set(false);
         this.logout();

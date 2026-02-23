@@ -18,11 +18,16 @@ export class JuegoService {
 
 
   
-  getPage(page: number, categoria?: string) {
-    let params = new HttpParams().set('page', page);
+  getPage(page: number, categoria?: string, search?: string) {
+    let params = new HttpParams()
+      .set('page', page);
 
     if (categoria) {
       params = params.set('categoria', categoria);
+    }
+
+    if (search) {
+      params = params.set('search', search);
     }
 
     return this.http.get<Page<JuegoModel>>(this.apiURL, { params });
