@@ -39,24 +39,24 @@ export class Header {
   });
   }
 
- toggleDropdown() {
-  const nuevoEstado = !this.dropdownAbierto();
-  this.dropdownAbierto.set(nuevoEstado);
+  toggleDropdown() {
+    const nuevoEstado = !this.dropdownAbierto();
+    this.dropdownAbierto.set(nuevoEstado);
 
-  if (nuevoEstado && this.cantidadNoLeidas() > 0) {
-    const perfilId = this.user()?.perfil?.id;
+    if (nuevoEstado && this.cantidadNoLeidas() > 0) {
+      const perfilId = this.user()?.perfil?.id;
 
-    if (perfilId) {
-      this.notifService.marcarTodas(perfilId)
-        .subscribe(() => {
+      if (perfilId) {
+        this.notifService.marcarTodas(perfilId)
+          .subscribe(() => {
 
-          this.notificaciones.update(lista =>
-            lista.map(n => ({ ...n, leida: true }))
-          );
-        });
-    }
+            this.notificaciones.update(lista =>
+              lista.map(n => ({ ...n, leida: true }))
+            );
+          });
+        }
+      }
   }
-}
 
 
   logout() {

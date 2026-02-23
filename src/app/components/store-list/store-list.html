@@ -52,9 +52,27 @@
           </p>
   
           <div class="precio_container">
-            <p class="precio">
-              {{ juego.precio | currency:'USD':'symbol':'1.2-2' }}
-            </p>
+            @if (juego.porcentajeDescuento) {
+              <span class="descuento_chip">
+                -{{ juego.porcentajeDescuento }}%
+              </span>
+            }
+            <div class="precios">
+              @if (juego.porcentajeDescuento) {
+                <span class="precio_original">
+                  {{ juego.precio | currency:'USD':'symbol':'1.2-2' }}
+                </span>
+
+
+                <span class="precio_final">
+                  {{ juego.precioFinal | currency:'USD':'symbol':'1.2-2' }}
+                </span>
+              } @else {
+                <span class="precio_normal">
+                  {{ juego.precio | currency:'USD':'symbol':'1.2-2' }}
+                </span>
+              }
+            </div>
           </div>
   
           <div

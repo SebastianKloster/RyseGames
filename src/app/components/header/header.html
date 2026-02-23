@@ -13,28 +13,27 @@
                     <li><a routerLink="/billetera">billetera</a></li>
 
                     <div class="notificaciones" (click)="toggleDropdown()">
-  🔔
+                    🔔
+                    @if (cantidadNoLeidas() > 0) {
+                      <span class="badge">
+                        {{ cantidadNoLeidas() }}
+                      </span>
+                    }
 
-  @if (cantidadNoLeidas() > 0) {
-    <span class="badge">
-      {{ cantidadNoLeidas() }}
-    </span>
-  }
-
-  @if (dropdownAbierto()) {
-    <div class="dropdown">
-      @if (notificaciones().length === 0) {
-        <div class="vacio">No hay notificaciones</div>
-      } @else {
-        @for (n of notificaciones(); track n.id) {
-          <div class="item" [class.no-leida]="!n.leida">
-            {{ n.mensaje }}
-          </div>
-        }
-      }
-    </div>
-  }
-</div>
+                    @if (dropdownAbierto()) {
+                      <div class="dropdown">
+                        @if (notificaciones().length === 0) {
+                          <div class="vacio">No hay notificaciones</div>
+                        } @else {
+                          @for (n of notificaciones(); track n.id) {
+                            <div class="item" [class.no-leida]="!n.leida">
+                              {{ n.mensaje }}
+                            </div>
+                          }
+                        }
+                      </div>
+                    }
+                    </div>
                 } @else {
                     <!-- Seccion para Desarrolladora -->
                     <li><a routerLink="/create_game">subir juego</a></li>

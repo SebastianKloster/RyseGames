@@ -15,15 +15,16 @@ export class DescuentoCreate {
   descuentoService = inject(DescuentoService);
   juegoService = inject(JuegoService);
   juegos = signal<JuegoDescuentoDTO[]>([]);
-porcentaje = 5;
-  fechaInicio!: string;
+  
+  porcentaje = 5;
+  fechaInicio!: string; 
   fechaFin!: string;
   juegoId!: number;
 
   mensaje = signal<string | null>(null);
   cargando = signal<boolean>(true);
   dropdownAbierto = false;
-juegoSeleccionado: any = null;
+  juegoSeleccionado: any = null;
 
 toggleDropdown() {
   this.dropdownAbierto = !this.dropdownAbierto;
@@ -70,6 +71,7 @@ seleccionarJuego(j: any) {
           this.mensaje.set("Descuento creado correctamente 🎮");
         },
         error: (err) => {
+          console.log(err)
           this.mensaje.set(err.error?.message || "Error al crear descuento");
         }
       });
