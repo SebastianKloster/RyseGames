@@ -6,8 +6,6 @@ import { filter, map, take } from 'rxjs';
 export const authGuardFn: CanActivateFn = (route) => {
   const session = inject(SessionService);
   const router = inject(Router);
-
-  const role = session.getRole();
   const requiredRoles = route.data?.['roles'] as string[];
 
   return session.isLoading$.pipe(

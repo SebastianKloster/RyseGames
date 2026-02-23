@@ -51,6 +51,7 @@ export class StoreList {
   );
 
 
+
   readonly scrollEffect = effect(() => { //Scrollear al tope al pasar de pagina
     const page = this.paginaActual();
     window.scrollTo({
@@ -70,6 +71,8 @@ export class StoreList {
   });
 
 
+
+  
   ngOnInit() {
     this.trigger$.subscribe({
       next: data => {
