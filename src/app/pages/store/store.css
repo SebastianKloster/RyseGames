@@ -7,14 +7,5 @@ section#store {
 }
 
 .page_title {
-    height: 4rem;
-
-    display: flex;
-    align-items: center;
-    /* font-variant: small-caps; */
-
-    /* background-color: var(--color-alfa); */
-}
-.store_list {
-    /* background-color: var(--color-beta); */
+    margin-bottom: 1rem;
 }

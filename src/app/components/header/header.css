@@ -123,7 +123,7 @@ header {
 }
 
 .dropdown {
-    width: 280px;
+    width: 20rem;
     max-height: 300px;
     padding: 10px;
 
@@ -149,7 +149,7 @@ header {
     padding: 8px;
     
     font-size: 0.9rem;
-    font-weight: bolder;
+    /* font-weight: bolder; */
 
     border-bottom: 1px solid #2a475e;
 }
