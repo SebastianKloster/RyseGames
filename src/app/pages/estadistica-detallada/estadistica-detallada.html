@@ -18,29 +18,19 @@
   } @else if (stats()) {
     <div class="grid cards">
       <div class="card">
+        <div class="label">Precio promedio del catálogo</div>
+        <div class="value">{{ money(stats()!.precioPromedio) }}</div>
+        <div class="sub">Mediana: {{ money(stats()!.precioMediana) }}</div>
+      </div>
+
+      <div class="card">
         <div class="label">Ventas totales</div>
         <div class="value">{{ stats()!.ventasTotales }}</div>
       </div>
-
-      <div class="card">
-        <div class="label">Ingresos totales</div>
-        <div class="value">{{ money(stats()!.ingresosTotales) }}</div>
-      </div>
-
+      
       <div class="card">
         <div class="label">Ventas ({{ days() }} días)</div>
         <div class="value">{{ stats()!.ventasPeriodo }}</div>
-      </div>
-
-      <div class="card">
-        <div class="label">Ingresos ({{ days() }} días)</div>
-        <div class="value">{{ money(stats()!.ingresosPeriodo) }}</div>
-      </div>
-
-      <div class="card">
-        <div class="label">Precio promedio</div>
-        <div class="value">{{ money(stats()!.precioPromedio) }}</div>
-        <div class="sub">Mediana: {{ money(stats()!.precioMediana) }}</div>
       </div>
 
       <div class="card">
@@ -49,6 +39,16 @@
         <div class="sub">
           {{ stats()!.compradoresRecurrentes }}/{{ stats()!.compradoresUnicos }} compradores
         </div>
+      </div>
+      
+      <div class="card">
+        <div class="label">Ingresos totales</div>
+        <div class="value">{{ money(stats()!.ingresosTotales) }}</div>
+      </div>
+
+      <div class="card">
+        <div class="label">Ingresos ({{ days() }} días)</div>
+        <div class="value">{{ money(stats()!.ingresosPeriodo) }}</div>
       </div>
     </div>
 

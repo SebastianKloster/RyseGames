@@ -52,7 +52,7 @@
 
 .card {
   border: 1px solid rgba(255,255,255,.14);
-  border-radius: 14px;
+  border-radius: 8px;
   background: linear-gradient(135deg, var(--color-alfa), rgb(48, 51, 60), var(--color-alfa));
   /* background-color: var(--color-alfa); */
   padding: 1rem;
@@ -89,7 +89,7 @@
   margin-top: .6rem;
   width: 100%;
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: 6px;
   background-color: var(--color-alfa);
   border: 1px solid rgba(255,255,255,.10);
 }
@@ -120,7 +120,7 @@ svg {
   align-items: baseline;
   gap: .5rem;
   padding: 0.3rem 0.6rem;
-  border-radius: 8px;
+  border-radius: 6px;
   border: 1px solid rgba(255,255,255,.14);
   background: rgba(255,255,255,.06);
 }
