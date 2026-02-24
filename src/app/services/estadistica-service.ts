@@ -22,7 +22,10 @@ export class EstadisticaService {
         this.estadisticasData.set([]); // limpia cuando el usuario sale
       } else {
         this.http.get<EstadisticaModel[]>(this.apiURL).subscribe(
-          data => this.estadisticasData.set(data)
+          (data) => {
+            this.estadisticasData.set(data),
+            console.log(data)
+          }
         )
       }
     });

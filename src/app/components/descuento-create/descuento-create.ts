@@ -76,7 +76,7 @@ export class DescuentoCreate {
         this.router.navigate(['/store']);
       },
       error: (err) => {
-        alert("Error al crear el descuento" + err.error.error)
+        alert("Error al crear el descuento" + err.error)
         console.error("Error al crear el descuento:", err);
       }
     });

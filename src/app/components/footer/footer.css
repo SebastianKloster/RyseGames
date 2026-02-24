@@ -4,8 +4,14 @@ footer{
     padding: 0rem 3rem;
     display: flex;
     align-items: center;
+    justify-content: center;
+    gap: 1rem;
 
     color: var(--color-delta);
-    background-color: var(--color-beta);
+    background-color: var(--color-alfa);
 
+}
+p#logo {
+    font-size: 1.5rem;
+    font-weight: bolder;
 }

@@ -28,3 +28,7 @@ body {
     background-color: var(--color-beta);
     background-image: url('./assets/images/game_pattern.png');
 }
+
+img {
+    -webkit-user-drag: none;
+}

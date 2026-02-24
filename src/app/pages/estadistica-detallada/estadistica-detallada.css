@@ -1,0 +1,137 @@
+#estadisticas {
+  padding: 2rem 3rem;
+  min-height: var(--semi-screen);
+  background: linear-gradient(175deg, var(--color-alfa), var(--color-beta));
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.range {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.range button {
+  padding: 0.3rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 2px solid var(--color-beta);
+
+  color: var(--color-delta);
+  background-color: var(--color-beta);
+  box-shadow: 2px 2px 5px var(--color-alfa);
+
+  transition: 0.2s ease;
+  cursor: pointer;
+}
+.range button.active {
+  background-color: var(--color-gamma);
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.cards {
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  margin-bottom: 1rem;
+}
+
+.charts {
+  grid-template-columns: repeat(2, minmax(320px, 1fr));
+  margin-bottom: 1rem;
+}
+
+.card {
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--color-alfa), rgb(48, 51, 60), var(--color-alfa));
+  /* background-color: var(--color-alfa); */
+  padding: 1rem;
+  box-shadow: 0 6px 20px rgba(0,0,0,.12);
+}
+
+.label {
+  font-size: .95rem;
+  opacity: .85;
+}
+
+.value {
+  font-size: 1.9rem;
+  font-weight: 800;
+  margin-top: .25rem;
+}
+
+.sub {
+  margin-top: .3rem;
+  font-size: .95rem;
+  opacity: .85;
+}
+
+.muted {
+  opacity: .75;
+}
+
+.error {
+  color: #ff6b6b;
+  font-weight: 700;
+}
+
+.chartWrap {
+  margin-top: .6rem;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+  background-color: var(--color-alfa);
+  border: 1px solid rgba(255,255,255,.10);
+}
+
+svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.line {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  opacity: .95;
+}
+
+.categorias .chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  margin-top: .8rem;
+}
+
+.chip {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: baseline;
+  gap: .5rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+}
+
+.chip .name { 
+  font-size: 1rem;
+  font-weight: 800; 
+}
+.chip .count {
+  padding: .1rem .45rem;
+  border-radius: 999px;
+  background: rgba(0,0,0,.16);
+}
+.chip .pct { opacity: .8; }

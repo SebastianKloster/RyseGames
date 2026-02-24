@@ -1,0 +1,102 @@
+<section id="estadisticas">
+
+  <div class="topbar">
+    <h2>Estadísticas</h2>
+
+    <div class="range">
+      <span>Período:</span>
+      <button type="button" (click)="setDays(7)"  [class.active]="days() === 7">7 días</button>
+      <button type="button" (click)="setDays(30)" [class.active]="days() === 30">30 días</button>
+      <button type="button" (click)="setDays(90)" [class.active]="days() === 90">90 días</button>
+    </div>
+  </div>
+
+  @if (loading()) {
+    <p class="muted">Cargando...</p>
+  } @else if (error()) {
+    <p class="error">{{ error() }}</p>
+  } @else if (stats()) {
+    <div class="grid cards">
+      <div class="card">
+        <div class="label">Ventas totales</div>
+        <div class="value">{{ stats()!.ventasTotales }}</div>
+      </div>
+
+      <div class="card">
+        <div class="label">Ingresos totales</div>
+        <div class="value">{{ money(stats()!.ingresosTotales) }}</div>
+      </div>
+
+      <div class="card">
+        <div class="label">Ventas ({{ days() }} días)</div>
+        <div class="value">{{ stats()!.ventasPeriodo }}</div>
+      </div>
+
+      <div class="card">
+        <div class="label">Ingresos ({{ days() }} días)</div>
+        <div class="value">{{ money(stats()!.ingresosPeriodo) }}</div>
+      </div>
+
+      <div class="card">
+        <div class="label">Precio promedio</div>
+        <div class="value">{{ money(stats()!.precioPromedio) }}</div>
+        <div class="sub">Mediana: {{ money(stats()!.precioMediana) }}</div>
+      </div>
+
+      <div class="card">
+        <div class="label">Retención simple</div>
+        <div class="value">{{ retencionPct() }}%</div>
+        <div class="sub">
+          {{ stats()!.compradoresRecurrentes }}/{{ stats()!.compradoresUnicos }} compradores
+        </div>
+      </div>
+    </div>
+
+    <div class="grid charts">
+      <div class="card chart">
+        <div class="label">Ventas por día</div>
+        <div class="chartWrap">
+          <svg viewBox="0 0 640 160" role="img" aria-label="Ventas por día">
+            <path class="line" [attr.d]="linePath(ventasSerie())"></path>
+          </svg>
+        </div>
+        <div class="sub">
+          Min: {{ minMax(ventasSerie()).min }} · Max: {{ minMax(ventasSerie()).max }}
+        </div>
+      </div>
+
+      <div class="card chart">
+        <div class="label">Ingresos por día</div>
+        <div class="chartWrap">
+          <svg viewBox="0 0 640 160" role="img" aria-label="Ingresos por día">
+            <path class="line" [attr.d]="linePath(ingresosSerie())"></path>
+          </svg>
+        </div>
+        <div class="sub">
+          Min: {{ money(minMax(ingresosSerie()).min) }} · Max: {{ money(minMax(ingresosSerie()).max) }}
+        </div>
+      </div>
+    </div>
+
+    <div class="card categorias">
+      <div class="label">Distribución por categoría</div>
+
+      <div class="chips">
+        @for (c of stats()!.distribucionCategorias; track c.categoria) {
+          <div class="chip" [style.borderColor]="getCategoryColor(c.categoria)" [style.background-color]="getCategoryColor(c.categoria)">
+            <span class="icon"><i [class]="getCategoryIcon(c.categoria)"></i></span>
+            <span class="name">{{ c.categoria }}</span>
+            <span class="count">{{ c.cantidad }}</span>
+            <span class="pct">
+              {{ totalJuegosCatalogo() === 0 ? 0 : Math.round((c.cantidad * 100) / totalJuegosCatalogo()) }}%
+            </span>
+          </div>
+        }
+      </div>
+
+      <div class="muted">
+        Total catálogo: {{ totalJuegosCatalogo() }} juegos
+      </div>
+    </div>
+  }
+</section>

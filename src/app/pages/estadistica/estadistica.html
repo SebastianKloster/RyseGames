@@ -9,17 +9,46 @@
                     <h4>{{dato.juego.nombre}}</h4>
                     <p class="fecha_lanzamiento">{{dato.juego.fechaLanzamiento}}</p>
                     <div class="precio_container">
-                        <p class="precio">{{ dato.juego.precio | currency:'USD':'symbol':'1.2-2' }}</p>
+                        @if (dato.juego.porcentajeDescuento) {
+                            <span class="descuento_chip">
+                                -{{ dato.juego.porcentajeDescuento }}%
+                            </span>
+                        }
+                        <div class="precios">
+                            @if (dato.juego.porcentajeDescuento) {
+                                <span class="precio_original">
+                                    {{ dato.juego.precio | currency:'USD':'symbol':'1.2-2' }}
+                                </span>
+                                <span class="precio_final">
+                                    {{ dato.juego.precioFinal | currency:'USD':'symbol':'1.2-2' }}
+                                </span>
+                            } @else {
+                                <span class="precio_normal">
+                                    {{ dato.juego.precio | currency:'USD':'symbol':'1.2-2' }}
+                                </span>
+                            }
+                        </div>
                     </div>
 
-                    <div class="stats">
-                        <p><i class="fa-solid fa-heart"></i> {{dato.favoritos}}</p>
-                        <p><i class="fa-solid fa-basket-shopping"></i> {{dato.ventas}}</p>
+                    <div class="buttons">
+                        <button (click)="goToEditGame(dato.juego.id)"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button (click)="goToDescuento(dato.juego.id)"><i class="fa-solid fa-percent"></i></button>
+                    </div>
+
+                    <div class="stats_container">
+                        <div class="stats">
+                            <p><i class="fa-solid fa-heart"></i> {{dato.favoritos}}</p>
+                            <p><i class="fa-solid fa-basket-shopping"></i> {{dato.ventas}}</p>
+                        </div>
                     </div>
                 </div>
             </article>
-        } @empty {
-            <p>No hay juegos que mostrar.</p>
         }
+        <div id="crear_juego" [routerLink]="['/create_game']">
+            <p>agregar juego <i class="fa-regular fa-square-plus"></i></p>
+        </div>
+        <!-- @empty {
+            <p>No hay juegos que mostrar.</p>
+        } -->
     </div>
 </section>

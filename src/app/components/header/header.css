@@ -12,7 +12,7 @@ header {
     background-color: var(--color-alfa);
     color: var(--color-delta);
     /* border-bottom: 2px solid var(--color-gamma); */
-    box-shadow: 0px 0px 2px 3px var(--color-gamma);
+    box-shadow: 0px 0px 1px 3px var(--color-gamma);
     z-index: 10;
 }
 .logo, .menu, .user {

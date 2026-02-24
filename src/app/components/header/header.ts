@@ -31,7 +31,7 @@ export class Header {
     const perfilId = this.user()?.perfil?.id;
 
     if (perfilId) {
-      this.notifService.getByPerfil(perfilId)
+      this.notifService.getByPerfil()
         .subscribe(data => {
           this.notificaciones.set(data);
         });
@@ -47,7 +47,7 @@ export class Header {
       const perfilId = this.user()?.perfil?.id;
 
       if (perfilId) {
-        this.notifService.marcarTodas(perfilId)
+        this.notifService.marcarTodas()
           .subscribe(() => {
 
             this.notificaciones.update(lista =>
@@ -67,7 +67,7 @@ export class Header {
     const perfilId = this.sessionService.user()?.perfil?.id;
 
     if (perfilId) {
-      this.notifService.getByPerfil(perfilId)
+      this.notifService.getByPerfil()
         .subscribe(data => {
           this.notificaciones.set(data);
         });
