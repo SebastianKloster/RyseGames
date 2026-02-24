@@ -26,7 +26,7 @@
                           <div class="vacio">No hay notificaciones</div>
                         } @else {
                           @for (n of notificaciones(); track n.id) {
-                            <div class="item" [class.no-leida]="!n.leida">
+                            <div class="item" [class.leida]="n.leida">
                               {{ n.mensaje }}
                             </div>
                           }

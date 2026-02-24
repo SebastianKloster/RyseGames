@@ -44,13 +44,13 @@ export class Header {
         return;
       }
 
-      this.notifService.getByPerfil()
+      this.notifService.getNotificaciones()
         .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe(data => this.notificaciones.set(data));
     });
   }
 
-  toggleDropdown() {
+  toggleDropdown() { //Desplegar Notificaciones
     if (!this.isPerfil()) return;
 
     this.dropdownAbierto.set(!this.dropdownAbierto());

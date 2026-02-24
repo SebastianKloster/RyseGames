@@ -9,13 +9,11 @@ export class NotificacionService {
   private http = inject(HttpClient);
   private apiUrl = 'https://localhost:8443/api/notificaciones';
 
-  getByPerfil(){
+  getNotificaciones(){
     return this.http.get<NotificacionDTO[]>(`${this.apiUrl}`);
   }
 
   marcarTodas() {
-  return this.http.put(`${this.apiUrl}/leer-todas`,
-    {}
-  );
-}
+    return this.http.put(`${this.apiUrl}/leer-todas`,{});
+  }
 }
