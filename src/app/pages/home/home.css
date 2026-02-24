@@ -4,4 +4,42 @@ section#home {
 
     background-color: var(--color-beta);
     background: linear-gradient(175deg, var(--color-alfa), var(--color-beta));
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+.logo {
+    padding: 3rem;
+    background-color: var(--color-alfa);
+    border-radius: 5px;
+
+    user-select: none;
+}
+h1 {
+    font-size: 8rem;
+}
+a {
+    padding: 0.5rem;
+    
+    font-size: 1.2rem;
+    color: var(--color-alfa);
+    text-decoration: none;
+
+    border-radius: 5px;
+    background-color: var(--color-delta);
+
+    transition: 0.2s all ease;
+    font-weight: bolder;
+}
+a:hover {
+    color: var(--color-delta);
+    background-color: var(--color-gamma);
+    
 }
