@@ -48,7 +48,10 @@ export class CarritoService {
     const ids = this.getIds();
 
     this.http.post('https://localhost:8443/api/compra', { gameIds: ids }).subscribe({
-      next: () => this.clear(),
+      next: () => {
+        this.clear()
+        alert("Compra realizada con éxito!")
+      },
       error: err => {
         alert(err.error.error);
         console.error("Error al comprar", err);
