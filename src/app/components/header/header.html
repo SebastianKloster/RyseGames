@@ -7,7 +7,7 @@
         <ul>
             @if (user(); as user) {
                 <li><a routerLink="/store">tienda</a></li>
-                @if (user.role === roleEnum.PERFIL) {
+                @if (isPerfil()) {
                     <!-- Seccion para Perfil -->
                     <li><a routerLink="/biblioteca">biblioteca</a></li>
                     <li><a routerLink="/billetera">billetera</a></li>
@@ -46,7 +46,7 @@
     <div class="user">
         @if (user(); as user) {
             <div class="username">
-                @if (user.role === roleEnum.PERFIL) {
+                @if (isPerfil()) {
                     <a class="nick" routerLink="/user">{{user.perfil?.nickname}}</a>
                 } @else {
                     <a class="nick" routerLink="/user">{{user.desarrolladora?.nombre}}</a>

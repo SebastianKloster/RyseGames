@@ -1,9 +1,10 @@
-import { Component, computed, effect, inject, signal } from '@angular/core';
+import { Component, computed, DestroyRef, effect, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SessionService } from '../../services/session-service';
 import { RoleEnum } from '../../model/roleEnum';
 import { NotificacionService } from '../../services/notificacion-service';
 import { CommonModule } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-header',
@@ -13,64 +14,58 @@ import { CommonModule } from '@angular/common';
 })
 export class Header {
 
-  roleEnum = RoleEnum
-  sessionService = inject(SessionService)
-  user = this.sessionService.getLoggedUser()
-  notifService = inject(NotificacionService)
+  roleEnum = RoleEnum;
+
+  private sessionService = inject(SessionService);
+  private notifService = inject(NotificacionService);
+  private destroyRef = inject(DestroyRef);
+
+  user = this.sessionService.getLoggedUser();
+  isPerfil = computed(() => this.user()?.role === this.roleEnum.PERFIL);
 
   dropdownAbierto = signal(false);
   notificaciones = signal<any[]>([]);
+
   cantidadNoLeidas = computed(() =>
     this.notificaciones().filter(n => !n.leida).length
   );
 
-  constructor(){
-    console.log(this.user())
 
-  effect(() => {
-    const perfilId = this.user()?.perfil?.id;
+  constructor() {
+    effect(() => {
+      // Fuerza dependencia reactiva del effect
+      const u = this.user();
 
-    if (perfilId) {
+      // Si no es PERFIL (o no hay usuario), limpiá y no llames al backend
+      if (!u || u.role !== this.roleEnum.PERFIL || !u.perfil?.id) {
+        this.notificaciones.set([]);
+        this.dropdownAbierto.set(false);
+        return;
+      }
+
       this.notifService.getByPerfil()
-        .subscribe(data => {
-          this.notificaciones.set(data);
-        });
-    }
-  });
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe(data => this.notificaciones.set(data));
+    });
   }
 
   toggleDropdown() {
-    const nuevoEstado = !this.dropdownAbierto();
-    this.dropdownAbierto.set(nuevoEstado);
+    if (!this.isPerfil()) return;
 
-    if (nuevoEstado && this.cantidadNoLeidas() > 0) {
-      const perfilId = this.user()?.perfil?.id;
+    this.dropdownAbierto.set(!this.dropdownAbierto());
 
-      if (perfilId) {
-        this.notifService.marcarTodas()
-          .subscribe(() => {
-
-            this.notificaciones.update(lista =>
-              lista.map(n => ({ ...n, leida: true }))
-            );
-          });
-        }
-      }
-  }
-
-
-  logout() {
-    this.sessionService.logout()
-  }
-
-  ngOnInit() {
-    const perfilId = this.sessionService.user()?.perfil?.id;
-
-    if (perfilId) {
-      this.notifService.getByPerfil()
-        .subscribe(data => {
-          this.notificaciones.set(data);
+    if (!this.dropdownAbierto() && this.cantidadNoLeidas() > 0) {
+      this.notifService.marcarTodas()
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe(() => {
+          this.notificaciones.update(lista =>
+            lista.map(n => ({ ...n, leida: true }))
+          );
         });
     }
+  }
+
+  logout() {
+    this.sessionService.logout();
   }
 }
