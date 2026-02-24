@@ -7,10 +7,11 @@ import { JuegoModel } from '../../model/juego';
 import { Page } from '../../model/page';
 import { combineLatest, debounceTime, merge, skip, switchMap, take, tap } from 'rxjs';
 import { toObservable } from '@angular/core/rxjs-interop';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-store-list',
-  imports: [RouterLink, CurrencyPipe],
+  imports: [RouterLink, CurrencyPipe, FormsModule],
   templateUrl: './store-list.html',
   styleUrl: './store-list.css',
 })
@@ -22,13 +23,19 @@ export class StoreList {
   page = signal<Page<JuegoModel> | null>(null);
   juegos = computed(() => this.page()?.content ?? []);
 
+  categoriaEnum = CategoriaEnum;
+  categorias = Object.values(CategoriaEnum) as CategoriaEnum[];
+
   paginaActual = signal(0);
   loading = signal(true);
 
   search = signal('');
+  categoria = signal<CategoriaEnum | undefined>(undefined);
+
 
   private base$ = combineLatest([ //Trigers para actualizar la busqueda
     toObservable(this.paginaActual),
+    toObservable(this.categoria),
     toObservable(this.search)
   ]);
   private firstLoad$ = this.base$.pipe( //Carga incial, sin debounce 
@@ -44,9 +51,9 @@ export class StoreList {
     this.changes$
   ).pipe(
     tap(() => this.loading.set(true)),
-    switchMap(([page, search]) =>
+    switchMap(([page, categoria, search]) =>
       //Argumentos: paginacion, categoria, texto de busqueda.
-      this.juegosService.getPage(page, undefined, search) 
+      this.juegosService.getPage(page, categoria, search) 
     )
   );
 
@@ -61,7 +68,8 @@ export class StoreList {
   });
 
   readonly resetPageOnSearchEffect = effect(() => { //Volver a la primera pagina al cambiar parametros de busqueda
-    const search = this.search(); // 👈 única dependencia
+    const search = this.search(); // 👈 dependencias
+    const categoria = this.categoria(); // 👈 dependencias
 
     untracked(() => { //Untracked evita que el effect actue sobre cambios en el singal 'paginaActual' (evitando así bucles)
       if (this.paginaActual() !== 0) {

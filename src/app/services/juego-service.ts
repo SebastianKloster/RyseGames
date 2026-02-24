@@ -6,6 +6,7 @@ import { map, Observable, Subscription, tap } from 'rxjs';
 import { CreateGameDTO } from '../model/createGameDTO';
 import { JuegoDescuentoDTO } from '../model/juegoDescuentoDTO';
 import { Page } from '../model/page';
+import { CategoriaEnum } from '../model/categoriaEnum';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +19,7 @@ export class JuegoService {
 
 
   
-  getPage(page: number, categoria?: string, search?: string) {
+  getPage(page: number, categoria?: CategoriaEnum, search?: string) {
     let params = new HttpParams()
       .set('page', page);
 

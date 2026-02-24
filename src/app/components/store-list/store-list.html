@@ -8,6 +8,20 @@
     (input)="search.set($any($event.target).value)"
     />
 
+
+    <!-- CATEGORIAS -->
+    <div class="categoria_select">
+      <label id="select_label" for="select">Categoria</label>
+      <select id="select" class="form-select" [ngModel]="categoria()" (ngModelChange)="categoria.set($event)">
+        <option [ngValue]="undefined">Todas</option>
+        @for (cat of categorias; track cat) {
+          <option [ngValue]="cat">
+            {{ cat }}
+          </option>
+        }
+      </select>
+    </div>
+
     <!-- PAGINADOR -->
     @if (page()) {
       <div class="paginador">
@@ -83,28 +97,32 @@
         </div>
       </article>
     } @empty {
-      <p>No hay juegos que mostrar.</p>
+      <div class="empty">
+        <p>No hay juegos que mostrar.</p>
+      </div>
     }
   </div>
 
 
-  <div class="bottom_inputs">
-    <!-- PAGINADOR -->
-      @if (page()) {
-        <div class="paginador">
-          <button (click)="anterior()"  [disabled]="loading() || page()?.first">
-            Anterior
-          </button>
-      
-          <span>
-            Página {{ paginaActual() + 1 }} de {{ page()!.totalPages }}
-          </span>
-      
-          <button (click)="siguiente()" [disabled]="loading() || page()?.last">
-            Siguiente
-          </button>
-        </div>
-      }
-  </div>
+  @if (juegos().length > 0) {
+    <div class="bottom_inputs">
+      <!-- PAGINADOR -->
+        @if (page()) {
+          <div class="paginador">
+            <button (click)="anterior()"  [disabled]="loading() || page()?.first">
+              Anterior
+            </button>
+        
+            <span>
+              Página {{ paginaActual() + 1 }} de {{ page()!.totalPages }}
+            </span>
+        
+            <button (click)="siguiente()" [disabled]="loading() || page()?.last">
+              Siguiente
+            </button>
+          </div>
+        }
+    </div>
+  }
 
 </section>
