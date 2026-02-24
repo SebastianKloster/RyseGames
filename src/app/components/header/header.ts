@@ -5,6 +5,7 @@ import { RoleEnum } from '../../model/roleEnum';
 import { NotificacionService } from '../../services/notificacion-service';
 import { CommonModule } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { NotificacionDTO } from '../../model/notificacionDTO';
 
 @Component({
   selector: 'app-header',
@@ -24,7 +25,7 @@ export class Header {
   isPerfil = computed(() => this.user()?.role === this.roleEnum.PERFIL);
 
   dropdownAbierto = signal(false);
-  notificaciones = signal<any[]>([]);
+  notificaciones = signal<NotificacionDTO[]>([]);
 
   cantidadNoLeidas = computed(() =>
     this.notificaciones().filter(n => !n.leida).length
