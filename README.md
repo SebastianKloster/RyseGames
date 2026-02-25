@@ -73,7 +73,7 @@ El backend se conecta a una base de datos **MySQL**, donde se almacenan:
 
 ---
 
-##Integración con Mercado Pago (Modo Prueba)
+## 💳 Integración con Mercado Pago (Modo Prueba)
 
 RyseGames utiliza la API de pagos de Mercado Pago para procesar cargas virtuales de la billetera. Para que pueda funcionar correctamente hay que abrir el puerto 8443 que opera de forma local, por lo que debemos ser notificados a la hora de probar esta funcion para abirlo con ngrok.
 
