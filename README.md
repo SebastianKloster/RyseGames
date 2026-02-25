@@ -73,6 +73,34 @@ El backend se conecta a una base de datos **MySQL**, donde se almacenan:
 
 ---
 
+##Integración con Mercado Pago (Modo Prueba)
+
+RyseGames utiliza la API de pagos de Mercado Pago para procesar cargas virtuales de la billetera. Para que pueda funcionar correctamente hay que abrir el puerto 8443 que opera de forma local, por lo que debemos ser notificados a la hora de probar esta funcion para abirlo con ngrok.
+
+- Cuenta Comprador de prueba
+    - User ID: 3200707522
+    - Usuario: TESTUSER6385916532157337326
+    - Contraseña: 66HpvwhZnN
+    - Codigo de verificacion: 707524
+ 
+- Tarjeta Aprobada
+
+    - Número: 4509 9535 6623 3704
+    - CVV: 123
+    - Vencimiento: 11/30
+    - Nombre: APRO
+    - DNI: 12345678
+
+- Tarjeta Rechazada
+
+    - Número: 4509 9535 6623 3704
+    - CVV: 123
+    - Vencimiento: 11/30
+    - Nombre: OTHE
+    - DNI: 12345678
+
+---
+
 ## 📦 Instalación y Ejecución
 
 ### 1️⃣ Clonar Frontend
@@ -80,5 +108,6 @@ El backend se conecta a una base de datos **MySQL**, donde se almacenan:
 git clone https://github.com/SebastianKloster/RyseGames.git
 cd RyseGames
 npm install
-ng serve
+ng serve --ssl true
+
 
