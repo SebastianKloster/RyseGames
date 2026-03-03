@@ -4,7 +4,7 @@ section#user {
 
     background-color: var(--color-beta);
     background: linear-gradient(175deg, var(--color-alfa), var(--color-beta));
-    padding: 2rem 5rem;
+    padding: 4rem 10rem;
 
     background-color: green;
 }

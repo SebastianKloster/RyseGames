@@ -2,11 +2,7 @@ section#register_form {
     min-height: var(--semi-screen);
     width: 100%;
 
-    background-color: var(--color-beta);
-    background: linear-gradient(175deg, var(--color-alfa), var(--color-beta));
     padding: 2rem 5rem;
-
-    background-color: green;
 }
 
 form {
