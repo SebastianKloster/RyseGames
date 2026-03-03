@@ -7,7 +7,7 @@ section.juegos_list {
     gap: 1rem;
 }
 article {
-    height: 17rem;
+    /* height: 17rem; */
     
     display: flex;
     flex-direction: column;
@@ -27,8 +27,9 @@ article:hover {
     /* box-shadow: 2px 2px 5px var(--color-gamma); */
 }
 .portada {
-    height: 20rem;
+    /* height: 20rem; */
     width: 100%;
+    aspect-ratio: 1.9 / 1;
     /* background-color: green; */
     overflow: hidden;
 }
@@ -59,7 +60,7 @@ article:hover {
     box-shadow: 0rem 0rem 5rem 1rem var(--color-beta);
 }
 .texto {
-    height: 100%;
+    height: 5rem;
     width: 100%;
     padding: 0.3rem 0.6rem;
     position: relative;
@@ -93,6 +94,11 @@ article:hover {
     display: flex;
     justify-content: space-between;
     color: gray;
+}
+.desarrolladora {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
 }
 .fecha_lanzamiento {
     position: absolute;
