@@ -28,6 +28,8 @@ article {
     transition: 0.2s ease;
     cursor: pointer;
     overflow: hidden;
+
+    border-radius: 5px;
 }
 article:hover {
     border-color: var(--color-gamma);

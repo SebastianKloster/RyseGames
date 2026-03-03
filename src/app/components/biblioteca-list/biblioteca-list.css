@@ -16,10 +16,12 @@ article {
     border: 2px solid var(--color-alfa);
     background-color: var(--color-alfa);
     box-shadow: 2px 2px 5px var(--color-alfa);
-
+    
     transition: 0.2s ease;
     cursor: pointer;
     overflow: hidden;
+    
+    border-radius: 5px;
 }
 article:hover {
     border-color: var(--color-gamma);
